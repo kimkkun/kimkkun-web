@@ -6,7 +6,9 @@ export default function HeroSection() {
     <section className="pt-32 pb-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-          {BRAND.positioning}
+          {BRAND.positioningLine1}
+          <br />
+          {BRAND.positioningLine2}
         </h1>
         <p className="mt-4 text-base md:text-lg text-muted max-w-xl leading-relaxed">
           {BRAND.subCopy}

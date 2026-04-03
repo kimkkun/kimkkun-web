@@ -4,8 +4,9 @@ export const BRAND = {
   instagram: '@kim.kkun',
   instagramUrl: 'https://instagram.com/kim.kkun',
   domain: 'kimkkun.com',
-  positioning: '감으로 하던 장사를, 시스템으로 바꾸는 사람.',
-  subCopy: '스키당, 일등고기를 직접 운영하며 만든 브랜딩과 시스템의 기록.',
+  positioningLine1: '감으로 하던 장사를,',
+  positioningLine2: '시스템이 있는 사업으로',
+  subCopy: '오프라인 매장과, 온라인몰을 만들며 만든 브랜딩과 시스템의 기록',
 }
 
 export const CATEGORY_STYLES: Record<string, { color: string; gradient: string }> = {
