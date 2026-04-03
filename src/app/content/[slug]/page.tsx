@@ -3,6 +3,12 @@ import { Article } from '@/lib/types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
+import { parseBlocks } from '@/lib/parseBlocks'
+import CompareBlock from '@/components/article/CompareBlock'
+import ChecklistBlock from '@/components/article/ChecklistBlock'
+import InsightBlock from '@/components/article/InsightBlock'
+import StepsBlock from '@/components/article/StepsBlock'
+import ExamplesBlock from '@/components/article/ExamplesBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -42,6 +48,49 @@ async function getAdjacentArticles(number: number) {
   return { prev, next }
 }
 
+const markdownComponents = {
+  h2: ({ children }: { children?: React.ReactNode }) => (
+    <h2 className="text-xl font-bold mt-12 mb-4">{children}</h2>
+  ),
+  h3: ({ children }: { children?: React.ReactNode }) => (
+    <h3 className="text-lg font-bold mt-8 mb-3">{children}</h3>
+  ),
+  p: ({ children }: { children?: React.ReactNode }) => (
+    <p className="text-[15px] leading-[2] text-foreground/85 mb-4">{children}</p>
+  ),
+  strong: ({ children }: { children?: React.ReactNode }) => (
+    <strong className="text-foreground font-semibold">{children}</strong>
+  ),
+  blockquote: ({ children }: { children?: React.ReactNode }) => (
+    <blockquote className="border-l-2 border-foreground/30 pl-4 my-6 italic text-muted">
+      {children}
+    </blockquote>
+  ),
+  ul: ({ children }: { children?: React.ReactNode }) => (
+    <ul className="space-y-2 my-4 ml-4">{children}</ul>
+  ),
+  ol: ({ children }: { children?: React.ReactNode }) => (
+    <ol className="space-y-2 my-4 ml-4 list-decimal">{children}</ol>
+  ),
+  li: ({ children }: { children?: React.ReactNode }) => (
+    <li className="text-[15px] leading-[2] text-foreground/85">{children}</li>
+  ),
+  table: ({ children }: { children?: React.ReactNode }) => (
+    <div className="my-8 overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-sm">{children}</table>
+    </div>
+  ),
+  thead: ({ children }: { children?: React.ReactNode }) => (
+    <thead className="bg-[#1a1a1a]">{children}</thead>
+  ),
+  th: ({ children }: { children?: React.ReactNode }) => (
+    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border">{children}</th>
+  ),
+  td: ({ children }: { children?: React.ReactNode }) => (
+    <td className="px-4 py-3 text-foreground/80 border-b border-border/50">{children}</td>
+  ),
+}
+
 export default async function ArticlePage({
   params,
 }: {
@@ -61,6 +110,8 @@ export default async function ArticlePage({
         day: 'numeric',
       })
     : ''
+
+  const blocks = parseBlocks(article.content)
 
   return (
     <div className="pt-24 pb-20">
@@ -99,44 +150,28 @@ export default async function ArticlePage({
             </div>
           </header>
 
-          {/* 본문 */}
+          {/* 본문 - 리치 블록 지원 */}
           <div className="prose-custom">
-            <Markdown
-              components={{
-                h2: ({ children }) => (
-                  <h2 className="text-xl font-bold mt-12 mb-4">{children}</h2>
-                ),
-                h3: ({ children }) => (
-                  <h3 className="text-lg font-bold mt-8 mb-3">{children}</h3>
-                ),
-                p: ({ children }) => (
-                  <p className="text-[15px] leading-[2] text-foreground/85 mb-4">
-                    {children}
-                  </p>
-                ),
-                strong: ({ children }) => (
-                  <strong className="text-foreground font-semibold">{children}</strong>
-                ),
-                blockquote: ({ children }) => (
-                  <blockquote className="border-l-2 border-foreground/30 pl-4 my-6 italic text-muted">
-                    {children}
-                  </blockquote>
-                ),
-                ul: ({ children }) => (
-                  <ul className="space-y-2 my-4 ml-4">{children}</ul>
-                ),
-                ol: ({ children }) => (
-                  <ol className="space-y-2 my-4 ml-4 list-decimal">{children}</ol>
-                ),
-                li: ({ children }) => (
-                  <li className="text-[15px] leading-[2] text-foreground/85">
-                    {children}
-                  </li>
-                ),
-              }}
-            >
-              {article.content}
-            </Markdown>
+            {blocks.map((block, i) => {
+              switch (block.type) {
+                case 'compare':
+                  return <CompareBlock key={i} content={block.content} />
+                case 'checklist':
+                  return <ChecklistBlock key={i} content={block.content} />
+                case 'insight':
+                  return <InsightBlock key={i} content={block.content} />
+                case 'steps':
+                  return <StepsBlock key={i} content={block.content} />
+                case 'examples':
+                  return <ExamplesBlock key={i} content={block.content} />
+                default:
+                  return (
+                    <Markdown key={i} components={markdownComponents}>
+                      {block.content}
+                    </Markdown>
+                  )
+              }
+            })}
           </div>
 
           {/* KEY TAKEAWAY */}

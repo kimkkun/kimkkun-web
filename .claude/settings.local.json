@@ -4,7 +4,8 @@
       "mcp__80283f5a-9bd2-4c5a-8714-dea7c7a11b9e__apply_migration",
       "mcp__80283f5a-9bd2-4c5a-8714-dea7c7a11b9e__execute_sql",
       "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "WebSearch"
     ]
   }
 }
