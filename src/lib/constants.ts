@@ -4,7 +4,7 @@ export const BRAND = {
   instagram: '@kim.kkun',
   instagramUrl: 'https://instagram.com/kim.kkun',
   domain: 'kimkkun.com',
-  positioning: '감으로 하던 사업을, 시스템으로 바꾸는 사람.',
+  positioning: '감으로 하던 장사를, 시스템으로 바꾸는 사람.',
   subCopy: '스키당, 일등고기를 직접 운영하며 만든 브랜딩과 시스템의 기록.',
 }
 
