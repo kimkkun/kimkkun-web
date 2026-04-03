@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 async function getArticle(slug: string): Promise<Article | null> {
   const supabase = createSupabaseClient()

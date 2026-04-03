@@ -3,25 +3,33 @@ import { Category, Article } from '@/lib/types'
 import HeroSection from '@/components/home/HeroSection'
 import CategoryTabs from '@/components/home/CategoryTabs'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 async function getCategories(): Promise<Category[]> {
-  const supabase = createSupabaseClient()
-  const { data } = await supabase
-    .from('categories')
-    .select('*')
-    .order('sort_order')
-  return data || []
+  try {
+    const supabase = createSupabaseClient()
+    const { data } = await supabase
+      .from('categories')
+      .select('*')
+      .order('sort_order')
+    return data || []
+  } catch {
+    return []
+  }
 }
 
 async function getArticles(): Promise<Article[]> {
-  const supabase = createSupabaseClient()
-  const { data } = await supabase
-    .from('articles')
-    .select('*, category:categories(*)')
-    .eq('is_published', true)
-    .order('number', { ascending: true })
-  return data || []
+  try {
+    const supabase = createSupabaseClient()
+    const { data } = await supabase
+      .from('articles')
+      .select('*, category:categories(*)')
+      .eq('is_published', true)
+      .order('number', { ascending: true })
+    return data || []
+  } catch {
+    return []
+  }
 }
 
 export default async function HomePage() {
