@@ -10,6 +10,7 @@ import InsightBlock from '@/components/article/InsightBlock'
 import StepsBlock from '@/components/article/StepsBlock'
 import ExamplesBlock from '@/components/article/ExamplesBlock'
 import ArticleHero from '@/components/article/ArticleHero'
+import CopyProtect from '@/components/article/CopyProtect'
 
 export const dynamic = 'force-dynamic'
 
@@ -60,7 +61,7 @@ const markdownComponents = {
     <p className="text-[15px] leading-[2] text-foreground/85 mb-4">{children}</p>
   ),
   strong: ({ children }: { children?: React.ReactNode }) => (
-    <strong className="text-foreground font-semibold">{children}</strong>
+    <strong className="text-foreground font-semibold underline decoration-foreground/40 decoration-2 underline-offset-4">{children}</strong>
   ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
     <blockquote className="border-l-2 border-foreground/30 pl-4 my-6 italic text-muted">
@@ -78,17 +79,17 @@ const markdownComponents = {
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
     <div className="my-8 overflow-x-auto rounded-xl border border-border">
-      <table className="w-full text-sm">{children}</table>
+      <table className="min-w-full text-sm whitespace-normal">{children}</table>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
     <thead className="bg-[#1a1a1a]">{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border">{children}</th>
+    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border min-w-[120px]">{children}</th>
   ),
   td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="px-4 py-3 text-foreground/80 border-b border-border/50">{children}</td>
+    <td className="px-4 py-3 text-foreground/80 border-b border-border/50 min-w-[120px]">{children}</td>
   ),
 }
 
@@ -130,39 +131,41 @@ export default async function ArticlePage({
             <span style={{ color: categoryColor }}>{article.category?.name}</span>
           </nav>
 
-          {/* 본문 - 리치 블록 지원 */}
-          <div className="prose-custom">
-            {blocks.map((block, i) => {
-              switch (block.type) {
-                case 'compare':
-                  return <CompareBlock key={i} content={block.content} />
-                case 'checklist':
-                  return <ChecklistBlock key={i} content={block.content} />
-                case 'insight':
-                  return <InsightBlock key={i} content={block.content} />
-                case 'steps':
-                  return <StepsBlock key={i} content={block.content} />
-                case 'examples':
-                  return <ExamplesBlock key={i} content={block.content} />
-                default:
-                  return (
-                    <Markdown key={i} components={markdownComponents}>
-                      {block.content}
-                    </Markdown>
-                  )
-              }
-            })}
-          </div>
+          {/* 본문 - 리치 블록 지원 (복사 방지) */}
+          <CopyProtect>
+            <div className="prose-custom">
+              {blocks.map((block, i) => {
+                switch (block.type) {
+                  case 'compare':
+                    return <CompareBlock key={i} content={block.content} />
+                  case 'checklist':
+                    return <ChecklistBlock key={i} content={block.content} />
+                  case 'insight':
+                    return <InsightBlock key={i} content={block.content} />
+                  case 'steps':
+                    return <StepsBlock key={i} content={block.content} />
+                  case 'examples':
+                    return <ExamplesBlock key={i} content={block.content} />
+                  default:
+                    return (
+                      <Markdown key={i} components={markdownComponents}>
+                        {block.content}
+                      </Markdown>
+                    )
+                }
+              })}
+            </div>
 
-          {/* KEY TAKEAWAY */}
-          <div className="mt-16 bg-card rounded-2xl p-6 border border-border">
-            <h3 className="text-xs font-bold tracking-widest text-muted mb-3">
-              KEY TAKEAWAY
-            </h3>
-            <p className="text-base font-medium leading-relaxed">
-              {article.sub_copy}
-            </p>
-          </div>
+            {/* KEY TAKEAWAY */}
+            <div className="mt-16 bg-card rounded-2xl p-6 border border-border">
+              <h3 className="text-xs font-bold tracking-widest text-muted mb-3">
+                KEY TAKEAWAY
+              </h3>
+              <p className="text-base font-medium leading-relaxed">
+                {article.sub_copy}
+              </p>
+            </div>
+          </CopyProtect>
 
           {/* WATCH ON REELS */}
           {article.reels_url && (
