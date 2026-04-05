@@ -9,6 +9,7 @@ import ChecklistBlock from '@/components/article/ChecklistBlock'
 import InsightBlock from '@/components/article/InsightBlock'
 import StepsBlock from '@/components/article/StepsBlock'
 import ExamplesBlock from '@/components/article/ExamplesBlock'
+import ArticleHero from '@/components/article/ArticleHero'
 
 export const dynamic = 'force-dynamic'
 
@@ -114,41 +115,20 @@ export default async function ArticlePage({
   const blocks = parseBlocks(article.content)
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-16 pb-20">
+      {/* 히어로 썸네일 */}
+      <ArticleHero article={article} />
+
       <article className="px-6">
         <div className="max-w-[600px] mx-auto">
           {/* 브레드크럼 */}
-          <nav className="flex items-center gap-2 text-xs text-muted mb-8">
+          <nav className="flex items-center gap-2 text-xs text-muted mt-10 mb-10">
             <Link href="/" className="hover:text-foreground transition-colors">
               Content
             </Link>
             <span>/</span>
             <span style={{ color: categoryColor }}>{article.category?.name}</span>
           </nav>
-
-          {/* 메타 */}
-          <header className="mb-12">
-            <span
-              className="inline-block px-2.5 py-1 text-xs font-medium rounded-full mb-4"
-              style={{ backgroundColor: `${categoryColor}20`, color: categoryColor }}
-            >
-              {article.category?.name}
-            </span>
-            <p className="text-xs text-muted tracking-widest mb-3">
-              NO. {String(article.number).padStart(2, '0')}
-            </p>
-            <h1 className="text-2xl md:text-3xl font-bold leading-tight">
-              {article.title}
-            </h1>
-            <p className="mt-3 text-base text-muted leading-relaxed">
-              {article.sub_copy}
-            </p>
-            <div className="flex items-center gap-4 mt-6 text-xs text-muted">
-              <span>{article.author}</span>
-              <span>{publishedDate}</span>
-              <span>{article.reading_time}분 읽기</span>
-            </div>
-          </header>
 
           {/* 본문 - 리치 블록 지원 */}
           <div className="prose-custom">

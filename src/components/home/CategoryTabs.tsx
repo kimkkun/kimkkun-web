@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Category, Article } from '@/lib/types'
 import ContentCard from './ContentCard'
 
@@ -11,29 +11,57 @@ interface CategoryTabsProps {
 
 export default function CategoryTabs({ categories, articles }: CategoryTabsProps) {
   const [activeSlug, setActiveSlug] = useState<string>('all')
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const filtered = activeSlug === 'all'
     ? articles
     : articles.filter((a) => a.category?.slug === activeSlug)
 
+  const activeCategory = categories.find((c) => c.slug === activeSlug)
+  const activeColor = activeCategory?.color || '#ededed'
+
   return (
     <section className="px-6 pb-20">
       <div className="max-w-6xl mx-auto">
-        {/* 탭 */}
-        <div className="flex gap-2 mb-10 overflow-x-auto pb-2">
-          <TabButton
-            label="All"
-            active={activeSlug === 'all'}
+        {/* 탭 — 가로 스크롤, 스크롤바 숨김 */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 mb-10 overflow-x-auto pb-1 scrollbar-hide"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
+          <button
             onClick={() => setActiveSlug('all')}
-          />
+            className={`relative whitespace-nowrap text-sm tracking-wide transition-colors shrink-0 pb-2 ${
+              activeSlug === 'all'
+                ? 'text-foreground font-semibold'
+                : 'text-muted hover:text-foreground/70'
+            }`}
+          >
+            전체
+            {activeSlug === 'all' && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-foreground rounded-full" />
+            )}
+          </button>
+
           {categories.map((cat) => (
-            <TabButton
+            <button
               key={cat.id}
-              label={cat.name}
-              active={activeSlug === cat.slug}
               onClick={() => setActiveSlug(cat.slug)}
-              color={cat.color}
-            />
+              className={`relative whitespace-nowrap text-sm tracking-wide transition-colors shrink-0 pb-2 ${
+                activeSlug === cat.slug
+                  ? 'font-semibold'
+                  : 'text-muted hover:text-foreground/70'
+              }`}
+              style={activeSlug === cat.slug ? { color: cat.color } : undefined}
+            >
+              {cat.name}
+              {activeSlug === cat.slug && (
+                <span
+                  className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full"
+                  style={{ backgroundColor: cat.color }}
+                />
+              )}
+            </button>
           ))}
         </div>
 
@@ -49,31 +77,5 @@ export default function CategoryTabs({ categories, articles }: CategoryTabsProps
         )}
       </div>
     </section>
-  )
-}
-
-function TabButton({
-  label,
-  active,
-  onClick,
-  color,
-}: {
-  label: string
-  active: boolean
-  onClick: () => void
-  color?: string
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-4 py-2 text-sm rounded-full whitespace-nowrap transition-all ${
-        active
-          ? 'bg-foreground text-background font-medium'
-          : 'text-muted hover:text-foreground border border-border'
-      }`}
-      style={active && color ? { backgroundColor: color, color: '#0a0a0a' } : undefined}
-    >
-      {label}
-    </button>
   )
 }
