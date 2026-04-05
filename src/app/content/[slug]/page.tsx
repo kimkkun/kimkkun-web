@@ -79,18 +79,20 @@ const markdownComponents = {
     <li className="text-[15px] leading-[2] text-foreground/85">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-border">
-      <table className="min-w-full text-sm whitespace-normal">{children}</table>
+    <div className="my-8 -mx-6 px-6 overflow-x-auto">
+      <div className="rounded-xl border border-border min-w-[600px]">
+        <table className="w-full text-sm">{children}</table>
+      </div>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
     <thead className="bg-[#1a1a1a]">{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border min-w-[120px]">{children}</th>
+    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border text-[13px] align-top">{children}</th>
   ),
   td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="px-4 py-3 text-foreground/80 border-b border-border/50 min-w-[120px]">{children}</td>
+    <td className="px-4 py-3 text-foreground/80 border-b border-border/50 text-[13px] leading-relaxed align-top">{children}</td>
   ),
 }
 
