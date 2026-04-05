@@ -3,6 +3,7 @@ import { Article } from '@/lib/types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { parseBlocks } from '@/lib/parseBlocks'
 import CompareBlock from '@/components/article/CompareBlock'
 import ChecklistBlock from '@/components/article/ChecklistBlock'
@@ -148,7 +149,7 @@ export default async function ArticlePage({
                     return <ExamplesBlock key={i} content={block.content} />
                   default:
                     return (
-                      <Markdown key={i} components={markdownComponents}>
+                      <Markdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>
                         {block.content}
                       </Markdown>
                     )
