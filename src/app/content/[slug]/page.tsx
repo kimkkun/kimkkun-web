@@ -53,30 +53,38 @@ async function getAdjacentArticles(number: number) {
 
 const markdownComponents = {
   h2: ({ children }: { children?: React.ReactNode }) => (
-    <h2 className="text-xl font-bold mt-12 mb-4">{children}</h2>
+    <div className="mt-20 mb-8">
+      <div className="w-full h-px bg-border/50 mb-10" />
+      <h2 className="text-2xl md:text-3xl font-black leading-tight">{children}</h2>
+    </div>
   ),
   h3: ({ children }: { children?: React.ReactNode }) => (
-    <h3 className="text-lg font-bold mt-8 mb-3">{children}</h3>
+    <h3 className="text-xl md:text-2xl font-bold mt-14 mb-6 leading-tight">{children}</h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="text-[15px] leading-[2] text-foreground/85 mb-4">{children}</p>
+    <p className="text-[15px] leading-[2.2] text-foreground/85 mb-6">{children}</p>
   ),
   strong: ({ children }: { children?: React.ReactNode }) => (
     <strong className="text-foreground font-semibold underline decoration-foreground/40 decoration-2 underline-offset-4">{children}</strong>
   ),
+  hr: () => (
+    <div className="my-16 flex justify-center">
+      <div className="w-12 h-px bg-muted/30" />
+    </div>
+  ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
-    <blockquote className="border-l-2 border-foreground/30 pl-4 my-6 italic text-muted">
+    <blockquote className="border-l-2 border-foreground/30 pl-5 my-8 italic text-muted">
       {children}
     </blockquote>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="space-y-2 my-4 ml-4">{children}</ul>
+    <ul className="space-y-3 my-6 ml-4">{children}</ul>
   ),
   ol: ({ children }: { children?: React.ReactNode }) => (
-    <ol className="space-y-2 my-4 ml-4 list-decimal">{children}</ol>
+    <ol className="space-y-3 my-6 ml-4 list-decimal">{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="text-[15px] leading-[2] text-foreground/85">{children}</li>
+    <li className="text-[15px] leading-[2.2] text-foreground/85">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
     <div className="my-8 -mx-6 px-6 overflow-x-auto">
