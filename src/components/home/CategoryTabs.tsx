@@ -21,7 +21,7 @@ export default function CategoryTabs({ categories, articles }: CategoryTabsProps
   const activeColor = activeCategory?.color || '#ededed'
 
   return (
-    <section className="px-6 pb-20">
+    <section className="px-6 pt-16 pb-20">
       <div className="max-w-6xl mx-auto">
         {/* 탭 — 가로 스크롤, 스크롤바 숨김 */}
         <div
@@ -50,9 +50,9 @@ export default function CategoryTabs({ categories, articles }: CategoryTabsProps
               className={`relative whitespace-nowrap text-sm tracking-wide transition-colors shrink-0 pb-2 ${
                 activeSlug === cat.slug
                   ? 'font-semibold'
-                  : 'text-muted hover:text-foreground/70'
+                  : 'hover:opacity-80'
               }`}
-              style={activeSlug === cat.slug ? { color: cat.color } : undefined}
+              style={{ color: cat.color, opacity: activeSlug === cat.slug ? 1 : 0.6 }}
             >
               {cat.name}
               {activeSlug === cat.slug && (

@@ -25,7 +25,7 @@ async function getArticles(): Promise<Article[]> {
       .from('articles')
       .select('*, category:categories(*)')
       .eq('is_published', true)
-      .order('number', { ascending: true })
+      .order('number', { ascending: false })
     return data || []
   } catch {
     return []
