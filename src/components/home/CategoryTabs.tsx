@@ -47,12 +47,12 @@ export default function CategoryTabs({ categories, articles }: CategoryTabsProps
             <button
               key={cat.id}
               onClick={() => setActiveSlug(cat.slug)}
-              className={`relative whitespace-nowrap text-sm tracking-wide transition-colors shrink-0 pb-2 ${
+              className={`relative whitespace-nowrap text-sm tracking-wide transition-all duration-200 shrink-0 pb-2 ${
                 activeSlug === cat.slug
                   ? 'font-semibold'
-                  : 'hover:opacity-80'
+                  : 'hover:!opacity-90'
               }`}
-              style={{ color: cat.color, opacity: activeSlug === cat.slug ? 1 : 0.6 }}
+              style={{ color: cat.color, opacity: activeSlug === cat.slug ? 1 : 0.5 }}
             >
               {cat.name}
               {activeSlug === cat.slug && (

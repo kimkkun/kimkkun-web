@@ -73,7 +73,7 @@ export default function ContentCard({ article }: ContentCardProps) {
 
   return (
     <Link href={`/content/${article.slug}`} className="group block">
-      <article className="rounded-2xl overflow-hidden border border-border hover:border-border/40 transition-all">
+      <article className="rounded-2xl overflow-hidden border border-border hover:border-foreground/15 hover:-translate-y-1 transition-all duration-300 ease-out">
         {/* 썸네일 영역 */}
         <div
           className="relative px-6 pt-5 pb-6 min-h-[200px] flex flex-col justify-between overflow-hidden"
