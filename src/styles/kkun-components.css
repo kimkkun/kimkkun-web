@@ -1,0 +1,194 @@
+/* =============================================================
+   김꾼 카드 컴포넌트 공통 스타일
+   - KkunThumbnail (1200×628)
+   - KkunInfographic (세로형)
+   원본 thumbnail.html / infographic.html 의 <style> 블록을
+   그대로 합친 파일. 클래스 구조/속성/값 변경 금지.
+   ============================================================= */
+
+/* ---------- KkunThumbnail ---------- */
+.kkun-thumb {
+  --bg: #1a1a1e;
+  --white: #ffffff;
+  --gold: #C9A96E;
+  --gray: #888888;
+  --tag-bg: #E85D5D;     /* 사장 이야기 */
+  --tag-color: #ffffff;
+
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 1200 / 628;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.kkun-thumb__bar-left {
+  position: absolute; inset: 0 auto 0 0;
+  width: 0.66%; background: var(--gold);
+}
+.kkun-thumb__bar-bottom {
+  position: absolute; inset: auto 0 0 0;
+  height: 0.65%; background: var(--gold);
+}
+.kkun-thumb__stripes {
+  position: absolute; top: 0; right: 0; width: 60%; height: 100%;
+  background: repeating-linear-gradient(
+    135deg, transparent 0 80px, #2a2520 80px 83px
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.kkun-thumb__tag {
+  position: absolute; top: 4.8%; right: 3.3%;
+  background: var(--tag-bg); color: var(--tag-color);
+  padding: 0.65em 1.4em;
+  border-radius: 8px;
+  font-size: clamp(11px, 1.95cqw, 24px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.kkun-thumb__title {
+  position: absolute; left: 6.7%; top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  line-height: 1.2;
+}
+.kkun-thumb__line {
+  font-size: clamp(28px, 5.3cqw, 64px);
+}
+.kkun-thumb__line--accent {
+  color: var(--gold);
+  font-size: clamp(32px, 6cqw, 72px);
+  margin-top: 0.15em;
+}
+
+.kkun-thumb__icon {
+  position: absolute; right: 12%; top: 50%;
+  transform: translateY(-50%);
+  width: 16%; height: auto;
+}
+
+.kkun-thumb__watermark {
+  position: absolute; left: 6.7%; bottom: 9%;
+  color: var(--gray);
+  font-size: clamp(10px, 2cqw, 24px);
+  font-weight: 500;
+}
+
+/* container queries 지원 */
+.kkun-thumb { container-type: inline-size; }
+
+/* === 카테고리별 태그 컬러 (data-category 변경 시 자동 적용) === */
+.kkun-thumb[data-category="고객 만들기"]  { --tag-bg: #C9A96E; --tag-color: #1a1a1e; }
+.kkun-thumb[data-category="단골 만들기"]  { --tag-bg: #5DAE6B; --tag-color: #1a1a1e; }
+.kkun-thumb[data-category="브랜드 만들기"] { --tag-bg: #B87333; --tag-color: #ffffff; }
+.kkun-thumb[data-category="시스템 만들기"] { --tag-bg: #5B8DEF; --tag-color: #ffffff; }
+.kkun-thumb[data-category="사장 이야기"]   { --tag-bg: #E85D5D; --tag-color: #ffffff; }
+
+
+/* ---------- KkunInfographic ---------- */
+.kkun-info {
+  --bg: #1a1a1e;
+  --card: #222226;
+  --card-2: #2a2a2e;
+  --white: #ffffff;
+  --gold: #C9A96E;
+  --gray: #888888;
+  --bad: #E8A0A0;
+  --good: #A0E8B0;
+
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 48px 40px 60px;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Pretendard", -apple-system, system-ui, sans-serif;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.kkun-info__bar-top, .kkun-info__bar-bottom {
+  height: 4px; background: var(--gold); margin: 0 -40px;
+}
+.kkun-info__bar-top { margin-bottom: 32px; }
+.kkun-info__bar-bottom { margin-top: 32px; }
+
+.kkun-info__header { text-align: center; margin-bottom: 28px; }
+.kkun-info__title {
+  font-size: 32px; font-weight: 900; line-height: 1.25;
+}
+.kkun-info__title--accent { color: var(--gold); font-size: 36px; margin-top: 4px; }
+
+.kkun-info__divider {
+  border: none; border-top: 1px solid #444;
+  margin: 32px 0;
+}
+
+.kkun-info__section {
+  text-align: center; font-size: 22px; font-weight: 700;
+  margin: 32px 0 20px;
+}
+
+.kkun-info__table {
+  width: 100%; border-collapse: separate; border-spacing: 0 6px;
+  font-size: 14px;
+}
+.kkun-info__table th, .kkun-info__table td {
+  padding: 14px 10px; text-align: center;
+}
+.kkun-info__table thead th {
+  background: var(--card-2); color: var(--gray); font-weight: 600;
+}
+.kkun-info__table thead th:first-child { border-radius: 8px 0 0 8px; }
+.kkun-info__table thead th:last-child { border-radius: 0 8px 8px 0; }
+.kkun-info__table thead th.bad { color: #E85D5D; }
+.kkun-info__table thead th.good { color: #5DAE6B; }
+.kkun-info__table tbody tr td { background: var(--card); }
+.kkun-info__table tbody tr td:first-child {
+  color: var(--gold); font-weight: 600; border-radius: 6px 0 0 6px;
+}
+.kkun-info__table tbody tr td:last-child {
+  color: var(--good); border-radius: 0 6px 6px 0;
+}
+.kkun-info__table tbody tr td:nth-child(2) { color: var(--bad); }
+
+.kkun-info__callout {
+  background: #2a2520; border-left: 4px solid var(--gold);
+  padding: 22px 24px; border-radius: 12px; margin: 28px 0;
+}
+.kkun-info__callout strong { display: block; font-size: 20px; margin-bottom: 8px; }
+.kkun-info__callout span { color: var(--gold); font-size: 15px; }
+
+.kkun-info__steps { list-style: none; padding: 0; margin: 0; }
+.kkun-info__steps li {
+  display: flex; align-items: center; gap: 18px;
+  background: var(--card-2); border-radius: 12px;
+  padding: 20px 22px; margin-bottom: 12px;
+}
+.kkun-info__steps .num {
+  flex: 0 0 52px; height: 52px; border-radius: 50%;
+  background: var(--gold); color: var(--bg);
+  font-weight: 900; font-size: 18px;
+  display: grid; place-items: center;
+}
+.kkun-info__steps strong { display: block; font-size: 17px; margin-bottom: 4px; }
+.kkun-info__steps em { color: var(--gray); font-size: 13px; font-style: normal; }
+
+.kkun-info__footer { text-align: center; margin-top: 24px; }
+.kkun-info__footer p { font-size: 19px; font-weight: 700; margin: 4px 0; }
+.kkun-info__footer p.accent { color: var(--gold); }
+.kkun-info__footer small { display: block; color: var(--gray); font-size: 13px; margin-top: 16px; }
+
+/* === 카테고리 CSS 변수 (현재 인포그래픽 내부에는 태그 DOM 없음,
+   원본 마크업 보존 원칙. 추후 태그 DOM 추가 시 즉시 동작) === */
+.kkun-info[data-category="고객 만들기"]  { --tag-bg: #C9A96E; --tag-color: #1a1a1e; }
+.kkun-info[data-category="단골 만들기"]  { --tag-bg: #5DAE6B; --tag-color: #1a1a1e; }
+.kkun-info[data-category="브랜드 만들기"] { --tag-bg: #B87333; --tag-color: #ffffff; }
+.kkun-info[data-category="시스템 만들기"] { --tag-bg: #5B8DEF; --tag-color: #ffffff; }
+.kkun-info[data-category="사장 이야기"]   { --tag-bg: #E85D5D; --tag-color: #ffffff; }
