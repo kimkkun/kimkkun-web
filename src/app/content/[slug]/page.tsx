@@ -10,7 +10,8 @@ import ChecklistBlock from '@/components/article/ChecklistBlock'
 import InsightBlock from '@/components/article/InsightBlock'
 import StepsBlock from '@/components/article/StepsBlock'
 import ExamplesBlock from '@/components/article/ExamplesBlock'
-import ArticleHero from '@/components/article/ArticleHero'
+import KkunInfographicBlock from '@/components/article/KkunInfographicBlock'
+import KkunThumbnail, { type KkunCategory } from '@/components/KkunThumbnail'
 import CopyProtect from '@/components/article/CopyProtect'
 
 export const dynamic = 'force-dynamic'
@@ -128,8 +129,23 @@ export default async function ArticlePage({
 
   return (
     <div className="pt-16 pb-20">
-      {/* 히어로 썸네일 */}
-      <ArticleHero article={article} />
+      {/* 히어로: KkunThumbnail + 메타 스트립 */}
+      <div className="px-6">
+        <div className="max-w-[1000px] mx-auto">
+          <KkunThumbnail
+            category={article.category?.name as KkunCategory}
+            titleLines={article.thumbnail_title_lines}
+            accentLine={article.thumbnail_accent_line}
+          />
+          <div className="mt-6 flex items-center justify-center gap-4 text-xs text-muted/70">
+            <span className="text-foreground/90 font-medium">{article.author}</span>
+            <span className="w-px h-3 bg-muted/30" />
+            <span>{publishedDate}</span>
+            <span className="w-px h-3 bg-muted/30" />
+            <span>{article.reading_time}분 읽기</span>
+          </div>
+        </div>
+      </div>
 
       <article className="px-6">
         <div className="max-w-[600px] mx-auto">
@@ -157,6 +173,8 @@ export default async function ArticlePage({
                     return <StepsBlock key={i} content={block.content} />
                   case 'examples':
                     return <ExamplesBlock key={i} content={block.content} />
+                  case 'infographic':
+                    return <KkunInfographicBlock key={i} content={block.content} />
                   default:
                     return (
                       <Markdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>

@@ -16,6 +16,8 @@ export interface Article {
   category_id: string
   category?: Category
   content: string
+  thumbnail_title_lines: string[]
+  thumbnail_accent_line: string
   author: string
   reading_time: number
   reels_url: string | null
