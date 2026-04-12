@@ -1,11 +1,11 @@
 export interface ContentBlock {
-  type: 'markdown' | 'compare' | 'checklist' | 'insight' | 'steps' | 'examples' | 'infographic'
+  type: 'markdown' | 'compare' | 'checklist' | 'insight' | 'steps' | 'examples' | 'infographic' | 'metricCards' | 'promptCards'
   content: string
 }
 
 export function parseBlocks(markdown: string): ContentBlock[] {
   const blocks: ContentBlock[] = []
-  const regex = /:::(compare|checklist|insight|steps|examples|infographic)\n([\s\S]*?):::/g
+  const regex = /:::(compare|checklist|insight|steps|examples|infographic|metricCards|promptCards)\n([\s\S]*?):::/g
   let lastIndex = 0
   let match
 

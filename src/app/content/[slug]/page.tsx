@@ -11,6 +11,8 @@ import InsightBlock from '@/components/article/InsightBlock'
 import StepsBlock from '@/components/article/StepsBlock'
 import ExamplesBlock from '@/components/article/ExamplesBlock'
 import KkunInfographicBlock from '@/components/article/KkunInfographicBlock'
+import MetricCardsBlock from '@/components/article/MetricCardsBlock'
+import PromptCardsBlock from '@/components/article/PromptCardsBlock'
 import KkunThumbnail, { type KkunCategory } from '@/components/KkunThumbnail'
 import CopyProtect from '@/components/article/CopyProtect'
 
@@ -52,57 +54,68 @@ async function getAdjacentArticles(number: number) {
   return { prev, next }
 }
 
-const markdownComponents = {
-  h2: ({ children }: { children?: React.ReactNode }) => (
-    <div className="mt-20 mb-8">
-      <div className="w-full h-px bg-border/50 mb-10" />
-      <h2 className="text-2xl md:text-3xl font-black leading-tight">{children}</h2>
-    </div>
-  ),
+function createMarkdownComponents() {
+  let chapterCount = 0
+  return {
+  h2: ({ children }: { children?: React.ReactNode }) => {
+    chapterCount++
+    const num = String(chapterCount).padStart(2, '0')
+    return (
+      <div className="mt-20 mb-8">
+        <div className="w-full h-px bg-border/50 mb-10" />
+        <div className="text-[11px] font-bold tracking-[0.2em] text-muted/40 mb-3">
+          CHAPTER {num}
+        </div>
+        <h2 className="text-2xl md:text-3xl font-black leading-tight">{children}</h2>
+      </div>
+    )
+  },
   h3: ({ children }: { children?: React.ReactNode }) => (
     <h3 className="text-xl md:text-2xl font-bold mt-14 mb-6 leading-tight">{children}</h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="text-[15px] leading-[2.2] text-foreground/85 mb-6">{children}</p>
+    <p className="text-[17px] leading-[2] text-foreground/85 mb-7">{children}</p>
   ),
   strong: ({ children }: { children?: React.ReactNode }) => (
-    <strong className="text-foreground font-semibold underline decoration-foreground/40 decoration-2 underline-offset-4">{children}</strong>
+    <strong className="text-[#85B8CB] font-medium underline decoration-[#85B8CB]/30 decoration-[1.5px] underline-offset-4">{children}</strong>
   ),
   hr: () => (
-    <div className="my-16 flex justify-center">
+    <div className="my-20 flex justify-center">
       <div className="w-12 h-px bg-muted/30" />
     </div>
   ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
-    <blockquote className="border-l-2 border-foreground/30 pl-5 my-8 italic text-muted">
+    <blockquote className="border-l-[3px] border-[#85B8CB]/40 pl-6 my-10 text-[16px] leading-[1.9] text-foreground/70">
       {children}
     </blockquote>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="space-y-3 my-6 ml-4">{children}</ul>
+    <ul className="space-y-3 my-7 ml-4">{children}</ul>
   ),
   ol: ({ children }: { children?: React.ReactNode }) => (
-    <ol className="space-y-3 my-6 ml-4 list-decimal">{children}</ol>
+    <ol className="space-y-3 my-7 ml-4 list-decimal">{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="text-[15px] leading-[2.2] text-foreground/85">{children}</li>
+    <li className="text-[17px] leading-[2] text-foreground/85">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-8 -mx-6 px-6 overflow-x-auto">
-      <div className="rounded-xl border border-border min-w-[600px]">
-        <table className="w-full text-sm">{children}</table>
-      </div>
+    <div className="my-10 -mx-6 px-6 overflow-x-auto">
+      <table className="w-full min-w-[600px] border-separate" style={{ borderSpacing: '0 6px' }}>{children}</table>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
-    <thead className="bg-[#1a1a1a]">{children}</thead>
+    <thead>{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border text-[13px] align-top">{children}</th>
+    <th className="px-5 py-3.5 text-left text-[13px] font-bold tracking-wide text-muted/70 uppercase bg-[#1a1a1a] first:rounded-l-xl last:rounded-r-xl align-top">{children}</th>
   ),
-  td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="px-4 py-3 text-foreground/80 border-b border-border/50 text-[13px] leading-relaxed align-top">{children}</td>
-  ),
+  td: ({ children, node }: { children?: React.ReactNode; node?: { position?: { start?: { column?: number } } } }) => {
+    const isFirstCol = node?.position?.start?.column === 1
+    return (
+      <td className={`px-5 py-4 text-[14px] leading-relaxed bg-[#151515] first:rounded-l-xl last:rounded-r-xl align-top ${isFirstCol ? 'font-semibold text-[#C9A96E]' : 'text-foreground/80'}`}>{children}</td>
+    )
+  },
+  }
 }
 
 export default async function ArticlePage({
@@ -126,6 +139,7 @@ export default async function ArticlePage({
     : ''
 
   const blocks = parseBlocks(article.content)
+  const markdownComponents = createMarkdownComponents()
 
   return (
     <div className="pt-16 pb-20">
@@ -175,6 +189,10 @@ export default async function ArticlePage({
                     return <ExamplesBlock key={i} content={block.content} />
                   case 'infographic':
                     return <KkunInfographicBlock key={i} content={block.content} />
+                  case 'metricCards':
+                    return <MetricCardsBlock key={i} content={block.content} />
+                  case 'promptCards':
+                    return <PromptCardsBlock key={i} content={block.content} />
                   default:
                     return (
                       <Markdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>

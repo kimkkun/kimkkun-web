@@ -289,22 +289,20 @@ const markdownComponents = {
     <li className="text-[15px] leading-[2.2] text-foreground/85">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-8 -mx-6 px-6 overflow-x-auto">
-      <div className="rounded-xl border border-border min-w-[600px]">
-        <table className="w-full text-sm">{children}</table>
-      </div>
+    <div className="my-10 -mx-6 px-6 overflow-x-auto">
+      <table className="w-full min-w-[600px] border-separate" style={{ borderSpacing: '0 6px' }}>{children}</table>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
-    <thead className="bg-[#1a1a1a]">{children}</thead>
+    <thead>{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-4 py-3 text-left font-semibold text-foreground border-b border-border text-[13px] align-top">
+    <th className="px-5 py-3.5 text-left text-[13px] font-bold tracking-wide text-muted/70 uppercase bg-[#1a1a1a] first:rounded-l-xl last:rounded-r-xl align-top">
       {children}
     </th>
   ),
   td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="px-4 py-3 text-foreground/80 border-b border-border/50 text-[13px] leading-relaxed align-top">
+    <td className="px-5 py-4 text-[14px] leading-relaxed bg-[#151515] first:rounded-l-xl last:rounded-r-xl align-top text-foreground/80 first:font-semibold first:text-[#C9A96E]">
       {children}
     </td>
   ),
