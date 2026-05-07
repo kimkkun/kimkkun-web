@@ -20,7 +20,7 @@ export default function Header() {
             Content
           </Link>
           <Link href="/about" className="hover:text-foreground transition-colors">
-            About
+            Profile
           </Link>
           <a
             href={BRAND.instagramUrl}
@@ -51,7 +51,7 @@ export default function Header() {
             Content
           </Link>
           <Link href="/about" onClick={() => setMenuOpen(false)} className="text-muted hover:text-foreground transition-colors">
-            About
+            Profile
           </Link>
           <a
             href={BRAND.instagramUrl}
