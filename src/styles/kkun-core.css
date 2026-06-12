@@ -122,8 +122,9 @@
   padding-top: 68px; position: relative; overflow: hidden; }
 .kk-hero-grid { flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr;
   align-items: center; gap: 48px; width: 100%; }
-.kk-hero-title { font-family: var(--font-display); font-size: clamp(46px, 7vw, 92px); line-height: 1.12;
-  letter-spacing: -0.02em; font-weight: 800; color: var(--ink); margin: 26px 0 0; word-break: keep-all; }
+.kk-hero-title { font-family: var(--font-display); font-size: clamp(38px, 4.7vw, 62px); line-height: 1.18;
+  letter-spacing: -0.02em; font-weight: 800; color: var(--ink); margin: 26px 0 0;
+  word-break: keep-all; white-space: nowrap; }
 .kk-hero-em { color: var(--ochre); }
 .kk-hero-lead { font-family: var(--font-display); font-size: 19px; line-height: 1.85; color: var(--ink-dim);
   max-width: 540px; margin: 30px 0 0; text-wrap: pretty; word-break: keep-all; }
@@ -178,14 +179,6 @@
 .kk-cat-grid > div:first-child .kk-card-title { font-family: var(--font-display); font-size: 30px; }
 .kk-cat-grid .kk-card { padding: 32px; }
 
-/* ── Results — 크림, 초대형 숫자 ── */
-.kk-proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
-.kk-proof-item { border-top: 1px solid var(--sage-line-ink); padding-top: 28px;
-  display: flex; flex-direction: column; gap: 16px; }
-.kk-proof-num { font-family: var(--font-display); font-size: clamp(64px, 9vw, 124px); font-weight: 800;
-  color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
-.kk-proof-body { font-size: 17px; line-height: 1.6; color: var(--ink-dim); margin: 0; }
-
 /* ── CTA ── */
 .kk-cta-wrap .kk-sec-head { margin-bottom: 40px; }
 .kk-cta-lead { font-family: var(--font-display); font-size: 19px; line-height: 1.8; color: var(--cream-dim);
@@ -214,7 +207,7 @@
 
 /* ── 모바일 ── */
 @media (max-width: 860px) {
-  .kk-problem-grid, .kk-cat-grid, .kk-proof-grid { grid-template-columns: 1fr; }
+  .kk-problem-grid, .kk-cat-grid { grid-template-columns: 1fr; }
   .kk-cat-grid > div:first-child { grid-column: auto; }
   .kk-problem-item:nth-child(2), .kk-problem-item:nth-child(3) { margin-top: 0; }
   .kk-nav-links { display: none; }
@@ -230,4 +223,5 @@
   .kk-hero-actions { flex-wrap: wrap; }
   .kk-problem-ghost { font-size: 72px; }
   .kk-problem-item { padding-top: 72px; }
+  .kk-hero-title { font-size: 8.6vw; }
 }

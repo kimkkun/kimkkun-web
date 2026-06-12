@@ -18,7 +18,6 @@ export default function Header() {
   const links = [
     { label: '관점', href: '/#view' },
     { label: '콘텐츠', href: '/#work' },
-    { label: '사례', href: '/#proof' },
   ]
 
   return (

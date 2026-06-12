@@ -8,7 +8,7 @@ export default function Cta() {
     <section className="kk-section deep" id="start">
       <div className="kk-container kk-cta-wrap">
         <div className="kk-sec-head" data-reveal>
-          <SectionLabel number="05">Start</SectionLabel>
+          <SectionLabel number="04">Start</SectionLabel>
           <h2 className="kk-sec-title">
             다음 손님부터,
             <br />
