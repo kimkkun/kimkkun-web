@@ -3,8 +3,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 /* Results — 증거. 다크 섹션, 세 개의 진짜 숫자. 장식도, 만들어낸 수치도 없다. */
 export default function Results() {
   const items = [
-    { v: '10년', b: '직접 가게를 운영한 시간.' },
-    { v: '3명 → 30명', b: '단골이 늘기까지, 14개월.' },
+    { v: '5년', b: '직접 가게를 운영한 시간.' },
     { v: '0회', b: '그동안 한 할인 이벤트.' },
   ]
   return (
