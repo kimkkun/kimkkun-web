@@ -1,0 +1,29 @@
+/* Results — 증거. Dark section, three earned numbers. No decoration, no manufactured stats. */
+function Results() {
+  const { SectionLabel } = window.KimKkunDesignSystem_b887a3;
+  const items = [
+    { v: "10년", b: "직접 가게를 운영한 시간." },
+    { v: "3명 → 30명", b: "단골이 늘기까지, 14개월." },
+    { v: "0회", b: "그동안 한 할인 이벤트." },
+  ];
+  return (
+    <section className="kk-section" id="proof" data-screen-label="Results">
+      <div className="kk-container">
+        <div className="kk-sec-head" data-reveal>
+          <SectionLabel number="04">Proof</SectionLabel>
+          <h2 className="kk-sec-title">말보다 변화.</h2>
+        </div>
+        <div className="kk-proof-grid">
+          {items.map((it, i) => (
+            <div className="kk-proof-item" key={i} data-reveal>
+              <span className="kk-proof-num">{it.v}</span>
+              <p className="kk-proof-body">{it.b}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+window.Results = Results;

@@ -1,68 +1,46 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import { BRAND } from '@/lib/constants'
+import { useEffect, useState } from 'react'
+import Button from '@/components/ui/Button'
 
+/* 상단 내비게이션 — 슬림, 고정, 스크롤 시 헤어라인 구분선. design/ui_kits/website/Nav.jsx 이식. */
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const links = [
+    { label: '관점', href: '/#view' },
+    { label: '콘텐츠', href: '/#work' },
+    { label: '사례', href: '/#proof' },
+  ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold tracking-wider">
-          {BRAND.siteTitle}
+    <header className={'kk-nav' + (scrolled ? ' is-scrolled' : '')}>
+      <div className="kk-nav-inner kk-container">
+        <Link className="kk-nav-mark" href="/" aria-label="김꾼 홈">
+          <span className="kk-nav-word">김꾼</span>
+          <span className="kk-nav-tick" />
         </Link>
-
-        {/* 데스크톱 네비게이션 */}
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted">
-          <Link href="/" className="hover:text-foreground transition-colors">
-            Content
-          </Link>
-          <Link href="/about" className="hover:text-foreground transition-colors">
-            About
-          </Link>
-          <a
-            href={BRAND.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-          >
-            Instagram
-          </a>
+        <nav className="kk-nav-links">
+          {links.map((l) => (
+            <a key={l.href} className="kk-nav-link" href={l.href}>
+              {l.label}
+            </a>
+          ))}
         </nav>
-
-        {/* 모바일 햄버거 */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="메뉴"
-        >
-          <span className={`w-5 h-0.5 bg-foreground transition-transform ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`w-5 h-0.5 bg-foreground transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`w-5 h-0.5 bg-foreground transition-transform ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+        <div className="kk-nav-cta">
+          <Button variant="secondary" size="sm" href="/#start">
+            친구추가
+          </Button>
+        </div>
       </div>
-
-      {/* 모바일 메뉴 */}
-      {menuOpen && (
-        <nav className="md:hidden bg-background border-b border-border px-6 py-6 flex flex-col gap-4 text-sm">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="text-muted hover:text-foreground transition-colors">
-            Content
-          </Link>
-          <Link href="/about" onClick={() => setMenuOpen(false)} className="text-muted hover:text-foreground transition-colors">
-            About
-          </Link>
-          <a
-            href={BRAND.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted hover:text-foreground transition-colors"
-          >
-            Instagram
-          </a>
-        </nav>
-      )}
     </header>
   )
 }

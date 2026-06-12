@@ -1,0 +1,22 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Motion" subtitle="Fade & slide only. Eased out. No bounce." -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px 28px; }
+  .rows { display: flex; flex-direction: column; gap: 14px; }
+  .r { display: flex; align-items: center; gap: 16px; }
+  .tok { font-size: 12px; color: var(--sage); width: 150px; font-variant-numeric: tabular-nums; }
+  .track { flex: 1; height: 2px; background: var(--border); position: relative; overflow: hidden; }
+  .dot { position: absolute; top: -4px; left: 0; width: 10px; height: 10px; background: var(--ochre); border-radius: 50%; }
+  .fast .dot { animation: slide 1.4s var(--ease-out) infinite; }
+  .base .dot { animation: slide 2.0s var(--ease-out) infinite; }
+  @keyframes slide { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 10px); opacity: 0; } }
+</style></head>
+<body>
+  <div class="rows">
+    <div class="r fast"><span class="tok">--dur-fast · 140ms</span><div class="track"><div class="dot"></div></div></div>
+    <div class="r base"><span class="tok">--dur-base · 240ms</span><div class="track"><div class="dot"></div></div></div>
+    <div class="r"><span class="tok">--ease-out</span><span class="tok" style="width:auto;color:var(--cream)">cubic-bezier(.22,.61,.36,1)</span></div>
+  </div>
+</body></html>

@@ -1,0 +1,77 @@
+/* ─────────────────────────────────────────────────────────
+   BASE + TYPOGRAPHY UTILITIES — 김꾼 (Kim.kkun)
+   Opt-in helper classes built on the tokens. Kept minimal.
+   ───────────────────────────────────────────────────────── */
+:root { color-scheme: dark; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01";
+}
+
+/* ── Type utilities ───────────────────────────────── */
+.kk-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display); line-height: var(--lh-display);
+  letter-spacing: var(--ls-display); font-weight: var(--fw-extrabold);
+  text-wrap: balance;
+}
+.kk-h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1); line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1); font-weight: var(--fw-bold);
+  text-wrap: balance;
+}
+.kk-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2); line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2); font-weight: var(--fw-bold);
+  text-wrap: balance;
+}
+.kk-h3 {
+  font-size: var(--fs-h3); line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3); font-weight: var(--fw-bold);
+}
+.kk-body {
+  font-size: var(--fs-body); line-height: var(--lh-body);
+  font-weight: var(--fw-regular); text-wrap: pretty;
+}
+.kk-body-lg { font-size: 20px; line-height: 1.7; text-wrap: pretty; }
+.kk-small {
+  font-size: var(--fs-small); line-height: var(--lh-small);
+  color: var(--text-label);
+}
+
+/* Section label / numbering — wide-tracked uppercase Latin */
+.kk-label {
+  font-size: var(--fs-label); line-height: var(--lh-label);
+  letter-spacing: var(--ls-label); font-weight: var(--fw-medium);
+  text-transform: uppercase; color: var(--text-label);
+}
+.kk-accent { color: var(--accent); }
+
+/* ── Mobile scale ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .kk-display { font-size: var(--fs-display-m); }
+  .kk-h1 { font-size: var(--fs-h1-m); }
+  .kk-h2 { font-size: var(--fs-h2-m); }
+  .kk-h3 { font-size: var(--fs-h3-m); }
+  .kk-body { font-size: var(--fs-body-m); }
+}
+
+/* ── Reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="김꾼">
+  <rect width="64" height="64" fill="#16302B"/>
+  <text x="32" y="38" text-anchor="middle" font-family="'Noto Serif KR', 'Playfair Display', serif" font-weight="800" font-size="28" letter-spacing="-1" fill="#F5F1E8">김꾼</text>
+  <rect x="20" y="48" width="24" height="3" fill="#C9A24B"/>
+</svg>

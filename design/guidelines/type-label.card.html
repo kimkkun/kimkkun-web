@@ -1,0 +1,23 @@
+<!-- @dsCard group="Type" viewport="700x150" name="Label & numbering" subtitle="Wide-tracked uppercase Latin + number — the wayfinding system" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px 28px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 18px; }
+  .lab { display: flex; align-items: baseline; gap: 10px; }
+  .num { font-size: 13px; font-weight: 700; color: var(--ochre); font-variant-numeric: tabular-nums; }
+  .word { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--sage); }
+  .meta { grid-column: 1 / -1; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); opacity: 0.7; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="lab"><span class="num">01</span><span class="word">Insight</span></div>
+    <div class="lab"><span class="num">02</span><span class="word">Problem</span></div>
+    <div class="lab"><span class="num">03</span><span class="word">View</span></div>
+    <div class="lab"><span class="num">04</span><span class="word">Work</span></div>
+    <div class="lab"><span class="num">05</span><span class="word">Proof</span></div>
+    <div class="lab"><span class="num">06</span><span class="word">Start</span></div>
+    <span class="meta">13px · Medium · 0.14em tracking · number in Ochre</span>
+  </div>
+</body></html>

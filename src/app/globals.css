@@ -1,13 +1,117 @@
 @import "tailwindcss";
+@import "../styles/kkun-core.css";
 @import "../styles/kkun-components.css";
 
+/* ─────────────────────────────────────────────────────────
+   김꾼 디자인 토큰 — design/tokens/*.css 이식
+   Near-monotone forest + cream, one accent (Ochre).
+   Rule: accent ≤ 5% of any surface. No pure white. No gradients.
+   ───────────────────────────────────────────────────────── */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --muted: #888888;
-  --border: #1f1f1f;
-  --card: #111111;
-  --card-hover: #1a1a1a;
+  /* ── Base palette ───────────────────────────────── */
+  --forest:         #16302B; /* main dark background */
+  --forest-deep:    #0F211D; /* deeper plane, footer */
+  --forest-surface: #1E3A33; /* card / divider on dark */
+
+  --cream:          #F5F1E8; /* main text on dark */
+  --cream-surface:  #FBF8F1; /* light section background (alternate) */
+  --ink:            #14201C; /* text on light */
+
+  --sage:           #8FA89B; /* labels, captions, disabled text */
+  --ochre:          #C9A24B; /* THE accent — use sparingly, ≤5% */
+
+  --sage-line:      rgba(143, 168, 155, 0.28);
+  --sage-line-ink:  rgba(20, 32, 28, 0.14);
+  --ochre-line:     rgba(201, 162, 75, 0.55);
+  --ochre-soft:     rgba(201, 162, 75, 0.12);
+  --cream-dim:      rgba(245, 241, 232, 0.66);
+  --ink-dim:        rgba(20, 32, 28, 0.62);
+
+  /* ── Semantic aliases (dark = default) ──────────── */
+  --bg:             var(--forest);
+  --bg-deep:        var(--forest-deep);
+  --surface:        var(--forest-surface);
+  --text:           var(--cream);
+  --text-muted:     var(--cream-dim);
+  --text-label:     var(--sage);
+  --accent:         var(--ochre);
+  --accent-border:  var(--ochre-line);
+
+  --bg-light:       var(--cream-surface);
+  --text-on-light:  var(--ink);
+  --text-on-light-muted: var(--ink-dim);
+  --border-on-light: var(--sage-line-ink);
+
+  /* ── Typography ─────────────────────────────────── */
+  --font-sans: var(--font-pretendard), "Pretendard", -apple-system, BlinkMacSystemFont,
+               "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --font-serif: var(--font-playfair), var(--font-noto-serif-kr), "Playfair Display", "Noto Serif KR", serif;
+  --font-display: var(--font-serif);
+
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+  --fw-black:     900;
+
+  --fs-display: 72px;  --lh-display: 1.1;  --ls-display: -0.02em;
+  --fs-h1:      48px;  --lh-h1:      1.2;  --ls-h1:      -0.015em;
+  --fs-h2:      32px;  --lh-h2:      1.25; --ls-h2:      -0.01em;
+  --fs-h3:      24px;  --lh-h3:      1.35; --ls-h3:      -0.005em;
+  --fs-body:    18px;  --lh-body:    1.7;  --ls-body:    0;
+  --fs-small:   14px;  --lh-small:   1.5;  --ls-small:   0;
+  --fs-label:   13px;  --lh-label:   1.2;  --ls-label:   0.14em;
+
+  --fs-display-m: 40px;
+  --fs-h1-m:      32px;
+  --fs-h2-m:      24px;
+  --fs-h3-m:      20px;
+  --fs-body-m:    16px;
+  --fs-small-m:   13px;
+
+  /* ── Spacing / radius / border / motion ─────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 120px;
+  --space-11: 160px;
+
+  --section-pad-y:   120px;
+  --section-pad-y-m: 72px;
+  --container-max:   1160px;
+  --container-pad-x: 24px;
+
+  --radius-0: 0px;
+  --radius-1: 2px;
+  --radius-2: 4px; /* maximum */
+
+  --border-w: 1px;
+
+  --shadow-none: none;
+  --shadow-soft: 0 1px 0 rgba(15, 33, 29, 0.40);
+
+  --ease-out:   cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-inout: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  --dur-fast:   140ms;
+  --dur-base:   240ms;
+  --dur-slow:   420ms;
+
+  /* ── 기존 사이트 호환 별칭 (글 페이지·리치 블록이 사용) ── */
+  --background: var(--forest);
+  --foreground: var(--cream);
+  --muted:      var(--cream-dim);
+  --border:     var(--sage-line);
+  --card:       var(--forest-surface);
+  --card-hover: color-mix(in srgb, var(--forest-surface) 90%, var(--cream));
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -19,14 +123,75 @@
   --color-card-hover: var(--card-hover);
 }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(232, 168, 124, 0.3);
+  background: rgba(201, 162, 75, 0.25);
+}
+
+/* ── 타입 유틸리티 (design/tokens/base.css 이식) ── */
+.kk-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display); line-height: var(--lh-display);
+  letter-spacing: var(--ls-display); font-weight: var(--fw-extrabold);
+  text-wrap: balance;
+}
+.kk-h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1); line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1); font-weight: var(--fw-bold);
+  text-wrap: balance;
+}
+.kk-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2); line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2); font-weight: var(--fw-bold);
+  text-wrap: balance;
+}
+.kk-h3 {
+  font-size: var(--fs-h3); line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3); font-weight: var(--fw-bold);
+}
+.kk-body {
+  font-size: var(--fs-body); line-height: var(--lh-body);
+  font-weight: var(--fw-regular); text-wrap: pretty;
+}
+.kk-body-lg { font-size: 20px; line-height: 1.7; text-wrap: pretty; }
+.kk-small {
+  font-size: var(--fs-small); line-height: var(--lh-small);
+  color: var(--text-label);
+}
+.kk-label {
+  font-size: var(--fs-label); line-height: var(--lh-label);
+  letter-spacing: var(--ls-label); font-weight: var(--fw-medium);
+  text-transform: uppercase; color: var(--text-label);
+}
+.kk-accent { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .kk-display { font-size: var(--fs-display-m); }
+  .kk-h1 { font-size: var(--fs-h1-m); }
+  .kk-h2 { font-size: var(--fs-h2-m); }
+  .kk-h3 { font-size: var(--fs-h3-m); }
+  .kk-body { font-size: var(--fs-body-m); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 /* 글 복사 방지 */
@@ -45,24 +210,3 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-
-/* 마키 무한 스크롤 */
-.marquee-track {
-  display: flex;
-  animation: marquee 30s linear infinite;
-  width: max-content;
-}
-
-.marquee-item {
-  flex-shrink: 0;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-

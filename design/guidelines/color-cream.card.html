@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Cream & Ink" subtitle="Text on dark, light alternate surface, text on light" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 20px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .sw { border: 1px solid var(--border); border-radius: var(--radius-2); overflow: hidden; }
+  .chip { height: 78px; }
+  .meta { padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+  .name { font-size: 13px; font-weight: 600; color: var(--cream); }
+  .hex { font-size: 12px; letter-spacing: 0.04em; color: var(--sage); font-variant-numeric: tabular-nums; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#F5F1E8"></div><div class="meta"><span class="name">Cream</span><span class="hex">#F5F1E8 · --cream</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FBF8F1"></div><div class="meta"><span class="name">Cream Surface</span><span class="hex">#FBF8F1 · --cream-surface</span></div></div>
+    <div class="sw"><div class="chip" style="background:#14201C"></div><div class="meta"><span class="name">Ink</span><span class="hex">#14201C · --ink</span></div></div>
+  </div>
+</body></html>

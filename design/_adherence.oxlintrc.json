@@ -1,0 +1,315 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "ui_kits/website/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Pretendard|Noto Serif KR|Playfair Display))/i]",
+        "message": "Font not provided by the design system. Available: Pretendard, Noto Serif KR, Playfair Display."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|surface|href|disabled|onClick|type|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, surface, href, disabled, onClick, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|accent|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'accent' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<Button> surface must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|label|title|body|children|href|surface|flat|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: number, label, title, body, children, href, surface, flat."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<Card> surface must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|surface|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, surface."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<Input> surface must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionLabel'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|children|surface|key|ref|className|style|children)$/]",
+        "message": "<SectionLabel> doesn't accept that prop. Declared props: number, children, surface."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionLabel'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<SectionLabel> surface must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|surface|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children, variant, surface."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|muted|accent)$/]",
+        "message": "<Tag> variant must be one of 'default' | 'muted' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<Tag> surface must be one of 'dark' | 'light'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "SectionLabel": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-border",
+      "--bg",
+      "--bg-deep",
+      "--bg-light",
+      "--border",
+      "--border-on-light",
+      "--border-w",
+      "--container-max",
+      "--container-pad-x",
+      "--cream",
+      "--cream-dim",
+      "--cream-surface",
+      "--dur-base",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease-inout",
+      "--ease-out",
+      "--font-display",
+      "--font-sans",
+      "--font-serif",
+      "--forest",
+      "--forest-deep",
+      "--forest-surface",
+      "--fs-body",
+      "--fs-body-m",
+      "--fs-display",
+      "--fs-display-m",
+      "--fs-h1",
+      "--fs-h1-m",
+      "--fs-h2",
+      "--fs-h2-m",
+      "--fs-h3",
+      "--fs-h3-m",
+      "--fs-label",
+      "--fs-small",
+      "--fs-small-m",
+      "--fw-black",
+      "--fw-bold",
+      "--fw-extrabold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--ink",
+      "--ink-dim",
+      "--lh-body",
+      "--lh-display",
+      "--lh-h1",
+      "--lh-h2",
+      "--lh-h3",
+      "--lh-label",
+      "--lh-small",
+      "--ls-body",
+      "--ls-display",
+      "--ls-h1",
+      "--ls-h2",
+      "--ls-h3",
+      "--ls-label",
+      "--ls-small",
+      "--ochre",
+      "--ochre-line",
+      "--ochre-soft",
+      "--radius-0",
+      "--radius-1",
+      "--radius-2",
+      "--sage",
+      "--sage-line",
+      "--sage-line-ink",
+      "--section-pad-y",
+      "--section-pad-y-m",
+      "--shadow-none",
+      "--shadow-soft",
+      "--space-1",
+      "--space-10",
+      "--space-11",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--surface",
+      "--text",
+      "--text-label",
+      "--text-muted",
+      "--text-on-light",
+      "--text-on-light-muted"
+    ],
+    "tokenKinds": {
+      "--forest": "color",
+      "--forest-deep": "color",
+      "--forest-surface": "color",
+      "--cream": "color",
+      "--cream-surface": "color",
+      "--ink": "color",
+      "--sage": "color",
+      "--ochre": "color",
+      "--sage-line": "color",
+      "--sage-line-ink": "color",
+      "--ochre-line": "color",
+      "--ochre-soft": "color",
+      "--cream-dim": "color",
+      "--ink-dim": "color",
+      "--bg": "color",
+      "--bg-deep": "color",
+      "--surface": "color",
+      "--text": "font",
+      "--text-muted": "font",
+      "--text-label": "font",
+      "--border": "color",
+      "--accent": "color",
+      "--accent-border": "color",
+      "--bg-light": "color",
+      "--text-on-light": "font",
+      "--text-on-light-muted": "font",
+      "--border-on-light": "color",
+      "--font-sans": "font",
+      "--font-serif": "font",
+      "--font-display": "font",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--fw-extrabold": "font",
+      "--fw-black": "font",
+      "--fs-display": "spacing",
+      "--lh-display": "font",
+      "--ls-display": "font",
+      "--fs-h1": "spacing",
+      "--lh-h1": "font",
+      "--ls-h1": "font",
+      "--fs-h2": "spacing",
+      "--lh-h2": "font",
+      "--ls-h2": "font",
+      "--fs-h3": "spacing",
+      "--lh-h3": "font",
+      "--ls-h3": "font",
+      "--fs-body": "spacing",
+      "--lh-body": "font",
+      "--ls-body": "font",
+      "--fs-small": "spacing",
+      "--lh-small": "font",
+      "--ls-small": "font",
+      "--fs-label": "spacing",
+      "--lh-label": "font",
+      "--ls-label": "font",
+      "--fs-display-m": "spacing",
+      "--fs-h1-m": "spacing",
+      "--fs-h2-m": "spacing",
+      "--fs-h3-m": "spacing",
+      "--fs-body-m": "spacing",
+      "--fs-small-m": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--space-11": "spacing",
+      "--section-pad-y": "spacing",
+      "--section-pad-y-m": "spacing",
+      "--container-max": "spacing",
+      "--container-pad-x": "spacing",
+      "--radius-0": "radius",
+      "--radius-1": "radius",
+      "--radius-2": "radius",
+      "--border-w": "spacing",
+      "--shadow-none": "shadow",
+      "--shadow-soft": "shadow",
+      "--ease-out": "other",
+      "--ease-inout": "other",
+      "--dur-fast": "other",
+      "--dur-base": "other",
+      "--dur-slow": "other"
+    },
+    "fontFamilies": [
+      "Noto Serif KR",
+      "Playfair Display",
+      "Pretendard"
+    ]
+  }
+}

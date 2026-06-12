@@ -1,47 +1,21 @@
-import { createSupabaseClient } from '@/lib/supabase/client'
-import { Category, Article } from '@/lib/types'
-import HeroSection from '@/components/home/HeroSection'
-import CategoryTabs from '@/components/home/CategoryTabs'
+import Hero from '@/components/home/Hero'
+import Problem from '@/components/home/Problem'
+import Belief from '@/components/home/Belief'
+import Categories from '@/components/home/Categories'
+import Results from '@/components/home/Results'
+import Cta from '@/components/home/Cta'
+import Reveal from '@/components/home/Reveal'
 
-export const dynamic = 'force-dynamic'
-
-async function getCategories(): Promise<Category[]> {
-  try {
-    const supabase = createSupabaseClient()
-    const { data } = await supabase
-      .from('categories')
-      .select('*')
-      .order('sort_order')
-    return data || []
-  } catch {
-    return []
-  }
-}
-
-async function getArticles(): Promise<Article[]> {
-  try {
-    const supabase = createSupabaseClient()
-    const { data } = await supabase
-      .from('articles')
-      .select('*, category:categories(*)')
-      .eq('is_published', true)
-      .order('number', { ascending: false })
-    return data || []
-  } catch {
-    return []
-  }
-}
-
-export default async function HomePage() {
-  const [categories, articles] = await Promise.all([
-    getCategories(),
-    getArticles(),
-  ])
-
+export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <CategoryTabs categories={categories} articles={articles} />
+      <Reveal />
+      <Hero />
+      <Problem />
+      <Belief />
+      <Categories />
+      <Results />
+      <Cta />
     </>
   )
 }

@@ -1,0 +1,33 @@
+<!-- @dsCard group="Brand" viewport="700x240" name="Voice — do & don't" subtitle="단정적이고 짧게. 명품 하우스처럼, 세리프로 품위 있게." -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px 28px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .col { display: flex; flex-direction: column; gap: 12px; }
+  .head { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+  .do .head { color: var(--ochre); }
+  .dont .head { color: var(--sage); }
+  .line { font-size: 16px; line-height: 1.5; padding-left: 16px; position: relative; }
+  .do .line { color: var(--cream); font-family: var(--font-display); font-size: 22px; line-height: 1.5; font-weight: 500; letter-spacing: -0.01em; }
+  .do .line::before { top: 14px; width: 9px; background: var(--ochre); }
+  .dont .line { color: var(--sage); text-decoration: line-through; text-decoration-color: rgba(143,168,155,0.5); }
+  .line::before { content: ""; position: absolute; left: 0; top: 10px; width: 7px; height: 1px; background: currentColor; }
+</style></head>
+<body>
+  <div class="cols">
+    <div class="col do">
+      <span class="head">— 김꾼은 이렇게 쓴다</span>
+      <p class="line">손님은 많은데, 다시 오는 사람이 없다.</p>
+      <p class="line">할인은 전략이 아니다. 변명이다.</p>
+      <p class="line">단골 3명이 30명이 되기까지 14개월.</p>
+    </div>
+    <div class="col dont">
+      <span class="head">— 이렇게는 안 쓴다</span>
+      <p class="line">🔥 매출 폭발 꿀팁 대공개!!</p>
+      <p class="line">사장님들 무조건 화이팅!! :)</p>
+      <p class="line">초간단 비법 지금 바로 클릭</p>
+    </div>
+  </div>
+</body></html>

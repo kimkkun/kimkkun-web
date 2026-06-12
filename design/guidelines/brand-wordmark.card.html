@@ -1,0 +1,23 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Wordmark" subtitle="김꾼 set in serif (Noto Serif KR), on forest & cream" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .pane { min-height: 180px; display: flex; align-items: center; justify-content: center; }
+  .forest { background: var(--forest); }
+  .cream { background: var(--cream-surface); }
+  .lock { display: flex; flex-direction: column; gap: 6px; }
+  .mark { font-family: var(--font-display); font-size: 64px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .forest .mark { color: var(--cream); }
+  .cream .mark { color: var(--ink); }
+  .tag { display: flex; align-items: center; gap: 10px; }
+  .bar { width: 30px; height: 3px; background: var(--ochre); }
+  .latin { font-size: 12px; letter-spacing: 0.28em; font-weight: 500; }
+  .forest .latin { color: var(--sage); }
+  .cream .latin { color: var(--ink-dim); }
+</style></head>
+<body>
+  <div class="pane forest"><div class="lock"><span class="mark">김꾼</span><span class="tag"><span class="bar"></span><span class="latin">KIM.KKUN</span></span></div></div>
+  <div class="pane cream"><div class="lock"><span class="mark">김꾼</span><span class="tag"><span class="bar"></span><span class="latin">KIM.KKUN</span></span></div></div>
+</body></html>

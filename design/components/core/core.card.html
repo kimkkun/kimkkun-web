@@ -1,0 +1,80 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Core primitives" subtitle="Button · SectionLabel · Tag · Card · Input" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--bg); padding: 28px; }
+  #root { display: flex; flex-direction: column; gap: 26px; }
+  .grp { display: flex; flex-direction: column; gap: 12px; }
+  .grp > h4 { margin: 0; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); }
+  .rowwrap { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 460px; }
+</style></head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, SectionLabel, Tag, Card, Input } = window.KimKkunDesignSystem_b887a3;
+    function Demo() {
+      return (
+        <>
+          <div className="grp">
+            <h4>Button</h4>
+            <div className="rowwrap">
+              <Button variant="primary">시작하기</Button>
+              <Button variant="secondary">더 읽기</Button>
+              <Button variant="accent">친구추가 →</Button>
+              <Button variant="ghost">건너뛰기</Button>
+              <Button variant="primary" disabled>비활성</Button>
+            </div>
+            <div className="rowwrap">
+              <Button size="sm" variant="secondary">Small</Button>
+              <Button size="md" variant="secondary">Medium</Button>
+              <Button size="lg" variant="secondary">Large</Button>
+            </div>
+          </div>
+
+          <div className="grp">
+            <h4>SectionLabel</h4>
+            <div className="rowwrap">
+              <SectionLabel number="02">PROBLEM</SectionLabel>
+              <SectionLabel number="03">VIEW</SectionLabel>
+              <SectionLabel>INSIGHT</SectionLabel>
+            </div>
+          </div>
+
+          <div className="grp">
+            <h4>Tag</h4>
+            <div className="rowwrap">
+              <Tag>고객 만들기</Tag>
+              <Tag>단골 만들기</Tag>
+              <Tag variant="muted">읽는 데 4분</Tag>
+              <Tag variant="accent">NEW</Tag>
+            </div>
+          </div>
+
+          <div className="grp">
+            <h4>Card</h4>
+            <div className="cards2">
+              <Card number="01" title="고객 만들기" body="처음 온 손님이 또 오게 만드는 법." />
+              <Card href="#" number="05" title="단골 3명 → 30명" body="14개월의 기록. 할인 없이." />
+            </div>
+          </div>
+
+          <div className="grp">
+            <h4>Input</h4>
+            <div className="inputs">
+              <Input label="이메일" type="email" placeholder="you@store.kr" />
+              <Input label="가게 이름" placeholder="예) 골목 김밥" />
+            </div>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  </script>
+</body></html>

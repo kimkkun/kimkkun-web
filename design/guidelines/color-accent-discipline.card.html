@@ -1,0 +1,29 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Accent discipline" subtitle="One Ochre moment per surface. Dark ↔ cream rhythm." -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .pane { padding: 26px 28px; min-height: 180px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .dark { background: var(--forest); }
+  .light { background: var(--cream-surface); }
+  .lab { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+  .dark .lab { color: var(--sage); }
+  .light .lab { color: var(--ink-dim); }
+  .line { font-family: var(--font-display); font-size: 23px; font-weight: 700; line-height: 1.45; letter-spacing: -0.01em; }
+  .dark .line { color: var(--cream); }
+  .light .line { color: var(--ink); }
+  .ochre { color: var(--ochre); }
+  .light .cta { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--ink); padding: 9px 16px; border: 1px solid var(--ochre-line); border-radius: var(--radius-2); }
+</style></head>
+<body>
+  <div class="pane dark">
+    <span class="lab">02 — Problem</span>
+    <p class="line">손님은 많은데,<br><span class="ochre">다시 오는</span> 사람이 없다.</p>
+  </div>
+  <div class="pane light">
+    <span class="lab">06 — Start</span>
+    <p class="line">다음 손님부터 다르게.</p>
+    <span class="cta">친구추가 →</span>
+  </div>
+</body></html>

@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Forest — base" subtitle="Dark planes: background, deep, surface" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 20px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .sw { border: 1px solid var(--border); border-radius: var(--radius-2); overflow: hidden; }
+  .chip { height: 78px; }
+  .meta { padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+  .name { font-size: 13px; font-weight: 600; color: var(--cream); }
+  .hex { font-size: 12px; letter-spacing: 0.04em; color: var(--sage); font-variant-numeric: tabular-nums; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#16302B"></div><div class="meta"><span class="name">Forest</span><span class="hex">#16302B · --forest</span></div></div>
+    <div class="sw"><div class="chip" style="background:#0F211D"></div><div class="meta"><span class="name">Forest Deep</span><span class="hex">#0F211D · --forest-deep</span></div></div>
+    <div class="sw"><div class="chip" style="background:#1E3A33"></div><div class="meta"><span class="name">Forest Surface</span><span class="hex">#1E3A33 · --forest-surface</span></div></div>
+  </div>
+</body></html>

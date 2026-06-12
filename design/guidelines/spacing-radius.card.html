@@ -1,0 +1,17 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Radius & hairline" subtitle="Corners 0–4px max. 1px lines, not shadow." -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px 28px; display: flex; gap: 22px; align-items: flex-end; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; gap: 9px; align-items: center; }
+  .box { width: 92px; height: 62px; background: var(--forest-surface); border: 1px solid var(--border); }
+  .lab { font-size: 12px; color: var(--sage); }
+  .ochre-box { border-color: var(--ochre-line); }
+</style></head>
+<body>
+  <div class="item"><div class="box" style="border-radius:0"></div><span class="lab">0px · --radius-0</span></div>
+  <div class="item"><div class="box" style="border-radius:2px"></div><span class="lab">2px · --radius-1</span></div>
+  <div class="item"><div class="box" style="border-radius:4px"></div><span class="lab">4px · --radius-2 (max)</span></div>
+  <div class="item"><div class="box ochre-box" style="border-radius:2px"></div><span class="lab">Ochre hairline</span></div>
+</body></html>

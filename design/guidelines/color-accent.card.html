@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Sage & Ochre accent" subtitle="Secondary text (Sage) + the single accent (Ochre)" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 20px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .sw { border: 1px solid var(--border); border-radius: var(--radius-2); overflow: hidden; }
+  .chip { height: 78px; }
+  .meta { padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+  .name { font-size: 13px; font-weight: 600; color: var(--cream); }
+  .hex { font-size: 12px; letter-spacing: 0.04em; color: var(--sage); font-variant-numeric: tabular-nums; }
+  .accent .name { color: var(--ochre); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#8FA89B"></div><div class="meta"><span class="name">Sage</span><span class="hex">#8FA89B · --sage · labels · captions · disabled</span></div></div>
+    <div class="sw accent"><div class="chip" style="background:#C9A24B"></div><div class="meta"><span class="name">Ochre — Accent</span><span class="hex">#C9A24B · --accent · ≤5% of any surface</span></div></div>
+  </div>
+</body></html>

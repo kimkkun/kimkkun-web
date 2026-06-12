@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────────────────────
+   COLOR TOKENS — 김꾼 (Kim.kkun)
+   Near-monotone forest + cream, one accent (Ochre).
+   Rule: accent ≤ 5% of any surface. No pure white. No gradients.
+   ───────────────────────────────────────────────────────── */
+:root {
+  /* ── Base palette ───────────────────────────────── */
+  --forest:         #16302B; /* main dark background */
+  --forest-deep:    #0F211D; /* deeper plane, footer, card shadow */
+  --forest-surface: #1E3A33; /* card / divider on dark */
+
+  --cream:          #F5F1E8; /* main text on dark */
+  --cream-surface:  #FBF8F1; /* light section background (alternate) */
+  --ink:            #14201C; /* text on light */
+
+  --sage:           #8FA89B; /* labels, captions, disabled text */
+  --ochre:          #C9A24B; /* THE accent — use sparingly, ≤5% */
+
+  /* Tints derived from base (lines, hovers) — keep monotone */
+  --sage-line:      rgba(143, 168, 155, 0.28); /* 1px dividers on dark */
+  --sage-line-ink:  rgba(20, 32, 28, 0.14);    /* 1px dividers on light */
+  --ochre-line:     rgba(201, 162, 75, 0.55);  /* accent hairline */
+  --ochre-soft:     rgba(201, 162, 75, 0.12);  /* accent wash (rare) */
+  --cream-dim:      rgba(245, 241, 232, 0.66); /* secondary text on dark */
+  --ink-dim:        rgba(20, 32, 28, 0.62);    /* secondary text on light */
+
+  /* ── Semantic aliases ───────────────────────────── */
+  /* Dark surface (default brand context) */
+  --bg:             var(--forest);
+  --bg-deep:        var(--forest-deep);
+  --surface:        var(--forest-surface);
+  --text:           var(--cream);
+  --text-muted:     var(--cream-dim);
+  --text-label:     var(--sage);
+  --border:         var(--sage-line);
+  --accent:         var(--ochre);
+  --accent-border:  var(--ochre-line);
+
+  /* Light surface (alternate / cross-rhythm) */
+  --bg-light:       var(--cream-surface);
+  --text-on-light:  var(--ink);
+  --text-on-light-muted: var(--ink-dim);
+  --border-on-light: var(--sage-line-ink);
+}

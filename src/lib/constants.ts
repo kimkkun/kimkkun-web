@@ -4,6 +4,9 @@ export const BRAND = {
   instagram: '@kim.kkun',
   instagramUrl: 'https://instagram.com/kim.kkun',
   domain: 'kimkkun.com',
+  // TODO: 실제 카카오채널/오픈채팅 링크가 생기면 아래 두 값만 교체하면 됩니다.
+  kakaoChannelUrl: 'https://pf.kakao.com/',
+  openChatUrl: 'https://open.kakao.com/',
   positioningLine1: '열심히 하는데,',
   positioningLine2: '왜 매출은 안 오를까요?',
   subCopy: '감이 아니라 구조가 필요한 순간, 김꾼이 함께합니다.',

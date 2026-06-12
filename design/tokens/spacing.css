@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────────────────────
+   SPACING / RADIUS / BORDER / MOTION — 김꾼 (Kim.kkun)
+   Generous whitespace. Sharp corners (0–4px). Thin lines.
+   Fades & slides only — no bounce.
+   ───────────────────────────────────────────────────────── */
+:root {
+  /* ── Spacing scale (4px base) ───────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 120px; /* desktop section vertical padding */
+  --space-11: 160px;
+
+  /* Section rhythm */
+  --section-pad-y:   120px;
+  --section-pad-y-m: 72px;
+  --container-max:   1160px;
+  --container-pad-x: 24px;
+
+  /* ── Radius — sharp, never cute ─────────────────── */
+  --radius-0: 0px;
+  --radius-1: 2px;
+  --radius-2: 4px;  /* maximum */
+
+  /* ── Borders ────────────────────────────────────── */
+  --border-w: 1px;
+
+  /* ── Shadow — minimal. Flat surfaces carry trust. ─ */
+  --shadow-none: none;
+  --shadow-soft: 0 1px 0 rgba(15, 33, 29, 0.40); /* barely-there seam */
+
+  /* ── Motion — fade / slide only ─────────────────── */
+  --ease-out:   cubic-bezier(0.22, 0.61, 0.36, 1);    /* @kind other */
+  --ease-inout: cubic-bezier(0.45, 0.05, 0.55, 0.95);  /* @kind other */
+  --dur-fast:   140ms; /* @kind other */
+  --dur-base:   240ms; /* @kind other */
+  --dur-slow:   420ms; /* @kind other */
+}
