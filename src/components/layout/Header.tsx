@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Button from '@/components/ui/Button'
+import { BRAND } from '@/lib/constants'
 
 /* 상단 내비게이션 — 슬림, 고정, 스크롤 시 헤어라인 구분선. design/ui_kits/website/Nav.jsx 이식. */
 export default function Header() {
@@ -35,8 +36,14 @@ export default function Header() {
           ))}
         </nav>
         <div className="kk-nav-cta">
-          <Button variant="secondary" size="sm" href="/#start">
-            친구추가
+          <Button
+            variant="secondary"
+            size="sm"
+            href={BRAND.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            인스타그램
           </Button>
         </div>
       </div>
