@@ -1,7 +1,7 @@
 import Card from '@/components/ui/Card'
 import SectionLabel from '@/components/ui/SectionLabel'
 
-/* Categories — 콘텐츠 5카테고리. 크림 섹션, Card 프리미티브 조합. 카드는 글 목록으로 연결. */
+/* Categories — 콘텐츠 5카테고리. forest 다크, 비대칭 그리드(첫 카드 2칸). 카드는 글 목록으로. */
 export default function Categories() {
   const items = [
     { n: '01', t: '고객 만들기', b: '지나가는 사람을 손님으로 만드는 법.' },
@@ -11,18 +11,18 @@ export default function Categories() {
     { n: '05', t: '사장 이야기', b: '현장에서 배운 것들. 포장 없이.' },
   ]
   return (
-    <section className="kk-section light" id="work">
+    <section className="kk-section" id="work">
       <div className="kk-container">
         <div className="kk-sec-head" data-reveal>
-          <SectionLabel number="03" surface="light">
-            Work
-          </SectionLabel>
+          <SectionLabel number="03">Work</SectionLabel>
           <h2 className="kk-sec-title">다섯 가지만 다룬다.</h2>
         </div>
         <div className="kk-cat-grid">
           {items.map((it) => (
             <div data-reveal key={it.n}>
-              <Card surface="light" href="/content" number={it.n} title={it.t} body={it.b} />
+              <Card href="/content" number={it.n} title={it.t} body={it.b}>
+                <span className="kk-card-arrow">→</span>
+              </Card>
             </div>
           ))}
         </div>

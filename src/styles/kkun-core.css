@@ -1,15 +1,18 @@
 /* ─────────────────────────────────────────────────────────
    김꾼 핵심 컴포넌트 + 메인 페이지 섹션 스타일
-   design/components/core/*.jsx 의 주입 스타일과
-   design/ui_kits/website/index.html 의 픽셀 스펙 이식.
+   design/ 시스템 기반 + 에디토리얼 리듬 강화(비대칭·초대형 타이포·모션).
    ───────────────────────────────────────────────────────── */
 
 .kk-container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad-x); }
 
-/* ── Reveal: fade/slide only ── */
-[data-reveal] { opacity: 0; transform: translateY(14px);
+/* ── Reveal: fade/slide + 순차 등장 ── */
+[data-reveal] { opacity: 0; transform: translateY(16px);
   transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
 [data-reveal].is-in { opacity: 1; transform: none; }
+[data-reveal]:nth-child(2) { transition-delay: 90ms; }
+[data-reveal]:nth-child(3) { transition-delay: 180ms; }
+[data-reveal]:nth-child(4) { transition-delay: 270ms; }
+[data-reveal]:nth-child(5) { transition-delay: 360ms; }
 @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; } }
 
 /* ── Button ── */
@@ -41,17 +44,20 @@
 .kk-btn-onlight.kk-btn-secondary{color:var(--ink);border-color:var(--sage-line-ink);}
 .kk-btn-onlight.kk-btn-secondary:not([disabled]):hover{border-color:var(--ink);}
 .kk-btn-onlight.kk-btn-accent{color:var(--ink);border-color:var(--ochre-line);}
+.kk-btn-onlight.kk-btn-accent:not([disabled]):hover{background:var(--ochre-soft);border-color:var(--ochre);}
 .kk-btn-onlight.kk-btn-ghost{color:var(--ink);}
+.kk-btn-onlight.kk-btn-ghost:not([disabled]):hover{color:var(--ochre);}
 
 /* ── Card ── */
 .kk-card{font-family:var(--font-sans);display:flex;flex-direction:column;
   border:1px solid var(--sage-line);border-radius:var(--radius-2);
   background:var(--forest-surface);padding:28px;text-decoration:none;
   transition:border-color var(--dur-base) var(--ease-out),
-    background var(--dur-base) var(--ease-out);}
+    background var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);}
 .kk-card-onlight{background:var(--cream-surface);border-color:var(--sage-line-ink);}
 .kk-card-link{cursor:pointer;}
-.kk-card-link:hover{border-color:var(--cream);}
+.kk-card-link:hover{border-color:var(--cream);transform:translateY(-4px);}
 .kk-card-onlight.kk-card-link:hover{border-color:var(--ink);}
 .kk-card-flat{background:transparent;}
 .kk-card-num{font-size:13px;font-weight:700;color:var(--ochre);
@@ -63,6 +69,11 @@
 .kk-card-onlight .kk-card-title{color:var(--ink);}
 .kk-card-body{font-size:16px;line-height:1.6;color:var(--cream-dim);margin:0;text-wrap:pretty;}
 .kk-card-onlight .kk-card-body{color:var(--ink-dim);}
+/* 호버 시 나타나는 화살표 */
+.kk-card-arrow{margin-top:18px;color:var(--ochre);font-size:18px;opacity:0;
+  transform:translateX(-8px);
+  transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);}
+.kk-card:hover .kk-card-arrow{opacity:1;transform:none;}
 
 /* ── Input ── */
 .kk-field{display:flex;flex-direction:column;gap:8px;font-family:var(--font-sans);}
@@ -81,11 +92,12 @@
 .kk-input-onlight::placeholder{color:var(--ink-dim);}
 .kk-field-onlight .kk-field-label{color:var(--ink-dim);}
 
-/* ── Nav ── */
+/* ── Nav — 항상 forest 마스트헤드 ── */
 .kk-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--forest);
   border-bottom: 1px solid transparent;
-  transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out); }
-.kk-nav.is-scrolled { background: var(--forest); border-bottom-color: var(--sage-line); }
+  transition: border-color var(--dur-base) var(--ease-out); }
+.kk-nav.is-scrolled { border-bottom-color: var(--sage-line); }
 .kk-nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; height: 68px; }
 .kk-nav-mark { display: inline-flex; align-items: baseline; gap: 8px; text-decoration: none; }
 .kk-nav-word { font-family: var(--font-display); font-size: 23px; font-weight: 800; color: var(--cream); letter-spacing: -0.02em; }
@@ -100,49 +112,79 @@
 .kk-section.light { background: var(--cream-surface); color: var(--ink); }
 .kk-section.deep { background: var(--forest-deep); }
 .kk-sec-head { display: flex; flex-direction: column; gap: 20px; margin-bottom: 72px; }
-.kk-sec-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); line-height: 1.2;
+.kk-sec-title { font-family: var(--font-display); font-size: clamp(32px, 4.4vw, 52px); line-height: 1.18;
   letter-spacing: -0.015em; font-weight: 700; margin: 0; text-wrap: balance; }
 .kk-section.light .kk-sec-title { color: var(--ink); }
 
-/* ── Hero ── */
-.kk-hero { min-height: 88vh; display: flex; align-items: center; background: var(--bg);
-  padding: 160px 0 var(--section-pad-y); }
-.kk-hero-title { font-family: var(--font-display); font-size: clamp(44px, 6.5vw, 76px); line-height: 1.16;
-  letter-spacing: -0.02em; font-weight: 800; color: var(--cream); margin: 28px 0 0; }
-.kk-hero-lead { font-family: var(--font-display); font-size: 19px; line-height: 1.85; color: var(--cream-dim);
-  max-width: 560px; margin: 32px 0 0; text-wrap: pretty; }
-.kk-hero-actions { display: flex; gap: 14px; margin-top: 44px; }
-.kk-hero-meta { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 96px; padding-top: 26px;
-  border-top: 1px solid var(--sage-line); }
-.kk-hero-meta span { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--sage); }
+/* ── Hero — 크림 배경, 비대칭 2단, 설계도 라인아트 ── */
+.kk-hero { min-height: 92vh; display: flex; flex-direction: column;
+  background: var(--cream-surface); color: var(--ink);
+  padding-top: 68px; position: relative; overflow: hidden; }
+.kk-hero-grid { flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr;
+  align-items: center; gap: 48px; width: 100%; }
+.kk-hero-title { font-family: var(--font-display); font-size: clamp(46px, 7.4vw, 96px); line-height: 1.12;
+  letter-spacing: -0.02em; font-weight: 800; color: var(--ink); margin: 26px 0 0; }
+.kk-hero-em { color: var(--ochre); }
+.kk-hero-lead { font-family: var(--font-display); font-size: 19px; line-height: 1.85; color: var(--ink-dim);
+  max-width: 540px; margin: 30px 0 0; text-wrap: pretty; }
+.kk-hero-actions { display: flex; gap: 14px; margin-top: 42px; }
+/* 설계도 라인아트 — 천천히 회전 */
+.kk-hero-art { display: flex; justify-content: center; align-items: center; }
+.kk-hero-art svg { width: min(100%, 440px); height: auto; }
+.kk-rotor { animation: kk-rotate 90s linear infinite; transform-origin: 240px 240px; }
+.kk-rotor-rev { animation: kk-rotate 140s linear infinite reverse; transform-origin: 240px 240px; }
+@keyframes kk-rotate { to { transform: rotate(360deg); } }
 
-/* ── Problem ── */
-.kk-problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.kk-problem-item { border-top: 1px solid var(--sage-line-ink); padding-top: 24px;
+/* ── 마키 — 흐르는 카테고리 띠 ── */
+.kk-marquee { border-top: 1px solid var(--sage-line-ink); overflow: hidden; padding: 20px 0;
+  background: var(--cream-surface); }
+.kk-marquee-track { display: flex; width: max-content; animation: kk-marquee 30s linear infinite; }
+.kk-marquee-group { display: flex; align-items: center; }
+.kk-marquee-word { font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  letter-spacing: 0.04em; color: var(--ink-dim); white-space: nowrap; }
+.kk-marquee-dot { color: var(--ochre); margin: 0 28px; font-size: 17px; }
+@keyframes kk-marquee { to { transform: translateX(-50%); } }
+.kk-marquee:hover .kk-marquee-track { animation-play-state: paused; }
+
+/* ── Problem — forest 다크, 고스트 숫자 + 지그재그 ── */
+.kk-problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: start; }
+.kk-problem-item { position: relative; border-top: 1px solid var(--sage-line); padding-top: 88px;
   display: flex; flex-direction: column; gap: 12px; }
-.kk-problem-num { font-size: 13px; font-weight: 700; color: var(--ochre); font-variant-numeric: tabular-nums; }
+.kk-problem-item:nth-child(2) { margin-top: 56px; }
+.kk-problem-item:nth-child(3) { margin-top: 112px; }
+.kk-problem-ghost { position: absolute; top: 14px; left: 0; font-family: var(--font-display);
+  font-size: 96px; line-height: 1; font-weight: 800; color: transparent;
+  -webkit-text-stroke: 1px rgba(143, 168, 155, 0.38); pointer-events: none; user-select: none; }
 .kk-problem-title { font-family: var(--font-display); font-size: 23px; line-height: 1.4; font-weight: 700;
-  color: var(--ink); margin: 0; }
-.kk-problem-body { font-size: 16px; line-height: 1.7; color: var(--ink-dim); margin: 0; text-wrap: pretty; }
+  color: var(--cream); margin: 0; }
+.kk-problem-body { font-size: 16px; line-height: 1.7; color: var(--cream-dim); margin: 0; text-wrap: pretty; }
 
-/* ── Belief ── */
+/* ── Belief — 크림, 큰 선언 + 호버 반응 ── */
 .kk-belief-list { display: flex; flex-direction: column; }
-.kk-belief-line { font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 38px); line-height: 1.4;
-  font-weight: 600; color: var(--cream); margin: 0; padding: 34px 0;
-  border-top: 1px solid var(--sage-line); }
-.kk-belief-line:last-child { border-bottom: 1px solid var(--sage-line); }
+.kk-belief-line { display: flex; align-items: baseline; gap: 22px;
+  font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 44px); line-height: 1.35;
+  font-weight: 600; color: var(--ink); margin: 0; padding: 36px 0;
+  border-top: 1px solid var(--sage-line-ink);
+  transition: padding-left var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
+.kk-belief-line:last-child { border-bottom: 1px solid var(--sage-line-ink); }
+.kk-belief-line:hover { padding-left: 18px; }
+.kk-belief-idx { font-family: var(--font-sans); font-size: 13px; font-weight: 700;
+  color: var(--ochre); font-variant-numeric: tabular-nums; flex-shrink: 0; }
 
-/* ── Categories ── */
+/* ── Categories — forest 다크, 비대칭 그리드 ── */
 .kk-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .kk-cat-grid > div { display: grid; }
+.kk-cat-grid > div:first-child { grid-column: span 2; }
+.kk-cat-grid > div:first-child .kk-card-title { font-family: var(--font-display); font-size: 30px; }
+.kk-cat-grid .kk-card { padding: 32px; }
 
-/* ── Results ── */
-.kk-proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.kk-proof-item { border-top: 1px solid var(--sage-line); padding-top: 26px;
-  display: flex; flex-direction: column; gap: 14px; }
-.kk-proof-num { font-family: var(--font-display); font-size: clamp(34px, 3.6vw, 46px); font-weight: 700;
-  color: var(--cream); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.kk-proof-body { font-size: 16px; line-height: 1.6; color: var(--cream-dim); margin: 0; }
+/* ── Results — 크림, 초대형 숫자 ── */
+.kk-proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+.kk-proof-item { border-top: 1px solid var(--sage-line-ink); padding-top: 28px;
+  display: flex; flex-direction: column; gap: 16px; }
+.kk-proof-num { font-family: var(--font-display); font-size: clamp(64px, 9vw, 124px); font-weight: 800;
+  color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kk-proof-body { font-size: 17px; line-height: 1.6; color: var(--ink-dim); margin: 0; }
 
 /* ── CTA ── */
 .kk-cta-wrap .kk-sec-head { margin-bottom: 40px; }
@@ -173,11 +215,19 @@
 /* ── 모바일 ── */
 @media (max-width: 860px) {
   .kk-problem-grid, .kk-cat-grid, .kk-proof-grid { grid-template-columns: 1fr; }
+  .kk-cat-grid > div:first-child { grid-column: auto; }
+  .kk-problem-item:nth-child(2), .kk-problem-item:nth-child(3) { margin-top: 0; }
   .kk-nav-links { display: none; }
-  .kk-hero { padding-top: 120px; }
+  .kk-hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .kk-hero-art { display: none; }
+  .kk-hero { min-height: auto; padding-top: 100px; }
+  .kk-hero-grid { padding-top: 24px; padding-bottom: 64px; }
 }
 @media (max-width: 640px) {
   .kk-section { padding: var(--section-pad-y-m) 0; }
   .kk-sec-head { margin-bottom: 48px; }
   .kk-footer-top { flex-direction: column; }
+  .kk-hero-actions { flex-wrap: wrap; }
+  .kk-problem-ghost { font-size: 72px; }
+  .kk-problem-item { padding-top: 72px; }
 }

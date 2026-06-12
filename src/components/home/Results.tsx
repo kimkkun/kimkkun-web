@@ -1,16 +1,18 @@
 import SectionLabel from '@/components/ui/SectionLabel'
 
-/* Results — 증거. 다크 섹션, 세 개의 진짜 숫자. 장식도, 만들어낸 수치도 없다. */
+/* Results — 증거. 크림 섹션, 초대형 숫자 두 개. 장식도, 만들어낸 수치도 없다. */
 export default function Results() {
   const items = [
     { v: '5년', b: '직접 가게를 운영한 시간.' },
     { v: '0회', b: '그동안 한 할인 이벤트.' },
   ]
   return (
-    <section className="kk-section" id="proof">
+    <section className="kk-section light" id="proof">
       <div className="kk-container">
         <div className="kk-sec-head" data-reveal>
-          <SectionLabel number="04">Proof</SectionLabel>
+          <SectionLabel number="04" surface="light">
+            Proof
+          </SectionLabel>
           <h2 className="kk-sec-title">말보다 변화.</h2>
         </div>
         <div className="kk-proof-grid">
