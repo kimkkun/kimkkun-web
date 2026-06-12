@@ -45,7 +45,9 @@ export default function Hero() {
             <SectionLabel surface="light">INSIGHT</SectionLabel>
           </div>
           <h1 className="kk-hero-title" data-reveal>
-            단골은 운이 아니다.
+            단골은
+            <br />
+            운이 아니다.
             <br />
             <span className="kk-hero-em">설계다.</span>
           </h1>
