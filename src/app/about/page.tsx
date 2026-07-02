@@ -1,43 +1,47 @@
 import Link from 'next/link'
+import { BRAND } from '@/lib/constants'
 
 const BRANDS = [
   {
     name: '스키당',
-    handle: '@sukidang.official',
-    description: '완벽한 대화에만 집중하는 시간',
-    tags: ['오프라인 F&B', '직접 운영'],
+    meta: '@sukidang.official',
+    tagline: '모임을 경험으로 설계하다',
+    points: [
+      '대흥점 · 교대점 운영',
+      '"여기 어떻게 알았어?" 리뷰가 가장 많은 샤브샤브',
+    ],
     color: '#E8A87C',
   },
   {
     name: '일등고기',
-    handle: '',
-    description: '실패없는 고기 선택',
-    tags: ['온라인 커머스', '직접 운영'],
+    meta: 'OPENING · 2026',
+    tagline: '실패 없는 고기 선택',
+    points: [
+      '듀록 삼겹살 전문',
+      '고주파 해동 시스템',
+      '업계 직거래 유통',
+    ],
     color: '#85B8CB',
   },
 ]
 
-const TIMELINE = [
-  { year: '', label: '주식 트레이딩', description: '숫자와 시스템의 세계에서 사업의 기초를 배우다' },
-  { year: '', label: '스키당 론칭', description: '오프라인 F&B 브랜드를 직접 만들고 운영하다' },
-  { year: '', label: '일등고기 론칭', description: '온라인 커머스로 영역을 확장하다' },
-  { year: '', label: '김수환꾼 시작', description: '현장에서 검증한 브랜딩과 시스템을 기록하다' },
-]
-
 const PHILOSOPHY = [
   {
-    title: '브랜딩은 복사 불가',
-    description: 'AI가 대체 못하는 유일한 것은 당신의 이야기와 철학',
-    color: '#E8A87C',
+    title: '하나. 매출이 아니라 순이익을 본다.',
+    description:
+      '매달 1억 팔고 0원 남던 사장이었습니다. 그 1년이 알려준 건 하나입니다. 매출은 허영이고, 순이익만이 진실입니다.',
+    color: '#C9A96E',
   },
   {
-    title: '시스템이 자유를 만든다',
-    description: '감으로 버티는 사업은 언젠가 무너진다',
+    title: '둘. 직원 문제는 시스템 문제다.',
+    description:
+      '직원이 일을 못하는 게 아니라, 기준이 없는 겁니다. 사장이 매번 다르게 답하면, 직원은 매번 다르게 일합니다.',
     color: '#A8D8B9',
   },
   {
-    title: '현장이 증명한다',
-    description: '이론이 아닌 매일 매장에서 검증된 방법만',
+    title: '셋. 콘텐츠 100개보다 메시지 한 줄이다.',
+    description:
+      '"여기 뭐 하는 곳이야?"에 한 문장으로 답할 수 없으면, 콘텐츠 100개는 0개와 같습니다.',
     color: '#85B8CB',
   },
 ]
@@ -45,17 +49,83 @@ const PHILOSOPHY = [
 export default function AboutPage() {
   return (
     <div className="pt-24">
-      {/* 히어로 */}
-      <section className="px-6 py-20">
+      {/* Hero */}
+      <section className="px-6 pt-16 pb-20">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold leading-tight">
-            저는 강의만 하는 사람이 아닙니다.
+          <div className="text-[11px] font-bold tracking-[0.25em] text-muted/50 mb-8">
+            PROFILE
+          </div>
+          <h1 className="text-3xl md:text-5xl font-black leading-[1.25] tracking-tight">
+            매달 <span className="text-[#C9A96E]">1억</span>씩 팔았습니다.
             <br />
-            <span className="text-muted">지금도 매장에 섭니다.</span>
+            순이익은 <span className="text-[#E8A87C]">0원</span>이었습니다.
           </h1>
-          <p className="mt-6 text-muted leading-relaxed">
-            이론이 아닌, 매일 현장에서 부딪히며 만든 브랜딩과 시스템을 이야기합니다.
-          </p>
+          <div className="mt-10 space-y-5 text-[17px] leading-[1.9] text-foreground/80">
+            <p>
+              통장은 매달 비었고, 주변엔 &ldquo;잘 되시네요&rdquo;라는 말만 들렸습니다.
+            </p>
+            <p className="text-foreground/95">
+              &ldquo;왜 열심히 했는데 남는 게 없지?&rdquo;
+            </p>
+            <p className="text-foreground font-medium">
+              그 질문이 김꾼의 시작이었습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY */}
+      <section className="px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-xs font-bold tracking-widest text-muted mb-8">
+            WHY
+          </h2>
+          <div className="space-y-7 text-[17px] leading-[2] text-foreground/85">
+            <p className="text-xl md:text-2xl font-bold leading-[1.5] text-foreground">
+              매출은 마케팅으로 만들 수 있습니다.
+              <br />
+              수익은 브랜드로 만들어야 합니다.
+            </p>
+            <p>
+              마케팅만 잘하면 매출 10억도 가능합니다. 근데 순이익률 10%를 못 넘기면, 매출 1억짜리 100% 순이익 사장과 같은 돈을 법니다.{' '}
+              <span className="text-foreground font-medium">
+                다만 100배 더 일했을 뿐입니다.
+              </span>
+            </p>
+            <p>
+              그래서 다 뜯어고쳤습니다. 정체성을 다시 정의하고, 메시지를 바꾸고, 시스템을 깔았습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* NOW */}
+      <section className="px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-xs font-bold tracking-widest text-muted mb-8">
+            NOW
+          </h2>
+          <div className="space-y-7 text-[17px] leading-[2] text-foreground/85">
+            <p>
+              지금도 매장에 섭니다.{' '}
+              <span className="text-foreground font-medium">
+                스키당 카운터에서 손님과 인사하고, 메뉴를 직접 다듬습니다.
+              </span>
+            </p>
+            <p>
+              그리고 곧 일등고기를 엽니다. 온라인 고기 시장의 &ldquo;사면 후회하는 경험&rdquo;을 다시 설계하는 중입니다.
+            </p>
+            <p className="text-xl md:text-2xl font-bold leading-tight text-foreground pt-3">
+              이게 제 자격증입니다.
+            </p>
+            <p>
+              컨설턴트가 아니라,{' '}
+              <span className="text-foreground font-medium">
+                사장이 사장에게 전하는 이야기.
+              </span>{' '}
+              김꾼이 하는 일입니다.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -69,49 +139,28 @@ export default function AboutPage() {
             {BRANDS.map((brand) => (
               <div
                 key={brand.name}
-                className="bg-card rounded-2xl p-6 border border-border"
+                className="bg-card rounded-2xl p-7 border border-border"
               >
                 <div
-                  className="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-lg font-bold"
+                  className="w-12 h-12 rounded-full mb-5 flex items-center justify-center text-lg font-bold"
                   style={{ backgroundColor: `${brand.color}20`, color: brand.color }}
                 >
                   {brand.name[0]}
                 </div>
                 <h3 className="text-lg font-bold">{brand.name}</h3>
-                {brand.handle && (
-                  <p className="text-sm text-muted mt-1">{brand.handle}</p>
-                )}
-                <p className="text-sm text-muted mt-3 leading-relaxed">
-                  {brand.description}
-                </p>
-                <div className="flex gap-2 mt-4">
-                  {brand.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2.5 py-1 rounded-full border border-border text-muted"
+                <p className="text-xs tracking-wider text-muted mt-1">{brand.meta}</p>
+                <p className="text-base font-medium mt-5 leading-snug">{brand.tagline}</p>
+                <ul className="mt-4 space-y-2">
+                  {brand.points.map((point, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-muted leading-relaxed flex gap-2"
                     >
-                      {tag}
-                    </span>
+                      <span className="text-muted/40 mt-0.5">·</span>
+                      <span>{point}</span>
+                    </li>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TIMELINE */}
-      <section className="px-6 py-16">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-xs font-bold tracking-widest text-muted mb-8">
-            TIMELINE
-          </h2>
-          <div className="relative pl-8 border-l border-border space-y-10">
-            {TIMELINE.map((item, i) => (
-              <div key={i} className="relative">
-                <div className="absolute -left-[2.55rem] top-1 w-3 h-3 rounded-full bg-foreground/30" />
-                <h3 className="text-base font-bold">{item.label}</h3>
-                <p className="text-sm text-muted mt-1">{item.description}</p>
+                </ul>
               </div>
             ))}
           </div>
@@ -128,11 +177,13 @@ export default function AboutPage() {
             {PHILOSOPHY.map((item) => (
               <div
                 key={item.title}
-                className="bg-card rounded-2xl p-6 border-l-4"
+                className="bg-card rounded-2xl p-7 border-l-4"
                 style={{ borderLeftColor: item.color }}
               >
-                <h3 className="text-base font-bold">{item.title}</h3>
-                <p className="text-sm text-muted mt-2">{item.description}</p>
+                <h3 className="text-lg font-bold leading-tight">{item.title}</h3>
+                <p className="text-[15px] text-muted mt-3 leading-[1.85]">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
@@ -140,19 +191,34 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-24">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold leading-tight">
             감으로 하던 사업,
             <br />
             시스템으로 바꾸고 싶다면.
           </h2>
-          <Link
-            href="/"
-            className="inline-block mt-8 px-6 py-3 text-sm font-medium border border-foreground/20 rounded-full hover:bg-foreground hover:text-background transition-all"
-          >
-            콘텐츠 보러 가기
-          </Link>
+          <p className="mt-6 text-muted leading-relaxed">
+            한 줄이어도 좋습니다.
+            <br />
+            DM으로 사업 고민 보내주세요.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <a
+              href={BRAND.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 text-sm font-medium bg-foreground text-background rounded-full hover:bg-foreground/90 transition-all"
+            >
+              인스타 DM 보내기 → {BRAND.instagram}
+            </a>
+            <Link
+              href="/"
+              className="inline-block px-6 py-3 text-sm font-medium border border-foreground/20 rounded-full hover:bg-foreground hover:text-background transition-all"
+            >
+              콘텐츠 더 보러 가기
+            </Link>
+          </div>
         </div>
       </section>
     </div>
