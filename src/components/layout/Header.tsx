@@ -25,8 +25,7 @@ export default function Header() {
     <header className={'kk-nav' + (scrolled ? ' is-scrolled' : '')}>
       <div className="kk-nav-inner kk-container">
         <Link className="kk-nav-mark" href="/" aria-label="김꾼 홈">
-          <span className="kk-nav-word">김꾼</span>
-          <span className="kk-nav-tick" />
+          <img className="kk-nav-logo" src="/logo.png" alt="김꾼" />
         </Link>
         <nav className="kk-nav-links">
           {links.map((l) => (
