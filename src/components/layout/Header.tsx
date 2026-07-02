@@ -10,8 +10,8 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold tracking-wider">
-          {BRAND.siteTitle}
+        <Link href="/" aria-label={BRAND.siteTitle}>
+          <img src="/logo.png" alt={BRAND.siteTitle} className="h-10 w-auto" />
         </Link>
 
         {/* 데스크톱 네비게이션 */}
