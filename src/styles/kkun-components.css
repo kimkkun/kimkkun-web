@@ -137,7 +137,7 @@
 
 .kkun-info__table {
   width: 100%; border-collapse: separate; border-spacing: 0 6px;
-  font-size: 14px;
+  font-size: 15px;
 }
 .kkun-info__table th, .kkun-info__table td {
   padding: 14px 10px; text-align: center;
@@ -163,7 +163,7 @@
   padding: 22px 24px; border-radius: 12px; margin: 28px 0;
 }
 .kkun-info__callout strong { display: block; font-size: 20px; margin-bottom: 8px; }
-.kkun-info__callout span { color: var(--gold); font-size: 15px; }
+.kkun-info__callout span { color: var(--gold); font-size: 16px; }
 
 .kkun-info__steps { list-style: none; padding: 0; margin: 0; }
 .kkun-info__steps li {
@@ -178,12 +178,19 @@
   display: grid; place-items: center;
 }
 .kkun-info__steps strong { display: block; font-size: 17px; margin-bottom: 4px; }
-.kkun-info__steps em { color: var(--gray); font-size: 13px; font-style: normal; }
+.kkun-info__steps em { color: var(--gray); font-size: 14px; font-style: normal; }
 
 .kkun-info__footer { text-align: center; margin-top: 24px; }
 .kkun-info__footer p { font-size: 19px; font-weight: 700; margin: 4px 0; }
 .kkun-info__footer p.accent { color: var(--gold); }
-.kkun-info__footer small { display: block; color: var(--gray); font-size: 13px; margin-top: 16px; }
+.kkun-info__footer small { display: block; color: var(--gray); font-size: 14px; margin-top: 16px; }
+
+/* 모바일: 좌우 여백을 줄여 글씨 공간 확보 */
+@media (max-width: 480px) {
+  .kkun-info { padding: 40px 20px 52px; }
+  .kkun-info__bar-top, .kkun-info__bar-bottom { margin-left: -20px; margin-right: -20px; }
+  .kkun-info__table th, .kkun-info__table td { padding: 12px 6px; }
+}
 
 /* === 카테고리 CSS 변수 (현재 인포그래픽 내부에는 태그 DOM 없음,
    원본 마크업 보존 원칙. 추후 태그 DOM 추가 시 즉시 동작) === */

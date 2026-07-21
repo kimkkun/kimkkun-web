@@ -74,7 +74,7 @@ function createMarkdownComponents() {
     <h3 className="text-xl md:text-2xl font-bold mt-14 mb-6 leading-tight">{children}</h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="text-[17px] leading-[2] text-foreground/85 mb-7">{children}</p>
+    <p className="text-[18px] leading-[2] text-foreground/85 mb-7">{children}</p>
   ),
   strong: ({ children }: { children?: React.ReactNode }) => (
     <strong className="text-[#85B8CB] font-medium underline decoration-[#85B8CB]/30 decoration-[1.5px] underline-offset-4">{children}</strong>
@@ -85,7 +85,7 @@ function createMarkdownComponents() {
     </div>
   ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
-    <blockquote className="border-l-[3px] border-[#85B8CB]/40 pl-6 my-10 text-[16px] leading-[1.9] text-foreground/70">
+    <blockquote className="border-l-[3px] border-[#85B8CB]/40 pl-6 my-10 text-[17px] leading-[1.9] text-foreground/70">
       {children}
     </blockquote>
   ),
@@ -96,7 +96,7 @@ function createMarkdownComponents() {
     <ol className="space-y-3 my-7 ml-4 list-decimal">{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="text-[17px] leading-[2] text-foreground/85">{children}</li>
+    <li className="text-[18px] leading-[2] text-foreground/85">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
     <div className="my-10 -mx-6 px-6 overflow-x-auto">
@@ -107,12 +107,12 @@ function createMarkdownComponents() {
     <thead>{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-5 py-3.5 text-left text-[13px] font-bold tracking-wide text-muted/70 uppercase bg-[#1a1a1a] first:rounded-l-xl last:rounded-r-xl align-top">{children}</th>
+    <th className="px-5 py-3.5 text-left text-[14px] font-bold tracking-wide text-muted/70 uppercase bg-[#1a1a1a] first:rounded-l-xl last:rounded-r-xl align-top">{children}</th>
   ),
   td: ({ children, node }: { children?: React.ReactNode; node?: { position?: { start?: { column?: number } } } }) => {
     const isFirstCol = node?.position?.start?.column === 1
     return (
-      <td className={`px-5 py-4 text-[14px] leading-relaxed bg-[#151515] first:rounded-l-xl last:rounded-r-xl align-top ${isFirstCol ? 'font-semibold text-[#C9A96E]' : 'text-foreground/80'}`}>{children}</td>
+      <td className={`px-5 py-4 text-[15px] leading-relaxed bg-[#151515] first:rounded-l-xl last:rounded-r-xl align-top ${isFirstCol ? 'font-semibold text-[#C9A96E]' : 'text-foreground/80'}`}>{children}</td>
     )
   },
   }

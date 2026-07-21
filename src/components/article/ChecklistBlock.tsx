@@ -35,7 +35,7 @@ export default function ChecklistBlock({ content }: ChecklistBlockProps) {
             }`}>
               {checks[i] ? '✓' : ''}
             </span>
-            <span className={`text-sm leading-relaxed transition-colors ${checks[i] ? 'text-foreground' : 'text-muted'}`}>
+            <span className={`text-[15px] leading-relaxed transition-colors ${checks[i] ? 'text-foreground' : 'text-muted'}`}>
               {item.text}
             </span>
           </button>

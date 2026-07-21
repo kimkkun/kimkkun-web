@@ -28,7 +28,7 @@ export default function ExamplesBlock({ content }: ExamplesBlockProps) {
           >
             {item.label}
           </span>
-          <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+          <p className="text-[15px] text-muted leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>
