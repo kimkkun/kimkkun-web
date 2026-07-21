@@ -5,7 +5,32 @@
       "mcp__80283f5a-9bd2-4c5a-8714-dea7c7a11b9e__execute_sql",
       "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
       "Bash(npm run:*)",
-      "WebSearch"
+      "WebSearch",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__claude_ai_Supabase__list_projects",
+      "mcp__claude_ai_Supabase__execute_sql",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "mcp__80283f5a-9bd2-4c5a-8714-dea7c7a11b9e__list_tables",
+      "mcp__80283f5a-9bd2-4c5a-8714-dea7c7a11b9e__list_projects",
+      "PowerShell(Expand-Archive -Path \"$env:USERPROFILE\\\\Downloads\\\\Kim.kkun Design System.zip\" -DestinationPath \"$env:TEMP\\\\kimkkun-design-extract\" -Force; Get-ChildItem \"$env:TEMP\\\\kimkkun-design-extract\" -Recurse | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"$env:TEMP\\\\kimkkun-design-extract\", \"\"\\) })",
+      "PowerShell(Copy-Item -Path \"$env:TEMP\\\\kimkkun-design-extract\" -Destination \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\design\" -Recurse -Force; Get-ChildItem \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\design\" | Select-Object Name)",
+      "PowerShell(git -C \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\" checkout -b renewal)",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\src\\\\fonts\" | Out-Null; Invoke-WebRequest -Uri \"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2\" -OutFile \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\src\\\\fonts\\\\PretendardVariable.woff2\"; \\(Get-Item \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\src\\\\fonts\\\\PretendardVariable.woff2\"\\).Length)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\juvin\\\\Claude project\\\\kimkkun_web\\\\src\" -Recurse -Force | Where-Object { $_.PSIsContainer } | Select-Object FullName)",
+      "Bash(find \"C:\\\\Users\\\\juvin\\\\AppData\\\\Local\\\\Temp\\\\claude\" \"C:\\\\Users\\\\juvin\\\\.claude\\\\projects\\\\C--Users-juvin-Claude-project-kimkkun-web\" -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.jpeg\" -o -name \"*.webp\" \\\\\\) -mmin -60 2>/dev/null | head -20)",
+      "Bash(find \"C:\\\\Users\\\\juvin\\\\.claude\" -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.webp\" \\\\\\) -mmin -120 2>/dev/null | head; ls -t \"C:\\\\Users\\\\juvin\\\\Downloads\" 2>/dev/null | head -10)",
+      "Bash(stat -c '%y %s %n' \"C:\\\\Users\\\\juvin\\\\Downloads\\\\Gemini_Generated_Image_c2dqqhc2dqqhc2dq.png\")",
+      "Bash(find \"C:\\\\Users\\\\juvin\\\\AppData\\\\Local\\\\Temp\" -maxdepth 3 -iname \"*paste*\" -mmin -60 2>/dev/null | head; find \"C:\\\\Users\\\\juvin\\\\.claude\\\\projects\" -type d -name \"*kimkkun*\" | head -3; ls -t \"C:\\\\Users\\\\juvin\\\\.claude\\\\projects\\\\C--Users-juvin-Claude-project-kimkkun-web\" 2>/dev/null | head)",
+      "Bash(node -e ' *)",
+      "Bash(git add *)",
+      "Bash(git commit -m '헤더 텍스트 로고를 시그니처 로고 이미지로 교체 *)",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "WebFetch(domain:kimkkun.com)",
+      "Bash(git merge main -m 'main 병합: Profile 페이지 리뉴얼 + 로고 커밋 반영 *)"
     ]
   }
 }
