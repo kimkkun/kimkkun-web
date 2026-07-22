@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 로컬 전용 — ~/Projects/.claude/settings.json 심볼릭 링크 (머신 종속)
+.claude/settings.json
