@@ -25,7 +25,7 @@ export default function PromptCardsBlock({ content }: PromptCardsBlockProps) {
   }
 
   return (
-    <div className="my-10 rounded-2xl bg-[#151515] border border-border overflow-hidden">
+    <div className="my-10 rounded-2xl bg-[#F2F4F6] border border-border overflow-hidden">
       {data.items.map((item, i) => (
         <div
           key={i}
@@ -44,7 +44,7 @@ export default function PromptCardsBlock({ content }: PromptCardsBlockProps) {
               {item.tags.map((tag, ti) => (
                 <span
                   key={ti}
-                  className="text-xs px-3 py-1 rounded-full bg-[#85B8CB]/15 text-[#85B8CB] font-medium"
+                  className="text-xs px-3 py-1 rounded-full bg-[#115EF9]/15 text-[#115EF9] font-medium"
                 >
                   {tag}
                 </span>

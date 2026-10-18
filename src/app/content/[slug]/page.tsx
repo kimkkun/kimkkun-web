@@ -13,8 +13,8 @@ import ExamplesBlock from '@/components/article/ExamplesBlock'
 import KkunInfographicBlock from '@/components/article/KkunInfographicBlock'
 import MetricCardsBlock from '@/components/article/MetricCardsBlock'
 import PromptCardsBlock from '@/components/article/PromptCardsBlock'
-import KkunThumbnail, { type KkunCategory } from '@/components/KkunThumbnail'
 import CopyProtect from '@/components/article/CopyProtect'
+import ReadingProgress from '@/components/renewal/ReadingProgress'
 
 export const dynamic = 'force-dynamic'
 
@@ -61,58 +61,55 @@ function createMarkdownComponents() {
     chapterCount++
     const num = String(chapterCount).padStart(2, '0')
     return (
-      <div className="mt-20 mb-8">
-        <div className="w-full h-px bg-border/50 mb-10" />
-        <div className="text-[11px] font-bold tracking-[0.2em] text-muted/40 mb-3">
-          CHAPTER {num}
-        </div>
-        <h2 className="text-2xl md:text-3xl font-black leading-tight">{children}</h2>
+      <div className="mt-16 mb-6">
+        <div className="text-[13px] font-bold text-[var(--crew-accent)] mb-2">CHAPTER {num}</div>
+        <h2 className="text-[26px] md:text-[30px] font-extrabold leading-snug tracking-[-0.04em]">{children}</h2>
       </div>
     )
   },
   h3: ({ children }: { children?: React.ReactNode }) => (
-    <h3 className="text-xl md:text-2xl font-bold mt-14 mb-6 leading-tight">{children}</h3>
+    <h3 className="text-[21px] md:text-[23px] font-bold mt-12 mb-5 leading-snug tracking-[-0.03em]">{children}</h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="text-[18px] leading-[2] text-foreground/85 mb-7">{children}</p>
+    <p className="text-[17px] md:text-[18px] leading-[1.9] text-[#333D4B] mb-6">{children}</p>
   ),
   strong: ({ children }: { children?: React.ReactNode }) => (
-    <strong className="text-[#85B8CB] font-medium underline decoration-[#85B8CB]/30 decoration-[1.5px] underline-offset-4">{children}</strong>
+    <strong className="font-bold text-[var(--crew-ink)] bg-[linear-gradient(transparent_60%,var(--crew-accent-soft)_60%)]">{children}</strong>
   ),
   hr: () => (
-    <div className="my-20 flex justify-center">
-      <div className="w-12 h-px bg-muted/30" />
+    <div className="my-14 flex justify-center">
+      <div className="w-12 h-[2px] rounded bg-[var(--crew-line-strong)]" />
     </div>
   ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
-    <blockquote className="border-l-[3px] border-[#85B8CB]/40 pl-6 my-10 text-[17px] leading-[1.9] text-foreground/70">
+    <blockquote className="my-8 rounded-2xl bg-[var(--crew-accent-air)] px-5 py-4 text-[17px] leading-[1.8] text-[var(--crew-dusk)] [&_p]:mb-0">
       {children}
     </blockquote>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="space-y-3 my-7 ml-4">{children}</ul>
+    <ul className="space-y-2 my-6 ml-5 list-disc marker:text-[var(--crew-accent)]">{children}</ul>
   ),
   ol: ({ children }: { children?: React.ReactNode }) => (
-    <ol className="space-y-3 my-7 ml-4 list-decimal">{children}</ol>
+    <ol className="space-y-2 my-6 ml-5 list-decimal marker:text-[var(--crew-accent)] marker:font-bold">{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="text-[18px] leading-[2] text-foreground/85">{children}</li>
+    <li className="text-[17px] md:text-[18px] leading-[1.85] text-[#333D4B]">{children}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-10 -mx-6 px-6 overflow-x-auto">
-      <table className="w-full min-w-[600px] border-separate" style={{ borderSpacing: '0 6px' }}>{children}</table>
+    <div className="my-8 -mx-4 px-4 overflow-x-auto">
+      <table className="w-full min-w-[560px] border-separate" style={{ borderSpacing: '0 6px' }}>{children}</table>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
     <thead>{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-5 py-3.5 text-left text-[14px] font-bold tracking-wide text-muted/70 uppercase bg-[#1a1a1a] first:rounded-l-xl last:rounded-r-xl align-top">{children}</th>
+    <th className="px-4 py-3 text-left text-[13px] font-bold text-[var(--crew-dusk)] bg-[var(--crew-bg)] first:rounded-l-xl last:rounded-r-xl align-top">{children}</th>
   ),
   td: ({ children, node }: { children?: React.ReactNode; node?: { position?: { start?: { column?: number } } } }) => {
     const isFirstCol = node?.position?.start?.column === 1
     return (
-      <td className={`px-5 py-4 text-[15px] leading-relaxed bg-[#151515] first:rounded-l-xl last:rounded-r-xl align-top ${isFirstCol ? 'font-semibold text-[#C9A96E]' : 'text-foreground/80'}`}>{children}</td>
+      <td className={`px-4 py-3.5 text-[15px] leading-relaxed bg-white shadow-[0_1px_3px_rgba(25,31,40,.06)] first:rounded-l-xl last:rounded-r-xl align-top ${isFirstCol ? 'font-semibold text-[var(--crew-accent)]' : 'text-[#333D4B]'}`}>{children}</td>
     )
   },
   }
@@ -129,7 +126,6 @@ export default async function ArticlePage({
   if (!article) notFound()
 
   const { prev, next } = await getAdjacentArticles(article.number)
-  const categoryColor = article.category?.color || '#888'
   const publishedDate = article.published_at
     ? new Date(article.published_at).toLocaleDateString('ko-KR', {
         year: 'numeric',
@@ -142,36 +138,23 @@ export default async function ArticlePage({
   const markdownComponents = createMarkdownComponents()
 
   return (
-    <div className="pt-16 pb-20">
-      {/* 히어로: KkunThumbnail + 메타 스트립 */}
-      <div className="px-6">
-        <div className="max-w-[1000px] mx-auto">
-          <KkunThumbnail
-            category={article.category?.name as KkunCategory}
-            titleLines={article.thumbnail_title_lines}
-            accentLine={article.thumbnail_accent_line}
-          />
-          <div className="mt-6 flex items-center justify-center gap-4 text-xs text-muted/70">
-            <span className="text-foreground/90 font-medium">{article.author}</span>
-            <span className="w-px h-3 bg-muted/30" />
-            <span>{publishedDate}</span>
-            <span className="w-px h-3 bg-muted/30" />
-            <span>{article.reading_time}분 읽기</span>
-          </div>
+    <div className="rn pb-20">
+      <ReadingProgress />
+      <header className="rn-art-head in">
+        <div className="no">
+          1막 서고 · NO.{String(article.number).padStart(2, '0')} · {article.category?.name}
         </div>
-      </div>
+        <h1>{article.title}</h1>
+        {article.sub_copy && <p className="lede">{article.sub_copy}</p>}
+        <div className="meta">
+          <span>{article.author}</span>
+          {publishedDate && <span>{publishedDate}</span>}
+          {article.reading_time ? <span>{article.reading_time}분 읽기</span> : null}
+        </div>
+      </header>
 
-      <article className="px-6">
-        <div className="max-w-[600px] mx-auto">
-          {/* 브레드크럼 */}
-          <nav className="flex items-center gap-2 text-xs text-muted mt-10 mb-10">
-            <Link href="/" className="hover:text-foreground transition-colors">
-              Content
-            </Link>
-            <span>/</span>
-            <span style={{ color: categoryColor }}>{article.category?.name}</span>
-          </nav>
-
+      <article className="in">
+        <div className="max-w-[640px] mx-auto pt-6">
           {/* 본문 - 리치 블록 지원 (복사 방지) */}
           <CopyProtect>
             <div className="prose-custom">
@@ -203,60 +186,41 @@ export default async function ArticlePage({
               })}
             </div>
 
-            {/* KEY TAKEAWAY */}
-            <div className="mt-16 bg-card rounded-2xl p-6 border border-border">
-              <h3 className="text-xs font-bold tracking-widest text-muted mb-3">
-                KEY TAKEAWAY
-              </h3>
-              <p className="text-base font-medium leading-relaxed">
-                {article.sub_copy}
-              </p>
-            </div>
+            {/* 핵심 한 줄 */}
+            {article.sub_copy && (
+              <div className="mt-14 rounded-[20px] bg-[var(--crew-ink)] text-white p-6">
+                <div className="text-[13px] font-bold text-[var(--crew-accent-hi)] mb-2">핵심 한 줄</div>
+                <p className="text-[17px] font-semibold leading-relaxed">{article.sub_copy}</p>
+              </div>
+            )}
           </CopyProtect>
 
-          {/* WATCH ON REELS */}
           {article.reels_url && (
-            <div className="mt-8 bg-card rounded-2xl p-6 border border-border text-center">
-              <p className="text-sm text-muted mb-3">이 글의 핵심을 1분으로 보기</p>
-              <a
-                href={article.reels_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 text-sm font-medium border border-foreground/20 rounded-full hover:bg-foreground hover:text-background transition-all"
-              >
+            <div className="mt-6 rounded-[20px] bg-[var(--crew-accent-air)] p-6 text-center">
+              <p className="text-[15px] text-[var(--crew-dusk)] mb-4">이 글의 핵심을 1분으로 보기</p>
+              <a className="btn" href={article.reels_url} target="_blank" rel="noopener noreferrer">
                 릴스 보러 가기
               </a>
             </div>
           )}
 
-          {/* 이전/다음 네비게이션 */}
-          <nav className="mt-16 flex items-center justify-between border-t border-border pt-8">
-            {prev ? (
-              <Link
-                href={`/content/${prev.slug}`}
-                className="text-sm text-muted hover:text-foreground transition-colors"
-              >
-                ← {prev.title}
+          <nav className="rn-pager" aria-label="다른 글">
+            {next && (
+              <Link href={`/content/${next.slug}`}>
+                <small>다음 글</small>
+                <span>{next.title}</span>
               </Link>
-            ) : (
-              <div />
             )}
-            <Link
-              href="/"
-              className="text-xs text-muted hover:text-foreground transition-colors tracking-wider"
-            >
-              All content
+            {prev && (
+              <Link href={`/content/${prev.slug}`}>
+                <small>이전 글</small>
+                <span>{prev.title}</span>
+              </Link>
+            )}
+            <Link href="/content">
+              <small>1막 서고</small>
+              <span>전체 글 보기</span>
             </Link>
-            {next ? (
-              <Link
-                href={`/content/${next.slug}`}
-                className="text-sm text-muted hover:text-foreground transition-colors text-right"
-              >
-                {next.title} →
-              </Link>
-            ) : (
-              <div />
-            )}
           </nav>
         </div>
       </article>

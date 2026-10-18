@@ -1,51 +1,44 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import Button from '@/components/ui/Button'
-import { BRAND } from '@/lib/constants'
+import { useEffect, useRef } from 'react'
 
-/* 상단 내비게이션 — 슬림, 고정, 스크롤 시 헤어라인 구분선. design/ui_kits/website/Nav.jsx 이식. */
+/* 상단 줄 — 44~48px, 반투명 흰색 + 흐림(apple.com 방식). 아래 파란 선이 스크롤한 만큼 찬다. */
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
+  const bar = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    let ticking = false
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`
+      ticking = false
+    }
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
+    update()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const links = [
-    { label: '관점', href: '/#view' },
-    { label: '콘텐츠', href: '/#work' },
-  ]
-
   return (
-    <header className={'kk-nav' + (scrolled ? ' is-scrolled' : '')}>
-      <div className="kk-nav-inner kk-container">
-        <Link className="kk-nav-mark" href="/" aria-label="김꾼 홈">
-          <img className="kk-nav-logo" src="/logo.png" alt="김꾼" />
+    <header className="rn rn-nav">
+      <div className="in">
+        <Link className="rn-logo" href="/" aria-label="김꾼 홈">
+          <img src="/renewal/logo-kk.png" alt="김꾼" />
         </Link>
-        <nav className="kk-nav-links">
-          {links.map((l) => (
-            <a key={l.href} className="kk-nav-link" href={l.href}>
-              {l.label}
-            </a>
-          ))}
+        <nav className="rn-menu" aria-label="메뉴">
+          <Link href="/#made">만든 것</Link>
+          <Link href="/content">1막 서고</Link>
+          <Link href="/#about">소개</Link>
+          <Link href="/#request">요청하기</Link>
         </nav>
-        <div className="kk-nav-cta">
-          <Button
-            variant="secondary"
-            size="sm"
-            href={BRAND.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            인스타그램
-          </Button>
-        </div>
       </div>
+      <div className="rn-bar" ref={bar} />
     </header>
   )
 }

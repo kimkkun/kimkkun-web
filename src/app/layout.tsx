@@ -7,13 +7,13 @@ import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kimkkun.com"),
-  title: "김꾼 — 단골은 운이 아니다. 설계다.",
+  title: "김꾼 — 필요한 건 AI로 직접 만드는 꾼.",
   description:
-    "5년간 가게를 직접 운영하며 배운 것. 손님을 단골로, 단골을 팬으로 만드는 건 친절이 아니라 시스템이다. 자영업자를 위한 브랜딩·시스템 콘텐츠, 김꾼.",
+    "장사 꿀팁은 넘쳐난다. 도구가 없으면 현실은 그대로다. 그래서 AI로 직접 만든다. 김꾼 2막.",
   openGraph: {
-    title: "김꾼 — 단골은 운이 아니다. 설계다.",
+    title: "김꾼 — 필요한 건 AI로 직접 만드는 꾼.",
     description:
-      "손님을 단골로, 단골을 팬으로 만드는 건 친절이 아니라 시스템이다. 자영업자를 위한 브랜딩·시스템 콘텐츠, 김꾼.",
+      "장사 꿀팁은 넘쳐난다. 도구가 없으면 현실은 그대로다. 그래서 AI로 직접 만든다. 김꾼 2막.",
     url: "https://www.kimkkun.com",
     siteName: "김꾼",
     locale: "ko_KR",

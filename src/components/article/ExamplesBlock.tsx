@@ -12,7 +12,7 @@ export default function ExamplesBlock({ content }: ExamplesBlockProps) {
     }
   })
 
-  const colors = ['#E8A87C', '#85B8CB', '#A8D8B9', '#C3A6D8', '#E8A87C']
+  const colors = ['#115EF9', '#4E5968', '#588FFB', '#191F28', '#115EF9']
 
   return (
     <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-3">

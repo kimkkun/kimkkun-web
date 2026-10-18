@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../styles/kkun-core.css";
 @import "../styles/kkun-components.css";
+@import "../styles/renewal.css";
 
 /* ─────────────────────────────────────────────────────────
    김꾼 디자인 토큰 — design/tokens/*.css 이식
@@ -103,15 +104,35 @@
   --dur-base:   240ms;
   --dur-slow:   420ms;
 
-  /* ── 기존 사이트 호환 별칭 (글 페이지·리치 블록이 사용) ── */
-  --background: var(--forest);
-  --foreground: var(--cream);
-  --muted:      var(--cream-dim);
-  --border:     var(--sage-line);
-  --card:       var(--forest-surface);
-  --card-hover: color-mix(in srgb, var(--forest-surface) 90%, var(--cream));
+  /* ── 2026-10 리뉴얼: 더크루 앱 토큰(the-crew-app 401e7e038 tokens.dart)을 따르는 밝은 바탕 ── */
+  --crew-bg:          #F2F4F6;
+  --crew-card:        #FFFFFF;
+  --crew-ink:         #191F28;
+  --crew-muted:       #8B95A1;
+  --crew-faint:       #B0B8C1;
+  --crew-line:        #EEF0F3;
+  --crew-line-strong: #D1D6DB;
+  --crew-accent:      #115EF9;
+  --crew-accent-soft: #E7EFFE;
+  --crew-accent-hi:   #588FFB;
+  --crew-accent-air:  #EDF6FF;
+  --crew-dusk:        #4E5968;
 
-  color-scheme: dark;
+  --bg:          #FFFFFF;
+  --text:        var(--crew-ink);
+  --text-muted:  var(--crew-dusk);
+  --text-label:  var(--crew-muted);
+  --accent:      var(--crew-accent);
+
+  /* ── 기존 사이트 호환 별칭 (글 페이지·리치 블록이 사용) ── */
+  --background: #FFFFFF;
+  --foreground: var(--crew-ink);
+  --muted:      var(--crew-muted);
+  --border:     var(--crew-line);
+  --card:       var(--crew-bg);
+  --card-hover: #E9ECF0;
+
+  color-scheme: light;
 }
 
 @theme inline {
@@ -137,7 +158,7 @@ body {
 }
 
 ::selection {
-  background: rgba(201, 162, 75, 0.25);
+  background: var(--crew-accent-soft);
 }
 
 /* ── 타입 유틸리티 (design/tokens/base.css 이식) ── */

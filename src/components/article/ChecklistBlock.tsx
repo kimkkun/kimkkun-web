@@ -30,8 +30,8 @@ export default function ChecklistBlock({ content }: ChecklistBlockProps) {
           >
             <span className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 flex items-center justify-center text-xs transition-all ${
               checks[i]
-                ? 'bg-[#A8D8B9]/20 text-[#A8D8B9] border border-[#A8D8B9]/30'
-                : 'bg-[#1a1a1a] text-muted/40 border border-border group-hover:border-foreground/30'
+                ? 'bg-[#115EF9]/20 text-[#115EF9] border border-[#115EF9]/30'
+                : 'bg-white shadow-[0_1px_3px_rgba(25,31,40,.06)] text-muted/40 border border-border group-hover:border-foreground/30'
             }`}>
               {checks[i] ? '✓' : ''}
             </span>

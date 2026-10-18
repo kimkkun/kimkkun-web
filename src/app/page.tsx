@@ -1,19 +1,9 @@
-import Hero from '@/components/home/Hero'
-import Problem from '@/components/home/Problem'
-import Belief from '@/components/home/Belief'
-import Categories from '@/components/home/Categories'
-import Cta from '@/components/home/Cta'
-import Reveal from '@/components/home/Reveal'
+import HomeView from '@/components/renewal/HomeView'
+import { getArticleSummaries, getCategories } from '@/lib/articles'
 
-export default function HomePage() {
-  return (
-    <>
-      <Reveal />
-      <Hero />
-      <Problem />
-      <Belief />
-      <Categories />
-      <Cta />
-    </>
-  )
+export const dynamic = 'force-dynamic'
+
+export default async function HomePage() {
+  const [categories, articles] = await Promise.all([getCategories(), getArticleSummaries()])
+  return <HomeView categories={categories} articles={articles} />
 }

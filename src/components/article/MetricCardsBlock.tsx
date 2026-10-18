@@ -43,7 +43,7 @@ export default function MetricCardsBlock({ content }: MetricCardsBlockProps) {
         {data.cards.map((card, ci) => (
           <div
             key={ci}
-            className="bg-[#1a1a1a] rounded-2xl p-5 md:p-6 border border-border"
+            className="bg-white shadow-[0_1px_3px_rgba(25,31,40,.06)] rounded-2xl p-5 md:p-6 border border-border"
           >
             <span className="text-xs font-medium tracking-wider text-muted/60 block">
               {card.subtitle}
