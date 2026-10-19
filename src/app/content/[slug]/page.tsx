@@ -134,6 +134,7 @@ export default async function ArticlePage({
         year: 'numeric',
         month: 'long',
         day: 'numeric',
+        timeZone: 'Asia/Seoul', // 서버(UTC)에서 그려도 한국 날짜로
       })
     : ''
 

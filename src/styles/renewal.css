@@ -201,6 +201,7 @@ html[data-splash] .it { transition-delay: calc(var(--i) * 110ms + 1.9s); }
 
 /* 주제별 서고 */
 .shelves { display: grid; gap: 10px; margin-top: 28px; text-align: left; }
+.shelves > * { min-width: 0; } /* 긴 최신 글 제목(한 줄 말줄임)이 칸을 화면 밖으로 밀지 않게 */
 @media (min-width: 640px) { .shelves { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .shelves { grid-template-columns: repeat(3, 1fr); } }
 .shelf { display: block; background: #fff; border-radius: var(--r-card); padding: 18px; box-shadow: var(--sh-card); transition: transform .25s; }
