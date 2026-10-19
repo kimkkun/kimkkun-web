@@ -9,6 +9,8 @@ export default function CopyProtect({ children }: { children: React.ReactNode })
     }
 
     const handleCopy = (e: ClipboardEvent) => {
+      // 복사 칸(CopyBlock)의 단추 복사는 허용
+      if ((e.target as Element | null)?.closest?.('[data-allow-copy]')) return
       e.preventDefault()
     }
 

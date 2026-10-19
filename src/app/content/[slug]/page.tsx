@@ -13,6 +13,9 @@ import ExamplesBlock from '@/components/article/ExamplesBlock'
 import KkunInfographicBlock from '@/components/article/KkunInfographicBlock'
 import MetricCardsBlock from '@/components/article/MetricCardsBlock'
 import PromptCardsBlock from '@/components/article/PromptCardsBlock'
+import MediaBlock from '@/components/article/MediaBlock'
+import CopyBlock from '@/components/article/CopyBlock'
+import { articleNo, isAct2 } from '@/lib/articles'
 import CopyProtect from '@/components/article/CopyProtect'
 import ReadingProgress from '@/components/renewal/ReadingProgress'
 
@@ -142,7 +145,7 @@ export default async function ArticlePage({
       <ReadingProgress />
       <header className="rn-art-head in">
         <div className="no">
-          1막 서고 · NO.{String(article.number).padStart(2, '0')} · {article.category?.name}
+          {isAct2(article) ? articleNo(article) : `1막 서고 · NO.${String(article.number).padStart(2, '0')}`} · {article.category?.name}
         </div>
         <h1>{article.title}</h1>
         {article.sub_copy && <p className="lede">{article.sub_copy}</p>}
@@ -176,6 +179,11 @@ export default async function ArticlePage({
                     return <MetricCardsBlock key={i} content={block.content} />
                   case 'promptCards':
                     return <PromptCardsBlock key={i} content={block.content} />
+                  case 'photo':
+                  case 'video':
+                    return <MediaBlock key={i} kind={block.type} content={block.content} />
+                  case 'copy':
+                    return <CopyBlock key={i} content={block.content} />
                   default:
                     return (
                       <Markdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>

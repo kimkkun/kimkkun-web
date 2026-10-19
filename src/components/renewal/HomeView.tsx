@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { BRAND } from '@/lib/constants'
 import type { Category } from '@/lib/types'
-import type { ArticleSummary } from '@/lib/articles'
+import { ACT2_SLUG, articleNo, isAct2, type ArticleSummary } from '@/lib/articles'
 import Splash from '@/components/renewal/Splash'
 
 /* 김꾼 2막 첫 화면 — 코멜(refeeel.com) 뼈대에 더크루 색.
@@ -73,6 +73,8 @@ export default function HomeView({ categories, articles }: Props) {
   const latest = articles.slice(0, 8)
   const ticker = articles.slice(0, 3)
   const byCat = (id: string) => articles.filter((a) => a.category_id === id)
+  const act1 = articles.filter((a) => !isAct2(a))
+  const act2 = articles.filter(isAct2)
   const coverOf = (a: ArticleSummary) => COVERS[Math.max(0, categories.findIndex((c) => c.id === a.category_id)) % COVERS.length]
 
   // 첫 화면 등장
@@ -169,7 +171,7 @@ export default function HomeView({ categories, articles }: Props) {
           {now && (
             <Link className="ticker" href={`/content/${now.slug}`} key={now.id}>
               <span className="dotlive" />
-              <span className="tk-label">NEW · No.{pad(now.number)}</span>
+              <span className="tk-label">NEW · {articleNo(now)}</span>
               <span className="tk-title">{now.title}</span>
             </Link>
           )}
@@ -214,15 +216,15 @@ export default function HomeView({ categories, articles }: Props) {
             <Link key={a.id} className="card" href={`/content/${a.slug}`}>
               <span className={'cover ' + coverOf(a)}>
                 <span className="cv-cat">{a.category?.name}</span>
-                <span className="cv-no">{pad(a.number)}</span>
+                <span className="cv-no">{articleNo(a).split('No.')[1]}</span>
               </span>
-              <span className="meta">No.{pad(a.number)} · {a.category?.name}</span>
+              <span className="meta">{articleNo(a)} · {a.category?.name}</span>
               <span className="title">{a.title}</span>
               <span className="desc">{a.sub_copy}</span>
             </Link>
           ))}
         </div>
-        <div className="in"><p className="foot-link"><Link href="/content">1막 {articles.length}편 전체 보기 →</Link></p></div>
+        <div className="in"><p className="foot-link"><Link href="/content">1막 {act1.length}편 전체 보기 →</Link></p></div>
       </section>
 
       {/* 3. 주제별 서고 */}
@@ -231,14 +233,23 @@ export default function HomeView({ categories, articles }: Props) {
           <p className="eyebrow">서고</p>
           <h2 className="h2">주제별로 쌓이는 장사 공부.</h2>
           <div className="shelves">
-            <div className="shelf next rv">
-              <div className="sh-top"><span className="sh-badge">2</span><b>2막 · AI로 만드는 꾼</b></div>
-              <div className="sh-row"><span>쌓인 편수</span><b>곧 첫 편</b></div>
-              <div className="sh-row"><span>다루는 것</span><b>만드는 과정 · AI 활용법</b></div>
-            </div>
+            {act2.length ? (
+              <Link className="shelf next rv" href={`/content/${act2[0].slug}`}>
+                <div className="sh-top"><span className="sh-badge">2</span><b>2막 · AI로 만드는 꾼</b></div>
+                <div className="sh-row"><span>쌓인 편수</span><b>{act2.length}</b></div>
+                <div className="sh-row"><span>최신</span><b>{articleNo(act2[0])}</b></div>
+                <div className="sh-last">{act2[0].title} →</div>
+              </Link>
+            ) : (
+              <div className="shelf next rv">
+                <div className="sh-top"><span className="sh-badge">2</span><b>2막 · AI로 만드는 꾼</b></div>
+                <div className="sh-row"><span>쌓인 편수</span><b>곧 첫 편</b></div>
+                <div className="sh-row"><span>다루는 것</span><b>만드는 과정 · AI 활용법</b></div>
+              </div>
+            )}
             {categories.map((c) => {
               const list = byCat(c.id)
-              if (!list.length) return null
+              if (!list.length || c.slug === ACT2_SLUG) return null
               return (
                 <Link key={c.id} className="shelf rv" href={`/content#${c.slug}`}>
                   <div className="sh-top"><span className="sh-badge">{c.name.slice(0, 1)}</span><b>{c.name}</b></div>
@@ -249,7 +260,7 @@ export default function HomeView({ categories, articles }: Props) {
               )
             })}
           </div>
-          <p className="foot-link">1막 {articles.length}편이 주제별로 쌓여 있어요 · <Link href="/content">전체 보기 →</Link></p>
+          <p className="foot-link">1막 {act1.length}편이 주제별로 쌓여 있어요 · <Link href="/content">전체 보기 →</Link></p>
         </div>
       </section>
 
@@ -292,7 +303,7 @@ export default function HomeView({ categories, articles }: Props) {
               <span>더크루가 들어가 있는 매장 · 입점 중</span>
             </div>
             <div className="num">
-              <b><CountUp to={articles.length} start={numbersOn} /><small>편</small></b>
+              <b><CountUp to={act1.length} start={numbersOn} /><small>편</small></b>
               <span>5년 매장 운영에서 나온 1막 인사이트</span>
             </div>
           </div>

@@ -253,3 +253,14 @@ a.shelf:hover { transform: translateY(-3px); }
   .it { transform: rotate(var(--r)); opacity: 1; filter: none; }
   .splash { display: none; }
 }
+
+/* 글 사이 사진·영상, 복사 칸 */
+.rn-media { margin: 40px 0; }
+.rn-media img, .rn-media video { display: block; width: 100%; border-radius: 20px; background: var(--crew-bg); }
+.rn-media figcaption { margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--crew-dusk); text-align: center; }
+.rn-media figcaption small { display: block; font-size: 12px; color: var(--crew-muted); margin-top: 2px; }
+.rn-copy { margin: 32px 0; border-radius: 20px; background: var(--crew-bg); overflow: hidden; }
+.rn-copy-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 0 20px; }
+.rn-copy-top b { font-size: 14px; color: var(--crew-accent); }
+.rn-copy-top button { flex: none; font-size: 14px; font-weight: 700; color: #fff; background: var(--crew-accent); border-radius: 999px; padding: 8px 16px; }
+.rn-copy pre { margin: 0; padding: 12px 20px 20px; white-space: pre-wrap; word-break: keep-all; font: inherit; font-size: 16px; line-height: 1.8; color: var(--crew-ink); }

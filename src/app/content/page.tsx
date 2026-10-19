@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getArticleSummaries, getCategories } from '@/lib/articles'
+import { ACT2_SLUG, getArticleSummaries, getCategories, isAct2 } from '@/lib/articles'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,7 +12,10 @@ const pad = (n: number) => String(n).padStart(2, '0')
 
 /* 1막 글 전체 — 분류별 칸. 첫 화면의 1막 서고 칸에서 분류를 누르면 여기의 해당 칸으로 온다. */
 export default async function ContentPage() {
-  const [categories, articles] = await Promise.all([getCategories(), getArticleSummaries()])
+  const [allCategories, allArticles] = await Promise.all([getCategories(), getArticleSummaries()])
+  // 1막 서고에는 2막 글을 넣지 않는다
+  const categories = allCategories.filter((c) => c.slug !== ACT2_SLUG)
+  const articles = allArticles.filter((a) => !isAct2(a))
 
   return (
     <div className="rn tiles">
