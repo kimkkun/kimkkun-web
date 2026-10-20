@@ -6,7 +6,6 @@ import { BRAND } from '@/lib/constants'
 import type { Category } from '@/lib/types'
 import { ACT2_SLUG, articleNo, isAct2, type ArticleSummary } from '@/lib/articles'
 import Splash from '@/components/renewal/Splash'
-import { TOOLS } from '@/lib/tools'
 
 /* 김꾼 2막 첫 화면 — 코멜(refeeel.com) 뼈대에 더크루 색.
    순서: 시작 화면 → 문장 하나 + 최신 글 알약 → 바로 읽을 글 → 주제별 서고 → 더크루 → 숫자 → 무료 자료 → 소개 → 요청하기.
@@ -29,7 +28,10 @@ const FREE_DOWNLOADS: { title: string; desc: string; href: string }[] = []
 const pad = (n: number) => String(n).padStart(2, '0')
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 
-type Props = { categories: Category[]; articles: ArticleSummary[] }
+/* 2026-10-20 탐험형 개편 뒤로 첫 화면은 src/app/page.tsx(큰 문 4개)다. 이 화면은 칸을 골라 보여 주는 이야기 화면으로,
+   /about(소개·더크루·숫자)과 /request(요청하기)에서 쓴다. show에 넣은 칸만 이 파일 순서대로 그린다. */
+type Section = 'hero' | 'read' | 'library' | 'about' | 'made' | 'numbers' | 'free' | 'request'
+type Props = { categories: Category[]; articles: ArticleSummary[]; show?: Section[] }
 
 function Words({ text, start }: { text: string; start: number }) {
   return (
@@ -60,7 +62,8 @@ function CountUp({ to, start = false }: { to: number; start?: boolean }) {
   return <>{n.toLocaleString('ko-KR')}</>
 }
 
-export default function HomeView({ categories, articles }: Props) {
+export default function HomeView({ categories, articles, show }: Props) {
+  const has = (k: Section) => !show || show.includes(k)
   const [ready, setReady] = useState(false)
   const [shot, setShot] = useState(0)
   const [tick, setTick] = useState(0)
@@ -152,9 +155,10 @@ export default function HomeView({ categories, articles }: Props) {
 
   return (
     <div className="rn tiles" ref={rootRef}>
-      <Splash />
+      {has('hero') && <Splash />}
 
       {/* 1. 문장 하나 */}
+      {has('hero') && (
       <section className="tile hero">
         <div className="in">
           <p className="eyebrow">김꾼 2막</p>
@@ -197,8 +201,10 @@ export default function HomeView({ categories, articles }: Props) {
           </div>
         </div>
       </section>
+      )}
 
       {/* 2. 바로 읽을 글 */}
+      {has('read') && (
       <section className="tile white left" id="read">
         <div className="in">
           <div className="sec-head">
@@ -227,8 +233,10 @@ export default function HomeView({ categories, articles }: Props) {
         </div>
         <div className="in"><p className="foot-link"><Link href="/content">1막 {act1.length}편 전체 보기 →</Link></p></div>
       </section>
+      )}
 
       {/* 3. 주제별 서고 */}
+      {has('library') && (
       <section className="tile" id="library">
         <div className="in">
           <p className="eyebrow">서고</p>
@@ -264,28 +272,30 @@ export default function HomeView({ categories, articles }: Props) {
           <p className="foot-link">1막 {act1.length}편이 주제별로 쌓여 있어요 · <Link href="/content">전체 보기 →</Link></p>
         </div>
       </section>
+      )}
 
-      {/* 3-1. AI 도구 */}
-      <section className="tile white" id="tools">
+      {/* 7. 소개 */}
+      {has('about') && (
+      <section className="tile" id="about" style={{ paddingBottom: 44 }}>
+        <div className="in rv">
+          <p className="eyebrow">소개</p>
+          <h2 className="h2">안녕하세요, 김꾼입니다.</h2>
+          <p className="sub">모든 일을 에이전트로 생각하고, 필요한 도구는 직접 만든다.</p>
+        </div>
+        <div className="portrait rv"><img src="/renewal/real.jpg" alt="촬영 중인 김꾼" /></div>
         <div className="in">
-          <p className="eyebrow">AI 도구</p>
-          <h2 className="h2">읽지 말고,<br />바로 써 보세요.</h2>
-          <p className="call">김꾼이 사장님 일에 맞춰 만든 작은 AI 도구. 로그인 없이 써요.</p>
-          <div className="rn-tools">
-            {TOOLS.slice(0, 4).map((t, i) => (
-              <Link key={t.slug} className="rn-tool rv" href={`/tools/${t.slug}`}>
-                <span className="no">TOOL {pad(i + 1)} · {t.time}</span>
-                <b>{t.title}</b>
-                <span className="d">{t.desc}</span>
-                <span className="go">써 보기 →</span>
-              </Link>
-            ))}
-          </div>
-          <p className="foot-link" style={{ paddingBottom: 40 }}><Link href="/tools">도구 전체 보기 →</Link></p>
+          <ol className="road" ref={roadRef}>
+            <li><b>1막</b><span>자영업자에게 장사 꿀팁을 전하다.</span></li>
+            <li><b>한계</b><span>꿀팁은 넘쳐나는데, 도구가 없으면 현실은 그대로.</span></li>
+            <li><b>더크루</b><span>그래서 매장 운영 앱을 직접 만들었다.</span></li>
+            <li><b>2막</b><span>필요한 건 AI로 직접 만드는 꾼.</span></li>
+          </ol>
         </div>
       </section>
+      )}
 
       {/* 4. 만든 것: 더크루 */}
+      {has('made') && (
       <section className="tile dark" id="made">
         <div className="in rv">
           <p className="eyebrow">직접 만든 것 · 01</p>
@@ -312,8 +322,10 @@ export default function HomeView({ categories, articles }: Props) {
           </div>
         </div>
       </section>
+      )}
 
       {/* 5. 숫자 */}
+      {has('numbers') && (
       <section className="tile white left" ref={numbersRef}>
         <div className="in">
           <p className="eyebrow">지금까지</p>
@@ -330,8 +342,10 @@ export default function HomeView({ categories, articles }: Props) {
           </div>
         </div>
       </section>
+      )}
 
       {/* 6. 무료 다운로드 */}
+      {has('free') && (
       <section className="tile air" id="free" style={{ paddingBottom: 48 }}>
         <div className="in rv">
           <p className="eyebrow">무료 자료</p>
@@ -351,26 +365,10 @@ export default function HomeView({ categories, articles }: Props) {
           )}
         </div>
       </section>
-
-      {/* 7. 소개 */}
-      <section className="tile" id="about" style={{ paddingBottom: 44 }}>
-        <div className="in rv">
-          <p className="eyebrow">소개</p>
-          <h2 className="h2">안녕하세요, 김꾼입니다.</h2>
-          <p className="sub">모든 일을 에이전트로 생각하고, 필요한 도구는 직접 만든다.</p>
-        </div>
-        <div className="portrait rv"><img src="/renewal/real.jpg" alt="촬영 중인 김꾼" /></div>
-        <div className="in">
-          <ol className="road" ref={roadRef}>
-            <li><b>1막</b><span>자영업자에게 장사 꿀팁을 전하다.</span></li>
-            <li><b>한계</b><span>꿀팁은 넘쳐나는데, 도구가 없으면 현실은 그대로.</span></li>
-            <li><b>더크루</b><span>그래서 매장 운영 앱을 직접 만들었다.</span></li>
-            <li><b>2막</b><span>필요한 건 AI로 직접 만드는 꾼.</span></li>
-          </ol>
-        </div>
-      </section>
+      )}
 
       {/* 8. 요청하기 */}
+      {has('request') && (
       <section className="photo end" id="request">
         <div className="ph" style={{ backgroundImage: 'url(/renewal/W1.jpg)' }} />
         <div className="in rv">
@@ -379,10 +377,11 @@ export default function HomeView({ categories, articles }: Props) {
           <p className="sub">여러 사람의 요청을 모아, 김꾼이 만드는 도구에 기능으로 넣는다.</p>
           <div className="ctas">
             <a className="btn" href={BRAND.instagramUrl} target="_blank" rel="noopener noreferrer">인스타그램 댓글로 요청</a>
-            <a className="btn ghost" href="#read">글 먼저 읽기</a>
+            <Link className="btn ghost" href="/content">글 먼저 읽기</Link>
           </div>
         </div>
       </section>
+      )}
     </div>
   )
 }

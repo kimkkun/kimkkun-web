@@ -32,11 +32,10 @@ export default function Header() {
           <img src="/renewal/logo-kk.png" alt="김꾼" />
         </Link>
         <nav className="rn-menu" aria-label="메뉴">
-          <Link href="/tools">AI 도구</Link>
-          <Link href="/#made">만든 것</Link>
-          <Link href="/content">1막 서고</Link>
-          <Link href="/#about">소개</Link>
-          <Link href="/#request">요청하기</Link>
+          <Link href="/tools">AI 도구 설계도</Link>
+          <Link href="/content">글 읽기</Link>
+          <Link href="/about">김꾼은 누구</Link>
+          <Link href="/request">요청하기</Link>
         </nav>
       </div>
       <div className="rn-bar" ref={bar} />
