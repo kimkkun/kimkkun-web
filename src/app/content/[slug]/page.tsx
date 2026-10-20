@@ -15,6 +15,7 @@ import MetricCardsBlock from '@/components/article/MetricCardsBlock'
 import PromptCardsBlock from '@/components/article/PromptCardsBlock'
 import MediaBlock from '@/components/article/MediaBlock'
 import CopyBlock from '@/components/article/CopyBlock'
+import ToolBlock from '@/components/article/ToolBlock'
 import { articleNo, isAct2 } from '@/lib/articles'
 import CopyProtect from '@/components/article/CopyProtect'
 import ReadingProgress from '@/components/renewal/ReadingProgress'
@@ -185,6 +186,8 @@ export default async function ArticlePage({
                     return <MediaBlock key={i} kind={block.type} content={block.content} />
                   case 'copy':
                     return <CopyBlock key={i} content={block.content} />
+                  case 'tool':
+                    return <ToolBlock key={i} content={block.content} />
                   default:
                     return (
                       <Markdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>

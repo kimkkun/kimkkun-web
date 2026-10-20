@@ -6,6 +6,7 @@ import { BRAND } from '@/lib/constants'
 import type { Category } from '@/lib/types'
 import { ACT2_SLUG, articleNo, isAct2, type ArticleSummary } from '@/lib/articles'
 import Splash from '@/components/renewal/Splash'
+import { TOOLS } from '@/lib/tools'
 
 /* 김꾼 2막 첫 화면 — 코멜(refeeel.com) 뼈대에 더크루 색.
    순서: 시작 화면 → 문장 하나 + 최신 글 알약 → 바로 읽을 글 → 주제별 서고 → 더크루 → 숫자 → 무료 자료 → 소개 → 요청하기.
@@ -261,6 +262,26 @@ export default function HomeView({ categories, articles }: Props) {
             })}
           </div>
           <p className="foot-link">1막 {act1.length}편이 주제별로 쌓여 있어요 · <Link href="/content">전체 보기 →</Link></p>
+        </div>
+      </section>
+
+      {/* 3-1. AI 도구 */}
+      <section className="tile white" id="tools">
+        <div className="in">
+          <p className="eyebrow">AI 도구</p>
+          <h2 className="h2">읽지 말고,<br />바로 써 보세요.</h2>
+          <p className="call">김꾼이 사장님 일에 맞춰 만든 작은 AI 도구. 로그인 없이 써요.</p>
+          <div className="rn-tools">
+            {TOOLS.slice(0, 4).map((t, i) => (
+              <Link key={t.slug} className="rn-tool rv" href={`/tools/${t.slug}`}>
+                <span className="no">TOOL {pad(i + 1)} · {t.time}</span>
+                <b>{t.title}</b>
+                <span className="d">{t.desc}</span>
+                <span className="go">써 보기 →</span>
+              </Link>
+            ))}
+          </div>
+          <p className="foot-link" style={{ paddingBottom: 40 }}><Link href="/tools">도구 전체 보기 →</Link></p>
         </div>
       </section>
 

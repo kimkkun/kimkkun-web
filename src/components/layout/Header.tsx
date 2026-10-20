@@ -32,6 +32,7 @@ export default function Header() {
           <img src="/renewal/logo-kk.png" alt="김꾼" />
         </Link>
         <nav className="rn-menu" aria-label="메뉴">
+          <Link href="/tools">AI 도구</Link>
           <Link href="/#made">만든 것</Link>
           <Link href="/content">1막 서고</Link>
           <Link href="/#about">소개</Link>
