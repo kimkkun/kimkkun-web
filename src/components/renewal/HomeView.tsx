@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { BRAND } from '@/lib/constants'
 import type { Category } from '@/lib/types'
-import { ACT2_SLUG, articleNo, isAct2, type ArticleSummary } from '@/lib/articles'
+import { articleNo, isAct2, type ArticleSummary } from '@/lib/articles'
 import Splash from '@/components/renewal/Splash'
 
 /* 김꾼 2막 첫 화면 — 코멜(refeeel.com) 뼈대에 더크루 색.
@@ -25,7 +25,6 @@ const COVERS = ['cv-ink', 'cv-blue', 'cv-air', 'cv-dusk', 'cv-tile']
 // 무료로 받을 자료. 파일이 정해지면 { title, desc, href }를 넣는다.
 const FREE_DOWNLOADS: { title: string; desc: string; href: string }[] = []
 
-const pad = (n: number) => String(n).padStart(2, '0')
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
 
 type Props = { categories: Category[]; articles: ArticleSummary[] }
@@ -72,9 +71,7 @@ export default function HomeView({ categories, articles }: Props) {
 
   const latest = articles.slice(0, 8)
   const ticker = articles.slice(0, 3)
-  const byCat = (id: string) => articles.filter((a) => a.category_id === id)
   const act1 = articles.filter((a) => !isAct2(a))
-  const act2 = articles.filter(isAct2)
   const coverOf = (a: ArticleSummary) => COVERS[Math.max(0, categories.findIndex((c) => c.id === a.category_id)) % COVERS.length]
 
   // 첫 화면 등장
@@ -227,40 +224,25 @@ export default function HomeView({ categories, articles }: Props) {
         <div className="in"><p className="foot-link"><Link href="/content">1막 {act1.length}편 전체 보기 →</Link></p></div>
       </section>
 
-      {/* 3. 주제별 서고 */}
-      <section className="tile" id="library">
+      {/* 3. AI 도구 설계도 (2026-10-20 수환: "여기가 ai도구 설계도가 들어가야 하는 칸") */}
+      <section className="tile" id="blueprints">
         <div className="in">
-          <p className="eyebrow">서고</p>
-          <h2 className="h2">주제별로 쌓이는 장사 공부.</h2>
+          <p className="eyebrow">AI 도구 설계도</p>
+          <h2 className="h2">붙여 넣으면,<br />가게 도구가 된다.</h2>
           <div className="shelves">
-            {act2.length ? (
-              <Link className="shelf next rv" href={`/content/${act2[0].slug}`}>
-                <div className="sh-top"><span className="sh-badge">2</span><b>2막 · AI로 만드는 꾼</b></div>
-                <div className="sh-row"><span>쌓인 편수</span><b>{act2.length}</b></div>
-                <div className="sh-row"><span>최신</span><b>{articleNo(act2[0])}</b></div>
-                <div className="sh-last">{act2[0].title} →</div>
-              </Link>
-            ) : (
-              <div className="shelf next rv">
-                <div className="sh-top"><span className="sh-badge">2</span><b>2막 · AI로 만드는 꾼</b></div>
-                <div className="sh-row"><span>쌓인 편수</span><b>곧 첫 편</b></div>
-                <div className="sh-row"><span>다루는 것</span><b>만드는 과정 · AI 활용법</b></div>
-              </div>
-            )}
-            {categories.map((c) => {
-              const list = byCat(c.id)
-              if (!list.length || c.slug === ACT2_SLUG) return null
-              return (
-                <Link key={c.id} className="shelf rv" href={`/content#${c.slug}`}>
-                  <div className="sh-top"><span className="sh-badge">{c.name.slice(0, 1)}</span><b>{c.name}</b></div>
-                  <div className="sh-row"><span>쌓인 편수</span><b>{list.length}</b></div>
-                  <div className="sh-row"><span>최신</span><b>No.{pad(list[0].number)}</b></div>
-                  <div className="sh-last">{list[0].title} →</div>
-                </Link>
-              )
-            })}
+            <Link className="shelf next rv" href="/content/job-post-ai">
+              <div className="sh-top"><span className="sh-badge">01</span><b>알바 공고 도구</b></div>
+              <div className="sh-row"><span>하는 일</span><b>말만 하면 공고 두 개</b></div>
+              <div className="sh-row"><span>쓰는 AI</span><b>제미나이 · GPT · 클로드</b></div>
+              <div className="sh-last">설계도 보기 →</div>
+            </Link>
+            <a className="shelf rv" href="#request">
+              <div className="sh-top"><span className="sh-badge">+</span><b>다음 설계도</b></div>
+              <div className="sh-row"><span>만드는 순서</span><b>요청 많은 것부터</b></div>
+              <div className="sh-last">필요한 도구 요청하기 →</div>
+            </a>
           </div>
-          <p className="foot-link">1막 {act1.length}편이 주제별로 쌓여 있어요 · <Link href="/content">전체 보기 →</Link></p>
+          <p className="foot-link">1막 {act1.length}편은 서고에 있어요 · <Link href="/content">서고 보기 →</Link></p>
         </div>
       </section>
 
