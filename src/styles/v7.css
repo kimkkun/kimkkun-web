@@ -633,3 +633,13 @@ footer img{height:24px;opacity:.85}
 /* 김꾼 혼자서 카드 로고 그림 */
 .thumb.logo{background:#fff;border:1px solid var(--line);display:grid;place-items:center}
 .thumb.logo img{width:76%;height:auto;object-fit:contain}
+
+/* AWC 공동 표시 (2026-11-02, 수환 "공동으로 같이 만들고 운영 중") */
+.stamp.co{color:#fff;background:var(--ink);border-color:var(--ink)}
+.job .partner{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:700;color:var(--ink-3)}
+.job .partner img{height:16px;width:auto}
+.twist .co-line{color:var(--on-dark)}
+.team .awc-pill{font-size:13px;font-weight:700;padding:7px 12px;border-radius:999px;background:#fff;color:var(--ink)}
+.crew-partner{display:inline-flex;align-items:center;gap:10px;margin:18px 0 0;padding:10px 16px;border-radius:999px;background:#fff;color:var(--ink);font-size:13px;font-weight:700}
+.crew-partner img{height:18px;width:auto}
+.crew-partner em{font-style:normal;color:var(--ink-3)}
