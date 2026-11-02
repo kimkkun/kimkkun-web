@@ -590,3 +590,46 @@ footer img{height:24px;opacity:.85}
 .solo-anim .twist.in .big s{text-decoration-color:var(--sky)}
 
 @media (prefers-reduced-motion:reduce){.solo-anim .job,.solo-anim .twist .line{opacity:1;transform:none;transition:none}.solo-anim .job .stamp{opacity:1;transform:rotate(-8deg);animation:none}}
+
+/* 더크루 국밥 숏드라마 띠 (2026-11-02) */
+.drama{background:var(--ink);color:var(--on-dark);overflow:hidden}
+.drama .dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.drama .kicker{color:var(--sky)}
+.drama .lead{margin:14px 0 0;max-width:34em;font-size:17px;line-height:1.65;color:var(--on-dark-2)}
+.drama .lead b{color:var(--on-dark)}
+.dlogo{width:clamp(72px,10vw,120px);height:auto;flex:none;background:#fff;border-radius:16px;padding:10px}
+.dflow{margin-top:28px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.dflow + .dflow{margin-top:16px}
+.dtrack{display:flex;gap:12px;width:max-content;animation:flow 80s linear infinite}
+.dtrack.r{animation-direction:reverse;animation-duration:70s}
+.dflow:hover .dtrack{animation-play-state:paused}
+.dcard{display:block;width:clamp(132px,16vw,180px);flex:none}
+.dreel{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000}
+.dreel img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.dcard:hover .dreel img{transform:scale(1.04)}
+.dreel .s2{position:absolute;left:8px;top:8px;font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--blue);padding:3px 7px;border-radius:6px}
+.dlab{margin-top:8px;font-size:12px;font-weight:700;color:var(--sky)}
+.dcard h3{margin:2px 0 0;font-size:14px;font-weight:700;line-height:1.35;color:var(--on-dark);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+@media (prefers-reduced-motion:reduce){.dflow{overflow-x:auto}}
+
+/* 나는 자영인이다 매거진 칸 (2026-11-02) */
+.mag .mhead{display:flex;gap:18px;align-items:flex-start}
+.mlogo{width:clamp(64px,9vw,96px);height:auto;border-radius:20px;flex:none;box-shadow:0 16px 30px -18px rgba(25,31,40,.5)}
+.mag .lead{margin:12px 0 0;max-width:34em;font-size:17px;line-height:1.65;color:var(--ink-2)}
+.missue{margin-top:28px;background:#0E0F11;color:#F1E8D6;border-radius:var(--r-big);padding:clamp(18px,3vw,28px);display:grid;gap:18px}
+@media (min-width:900px){.missue{grid-template-columns:260px 1fr;align-items:center}}
+.mmeta b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:22px;letter-spacing:.04em}
+.mmeta span{display:block;margin-top:6px;font-size:14px;font-weight:700;color:rgba(241,232,214,.7)}
+.mmeta p{margin:10px 0 0;font-size:15px;line-height:1.6;color:rgba(241,232,214,.78)}
+.mmeta .more{display:inline-block;margin-top:12px;color:#F1E8D6}
+.mrow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}
+.mrow::-webkit-scrollbar{display:none}
+.mcard{flex:none;width:clamp(150px,22vw,210px);scroll-snap-align:start;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px rgba(241,232,214,.12)}
+.mcard img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.mfoot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px;font-size:14px;color:var(--ink-3)}
+.mag .btn{display:inline-flex;align-items:center;font-size:16px;font-weight:700;padding:13px 20px;border-radius:999px;background:var(--ink);color:var(--on-dark)}
+
+/* 김꾼 혼자서 카드 로고 그림 */
+.thumb.logo{background:#fff;border:1px solid var(--line);display:grid;place-items:center}
+.thumb.logo img{width:76%;height:auto;object-fit:contain}
