@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { pretendard, notoSerifKr, playfairDisplay } from "./fonts";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import "../styles/v7.css";
+import { pretendard } from "./fonts";
+import { HEADER, TABBAR } from "@/components/v7/markup";
+
+const DESC = "AI는 누구나 쓴다. 그러나, 이기는 자영업자는 다르게 씁니다. 자영업자를 위한 AI 이야기 — 글·AI 질문 전부 무료.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kimkkun.com"),
-  title: "김꾼 — 필요한 건 AI로 직접 만드는 꾼.",
-  description:
-    "장사 꿀팁은 넘쳐난다. 도구가 없으면 현실은 그대로다. 그래서 AI로 직접 만든다. 김꾼 2막.",
+  title: "김꾼 — 이기는 자영업자는 AI를 다르게 씁니다",
+  description: DESC,
   openGraph: {
-    title: "김꾼 — 필요한 건 AI로 직접 만드는 꾼.",
-    description:
-      "장사 꿀팁은 넘쳐난다. 도구가 없으면 현실은 그대로다. 그래서 AI로 직접 만든다. 김꾼 2막.",
+    title: "김꾼 — 이기는 자영업자는 AI를 다르게 씁니다",
+    description: DESC,
     url: "https://www.kimkkun.com",
     siteName: "김꾼",
     locale: "ko_KR",
@@ -21,20 +22,27 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" as const };
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`h-full antialiased ${pretendard.variable} ${notoSerifKr.variable} ${playfairDisplay.variable}`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="ko" className={pretendard.variable}>
+      <body>
+        <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: HEADER }} />
+        {children}
+        <footer>
+          <div className="wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/v7/logo-kk.png" alt="김꾼" />
+            <span>릴스 조회수는 2026-11-02 인스타 공개 화면 기준 · 캐릭터는 김꾼 3D</span>
+          </div>
+        </footer>
+        <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: TABBAR }} />
+        <Script src="/v7/site.js" strategy="afterInteractive" />
         <Analytics />
       </body>
     </html>
