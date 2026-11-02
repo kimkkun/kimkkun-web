@@ -247,3 +247,27 @@
     });
   }
 })();
+
+// 김꾼 혼자서: 카드 등장·도장·맡은 일 숫자
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var jobs = [].slice.call(document.querySelectorAll('.job'));
+  var tally = document.getElementById('tally'), n = document.getElementById('jobN');
+  var twist = document.getElementById('twist');
+  if (!n || !twist) return;
+  function setCount(){
+    var c = jobs.filter(function(j){return j.classList.contains('in')}).length;
+    if (String(c) !== n.textContent){ n.textContent = c; tally.classList.remove('bump'); void tally.offsetWidth; tally.classList.add('bump'); }
+  }
+  if (reduce || !('IntersectionObserver' in window)){ n.textContent = jobs.length; return; }
+  
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in'); io.unobserve(e.target);
+      if (e.target.classList.contains('job')) setTimeout(setCount, 380);
+    });
+  }, {threshold:.35, rootMargin:'0px 0px -8% 0px'});
+  jobs.forEach(function(j){ io.observe(j); });
+  io.observe(twist);
+})();
