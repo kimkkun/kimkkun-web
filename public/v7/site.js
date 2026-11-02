@@ -260,6 +260,7 @@
     if (String(c) !== n.textContent){ n.textContent = c; tally.classList.remove('bump'); void tally.offsetWidth; tally.classList.add('bump'); }
   }
   if (reduce || !('IntersectionObserver' in window)){ n.textContent = jobs.length; return; }
+  document.documentElement.classList.add('solo-anim');
   
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
