@@ -650,3 +650,43 @@ footer img{height:24px;opacity:.85}
 .job-co{box-shadow:inset 0 0 0 1.5px var(--ink),0 22px 44px -34px rgba(25,31,40,.45)}
 .job-co .stamp{top:-13px;right:16px}
 @media (min-width:600px){.job-co .stamp{top:-14px;right:20px}}
+
+/* AWC 공동 제작 카드 + 전기(글리치) 효과 — agenticworkflows.club 로고 효과(spwSlash·spwGl*)를 옮김 (2026-11-02) */
+.awc-card{display:grid;gap:6px;margin:22px 0 0;padding:22px 22px 20px;border-radius:24px;background:#fff;color:var(--ink);box-shadow:0 30px 60px -30px rgba(10,30,90,.55);max-width:520px;position:relative;overflow:hidden}
+.awc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,107,53,.10) 50%,transparent 60%);background-size:250% 100%;animation:awc-shim 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes awc-shim{0%{background-position:120% 0}60%,100%{background-position:-120% 0}}
+.awc-k{font-size:12px;font-weight:800;letter-spacing:.06em;color:#FF6B35}
+.awc-logo{display:block;margin:6px 0 4px}
+.awg{display:block;width:min(100%,340px);height:auto;overflow:visible}
+.awc-t{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.awc-d{font-size:14px;line-height:1.55;color:var(--ink-2)}
+.awc-go{margin-top:8px;font-size:14px;font-weight:800;color:#FF6B35}
+.awc-card:hover .awc-go{text-decoration:underline}
+.awg-in{transform-box:fill-box;transform-origin:50% 100%}
+.awg-gf,.awg-gc{opacity:0}
+.awg-glint{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;stroke-dasharray:.1 2;stroke-dashoffset:.1;opacity:0;filter:drop-shadow(0 0 4px #FFB38F)}
+@media (prefers-reduced-motion:no-preference){
+.awc-card.in .awg-in{animation:awgSlash .5s cubic-bezier(.2,.9,.25,1) .08s both}
+.awc-card.in .awg-j0{animation:awgJ0 2.3s infinite}.awc-card.in .awg-j1{animation:awgJ1 1.7s infinite}.awc-card.in .awg-j2{animation:awgJ2 2.9s infinite}.awc-card.in .awg-j3{animation:awgJ3 2.1s infinite}
+.awc-card.in .awg-s0{animation:awgS0 25.6s infinite}.awc-card.in .awg-s1{animation:awgS1 25.6s infinite}.awc-card.in .awg-s2{animation:awgS2 25.6s infinite}.awc-card.in .awg-s3{animation:awgS3 25.6s infinite}
+.awc-card.in .awg-gf0{animation:awgF0 25.6s infinite}.awc-card.in .awg-gf1{animation:awgF1 25.6s infinite}
+.awc-card.in .awg-gc0{animation:awgC0 3.7s infinite}.awc-card.in .awg-gc1{animation:awgC1 5.3s infinite}
+.awc-card.in .awg-glint{animation:awgGlint 6.4s cubic-bezier(.65,0,.35,1) 1.6s infinite}
+.awc-card:hover .awg-s0,.awc-card:hover .awg-s2{animation-duration:2.4s}.awc-card:hover .awg-s1,.awc-card:hover .awg-s3{animation-duration:3.1s}
+}
+@keyframes awgSlash{0%{opacity:0;transform:translateX(90px) skewX(-18deg)}55%{opacity:1;transform:translateX(-5px) skewX(3deg)}100%{opacity:1;transform:none}}
+@keyframes awgGlint{0%{stroke-dashoffset:.1;opacity:1}19%{stroke-dashoffset:-1;opacity:1}19.1%,100%{stroke-dashoffset:-1;opacity:0}}
+@keyframes awgJ0{0%{transform:none}8.61%{transform:translateX(-.5px)}19.65%{transform:translateX(.5px)}29.83%{transform:none}100%{transform:none}}
+@keyframes awgJ1{0%{transform:none}7.53%{transform:translateX(1px)}19.88%{transform:translateX(-.5px)}27%{transform:none}100%{transform:none}}
+@keyframes awgJ2{0%{transform:none}4.93%{transform:translateX(.5px)}10.28%{transform:translateX(-.5px)}14.1%{transform:none}100%{transform:none}}
+@keyframes awgJ3{0%{transform:none}7.76%{transform:translateX(-.5px)}19.86%{transform:none}24.71%{transform:translateX(.5px)}30%{transform:none}100%{transform:none}}
+@keyframes awgS0{0%{transform:none}14.063%{transform:translateX(0.0px)}14.277%{transform:translateX(0.0px)}14.57%{transform:translateX(3.0px)}14.805%{transform:none}35.156%{transform:translateX(-6.0px)}35.43%{transform:translateX(4.0px)}35.781%{transform:none}66.016%{transform:translateX(0.0px)}66.191%{transform:translateX(0.0px)}66.484%{transform:translateX(0.0px)}66.836%{transform:none}89.844%{transform:translateX(0.0px)}90.156%{transform:translateX(-5.0px)}90.43%{transform:none}100%{transform:none}}
+@keyframes awgS1{0%{transform:none}14.063%{transform:translateX(7.0px)}14.277%{transform:translateX(-10.0px)}14.57%{transform:translateX(3.0px)}14.805%{transform:none}35.156%{transform:translateX(-9.0px)}35.43%{transform:translateX(1.0px)}35.781%{transform:none}66.016%{transform:translateX(-10.0px)}66.191%{transform:translateX(0.0px)}66.484%{transform:translateX(0.0px)}66.836%{transform:none}89.844%{transform:translateX(-3.0px)}90.156%{transform:translateX(2.0px)}90.43%{transform:none}100%{transform:none}}
+@keyframes awgS2{0%{transform:none}14.063%{transform:translateX(0.0px)}14.277%{transform:translateX(5.0px)}14.57%{transform:translateX(3.0px)}14.805%{transform:none}35.156%{transform:translateX(-3.0px)}35.43%{transform:translateX(4.0px)}35.781%{transform:none}66.016%{transform:translateX(5.0px)}66.191%{transform:translateX(0.0px)}66.484%{transform:translateX(0.0px)}66.836%{transform:none}89.844%{transform:translateX(0.0px)}90.156%{transform:translateX(-5.0px)}90.43%{transform:none}100%{transform:none}}
+@keyframes awgS3{0%{transform:none}14.063%{transform:translateX(-5.0px)}14.277%{transform:translateX(-5.0px)}14.57%{transform:translateX(0.0px)}14.805%{transform:none}35.156%{transform:translateX(0.0px)}35.43%{transform:translateX(7.0px)}35.781%{transform:none}66.016%{transform:translateX(-5.0px)}66.191%{transform:translateX(-3.0px)}66.484%{transform:translateX(0.0px)}66.836%{transform:none}89.844%{transform:translateX(3.0px)}90.156%{transform:translateX(-10.0px)}90.43%{transform:none}100%{transform:none}}
+@keyframes awgF0{0%{opacity:0;transform:none}14.277%{opacity:.9;transform:translateX(-3px)}14.473%{opacity:0;transform:none}35.43%{opacity:.9;transform:translateX(-3px)}35.625%{opacity:0;transform:none}66.191%{opacity:.9;transform:translateX(-3px)}66.387%{opacity:0;transform:none}90.156%{opacity:.9;transform:translateX(-3px)}90.352%{opacity:0;transform:none}100%{opacity:0}}
+@keyframes awgF1{0%{opacity:0;transform:none}14.277%{opacity:.55;transform:translateX(3px)}14.473%{opacity:0;transform:none}35.43%{opacity:.55;transform:translateX(3px)}35.625%{opacity:0;transform:none}66.191%{opacity:.55;transform:translateX(3px)}66.387%{opacity:0;transform:none}90.156%{opacity:.55;transform:translateX(3px)}90.352%{opacity:0;transform:none}100%{opacity:0}}
+@keyframes awgC0{0%{opacity:0;transform:none}16.22%{opacity:.7;transform:translateX(-1.5px)}18.11%{opacity:0;transform:none}56.76%{opacity:.55;transform:translateX(1px)}58.11%{opacity:0;transform:none}81.08%{opacity:.6;transform:translateX(-1px)}83.24%{opacity:0;transform:none}100%{opacity:0}}
+@keyframes awgC1{0%{opacity:0;transform:none}26.42%{opacity:.4;transform:translateX(1.5px)}27.55%{opacity:0;transform:none}70%{opacity:.35;transform:translateX(-1px)}71.5%{opacity:0;transform:none}100%{opacity:0}}
+@media (min-width:900px){.awc-card{padding:26px 28px 24px}.awg{width:380px}}
+.awg-j,.awg-s,.awg-gf,.awg-gc{animation-timing-function:steps(1,end)!important}

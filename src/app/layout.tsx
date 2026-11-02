@@ -42,7 +42,7 @@ export default function RootLayout({
           </div>
         </footer>
         <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: TABBAR }} />
-        <Script src="/v7/site.js?v=20261102b" strategy="afterInteractive" />
+        <Script src="/v7/site.js?v=20261102c" strategy="afterInteractive" />
         <Analytics />
       </body>
     </html>

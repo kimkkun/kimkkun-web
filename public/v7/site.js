@@ -272,3 +272,6 @@
   jobs.forEach(function(j){ io.observe(j); });
   io.observe(twist);
 })();
+
+// AWC 카드: 화면에 들어오면 전기 효과 시작
+(function(){var c=document.querySelector('.awc-card');if(!c)return;if(!('IntersectionObserver' in window)){c.classList.add('in');return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.classList.add('in');o.disconnect();}})},{threshold:.3});o.observe(c);})();
