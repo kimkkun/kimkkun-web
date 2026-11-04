@@ -20,6 +20,7 @@ const ACT2: Record<string, { topics: Topic[]; short: string }> = {
   'ai-review-loop': { topics: ['ai', 'mkt'], short: '규칙 메모' },
   'ai-food-photo': { topics: ['ai', 'mkt'], short: '메뉴 사진' },
   'online-owners': { topics: ['money', 'ai'], short: '온라인 판매' },
+  'small-menu': { topics: ['money', 'ai'], short: '소짜 메뉴' },
 }
 
 export type V7Art = { slug: string; no: string; n: number; t: string; topics: Topic[]; act: 1 | 2; prompts: number }
