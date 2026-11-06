@@ -7,6 +7,15 @@ import { parseBlocks } from '@/lib/parseBlocks'
 export type Topic = 'people' | 'money' | 'mkt' | 'ai'
 export const TOPIC_NAME: Record<Topic, string> = { people: '직원·알바', money: '매출', mkt: '손님 모으기', ai: 'AI 쓰는 법' }
 
+/* 콘텐츠 세 칸(2026-11-06 개편): 생각 · 프롬프트 · 정보·자료. 분류표 정본 = 사이트 작업 기록 work.md "개편 — 글 세 칸 분류표"(AI 초안, 수환 확인 전).
+   1막은 정보·자료로 고른 번호 말고 전부 생각, 2막은 KIND2에 없으면 프롬프트. */
+export type Kind = 'think' | 'prompt' | 'info'
+export const KIND_NAME: Record<Kind, string> = { think: '생각', prompt: '프롬프트', info: '정보·자료' }
+const KIND1_INFO = [15]
+const KIND2: Record<string, Kind> = { 'online-owners': 'info' }
+export const kindOf = (slug: string, number: number, act2: boolean): Kind =>
+  act2 ? KIND2[slug] ?? 'prompt' : KIND1_INFO.includes(number) ? 'info' : 'think'
+
 const ACT1: Record<Topic, number[]> = {
   people: [1, 4, 5, 10, 16, 20, 21, 22, 23, 24, 25, 26],
   money: [3, 6, 8, 9, 11, 12, 18, 19, 27, 29],
@@ -23,7 +32,7 @@ const ACT2: Record<string, { topics: Topic[]; short: string }> = {
   'small-menu': { topics: ['money', 'ai'], short: '소짜 메뉴' },
 }
 
-export type V7Art = { slug: string; no: string; n: number; t: string; topics: Topic[]; act: 1 | 2; prompts: number }
+export type V7Art = { slug: string; no: string; n: number; t: string; topics: Topic[]; kind: Kind; act: 1 | 2; prompts: number }
 export type V7Prompt = { slug: string; no: string; art: string; short: string; h: string; when: string; body: string }
 export type V7Data = { arts: V7Art[]; prompts: V7Prompt[] }
 
@@ -77,7 +86,7 @@ export async function getV7Data(): Promise<V7Data> {
       const no = v7No({ number: r.number, act2 })
       const cps = act2 ? copyBlocks(r.content) : []
       cps.forEach((c) => prompts.push({ slug: r.slug, no, art: r.title, short: ACT2[r.slug]?.short ?? r.title.slice(0, 8), ...c }))
-      return { slug: r.slug, no, n: r.number, t: r.title, topics: topicsOf(r.slug, r.number, act2), act: act2 ? 2 : 1, prompts: cps.length }
+      return { slug: r.slug, no, n: r.number, t: r.title, topics: topicsOf(r.slug, r.number, act2), kind: kindOf(r.slug, r.number, act2), act: act2 ? 2 : 1, prompts: cps.length }
     })
     arts.sort((a, b) => b.act - a.act || b.n - a.n)
     return { arts, prompts }

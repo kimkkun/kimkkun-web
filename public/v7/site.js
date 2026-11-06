@@ -139,6 +139,8 @@
   const acard = a => `<a class="acard${a.act === 2 ? ' new' : ''}" href="${artHref(a)}"${ext(a)}><div class="no">${esc(a.no)}</div><h3>${esc(a.t)}</h3>${badges(a)}</a>`;
   document.querySelectorAll('.cA,#cntA').forEach(e => e.textContent = D.arts.length);
   document.querySelectorAll('.cP,#cntP,#cntP2').forEach(e => e.textContent = D.prompts.length);
+  if (D.arts.length) document.querySelectorAll('[data-kc]').forEach(e => e.textContent = D.arts.filter(a => a.kind === e.dataset.kc).length);
+  let lk = null; // 콘텐츠 칸(생각·정보·자료) 거르기 — 전체 글 목록을 같이 씀
 
   // 프롬프트 카드
   const pcard = (p, i) => `<article class="pcard"><div class="src"><b>${esc(p.no)}</b> · ${esc(p.art)}</div><h3>${esc(p.h)}</h3><pre id="pc${i}">${esc(p.body)}</pre><div class="acts"><button type="button" class="copy" data-copy="pc${i}">복사</button><button type="button" class="ghost-btn" data-more>펼치기</button><a class="to" href="/content/${p.slug}">쓰는 법 →</a></div></article>`;
@@ -161,7 +163,7 @@
   lfil.innerHTML = LF.map(([k,v]) => `<button type="button" data-f="${k}" aria-pressed="${k === 'all'}">${v}</button>`).join('');
   function renderList(){
     const q = lq.value.trim();
-    const arr = D.arts.filter(a => (lf === 'all' || (lf === 'prompt' ? a.prompts > 0 : a.topics.includes(lf))) && (!q || a.t.includes(q)));
+    const arr = D.arts.filter(a => (!lk || a.kind === lk) && (lf === 'all' || (lf === 'prompt' ? a.prompts > 0 : a.topics.includes(lf))) && (!q || a.t.includes(q)));
     document.getElementById('lcount').textContent = arr.length + '개의 글';
     document.getElementById('llist').innerHTML = arr.length ? arr.map(a => `<li><a href="${artHref(a)}"${ext(a)}><span class="sq${a.act === 2 ? ' n2' : ''}">${esc(a.no.replace('No.',''))}</span><div><h3>${esc(a.t)}</h3>${badges(a)}</div></a></li>`).join('') : '<li class="empty">맞는 글이 없어요. 다른 말로 찾아보세요.</li>';
   }
@@ -188,15 +190,24 @@
   if (wp) wp.innerHTML = D.arts.filter(a => a.act === 2).slice(0, 3).map(a => `<a class="post" href="/content/${a.slug}"><span class="no">${esc(a.no)}</span><div><h3>${esc(a.t)}</h3><div class="meta">${a.topics.map(t => TOP[t]).join(' · ')}</div></div><span class="arr" aria-hidden="true">→</span></a>`).join('');
   // 탭 전환
   const ltabs = [...document.querySelectorAll('[data-lt]')];
-  function openTab(k){ ltabs.forEach(b => b.setAttribute('aria-selected', b.dataset.lt === k)); document.querySelectorAll('[data-lp]').forEach(p => p.hidden = p.dataset.lp !== k); }
+  function openTab(k){
+    if (k === 'prompt') k = 'prompts';
+    ltabs.forEach(b => b.setAttribute('aria-selected', b.dataset.lt === k));
+    const kindTab = k === 'think' || k === 'info';
+    if (k === 'all'){ lk = null; } else if (kindTab){ lk = k; }
+    const panel = kindTab ? 'all' : k;
+    document.querySelectorAll('[data-lp]').forEach(p => p.hidden = p.dataset.lp !== panel);
+    if (lfil && kindTab){ const fa = lfil.querySelector('[data-f="all"]'); if (fa) fa.click(); }
+  }
   ltabs.forEach(b => b.addEventListener('click', () => openTab(b.dataset.lt)));
   if (lfil){
     const qs = new URLSearchParams(location.search);
     if (qs.get('tab')) openTab(qs.get('tab'));
+    if (qs.get('k')) openTab(qs.get('k'));
     if (qs.get('f')){ openTab('all'); const fb = lfil.querySelector(`[data-f="${qs.get('f')}"]`); if (fb) fb.click(); }
   }
   document.addEventListener('click', e => {
-    const g = e.target.closest('[data-goall]'); if (g && lfil){ openTab('all'); lfil.querySelector(`[data-f="${g.dataset.goall}"]`).click(); window.scrollTo(0, 0); return; }
+    const g = e.target.closest('[data-goall]'); if (g && lfil){ openTab('all'); lk = null; lfil.querySelector(`[data-f="${g.dataset.goall}"]`).click(); window.scrollTo(0, 0); return; }
     const lt = e.target.closest('[data-ltab]'); if (lt){ setTimeout(() => openTab(lt.dataset.ltab), 0); }
     
     const m = e.target.closest('[data-more]'); if (m){ const c = m.closest('.pcard'); c.classList.toggle('open'); m.textContent = c.classList.contains('open') ? '접기' : '펼치기'; return; }
