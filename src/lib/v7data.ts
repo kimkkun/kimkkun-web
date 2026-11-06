@@ -7,12 +7,12 @@ import { parseBlocks } from '@/lib/parseBlocks'
 export type Topic = 'people' | 'money' | 'mkt' | 'ai'
 export const TOPIC_NAME: Record<Topic, string> = { people: '직원·알바', money: '매출', mkt: '손님 모으기', ai: 'AI 쓰는 법' }
 
-/* 콘텐츠 세 칸(2026-11-06 개편): 생각 · 프롬프트 · 정보·자료. 분류표 정본 = 사이트 작업 기록 work.md "개편 — 글 세 칸 분류표"(AI 초안, 수환 확인 전).
+/* 콘텐츠 세 칸(2026-11-06 개편): 생각 · 프롬프트 · 정보·자료. 분류표 정본 = 사이트 작업 기록 work.md "개편 — 글 세 칸 분류표"(AI 초안 + 11-06 수환 "정보·자료 칸에 3, 7, 13, 105번도 옮겨").
    1막은 정보·자료로 고른 번호 말고 전부 생각, 2막은 KIND2에 없으면 프롬프트. */
 export type Kind = 'think' | 'prompt' | 'info'
 export const KIND_NAME: Record<Kind, string> = { think: '생각', prompt: '프롬프트', info: '정보·자료' }
-const KIND1_INFO = [15]
-const KIND2: Record<string, Kind> = { 'online-owners': 'info' }
+const KIND1_INFO = [3, 7, 13, 15]
+const KIND2: Record<string, Kind> = { 'online-owners': 'info', 'ai-food-photo': 'info' }
 export const kindOf = (slug: string, number: number, act2: boolean): Kind =>
   act2 ? KIND2[slug] ?? 'prompt' : KIND1_INFO.includes(number) ? 'info' : 'think'
 
