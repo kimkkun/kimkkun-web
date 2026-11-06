@@ -306,3 +306,15 @@
   addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden){ set(false); btns[0].focus(); } });
   if (location.pathname.startsWith('/content')) document.querySelectorAll('.tabbar [data-mm]').forEach(b => b.classList.add('on'));
 })();
+
+
+/* 손맛 효과 예시 (2026-11-06): 글 속 굵은 글씨에 손 밑줄, 화면에 들어오면 그어짐 */
+(() => {
+  document.querySelectorAll('.art .txt strong').forEach(b => b.classList.add('hand-u'));
+  const first = document.querySelector('#lpTopic .acard.new');
+  if (first && !first.querySelector('.sticker')) first.insertAdjacentHTML('beforeend', '<span class="sticker">새 글</span>');
+  const els = document.querySelectorAll('.hand-u,.hand-note,.hand-o');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('on')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold: .6});
+  els.forEach(e => io.observe(e));
+})();

@@ -754,3 +754,35 @@ footer img{height:24px;opacity:.85}
   .mm.in,.mm.in .mm-i,.mm.in .mm-brush,.mm.in .mm-pen,.mm-caret{animation:none}
   .mm.in .mm-brush{clip-path:none}
 }
+
+
+/* ===== 손맛 효과 예시 (2026-11-06, 수환 확인 전) — AWC 캡처의 손 밑줄·손글씨 메모·폴라로이드·숫자 동그라미·스티커를 우리 파랑으로 ===== */
+/* ① 손으로 그은 밑줄: 화면에 들어오면 왼쪽부터 그어짐 */
+.hand-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8c30-4 70-6 110-5s60 3 86 1' fill='none' stroke='%23115EF9' stroke-width='4' stroke-linecap='round' opacity='.85'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:0 96%;background-size:0% .32em;padding-bottom:.06em;transition:background-size .9s cubic-bezier(.65,0,.35,1) .15s}
+.hand-u.on{background-size:100% .32em}
+.art .txt strong.hand-u{font-weight:800;color:var(--ink);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* ② 손글씨 메모 + 휘어진 화살표 */
+.hand-note{font-family:var(--font-brush),var(--f);font-size:24px;line-height:1.1;color:var(--blue);margin:6px 0 0;display:inline-flex;align-items:flex-end;gap:4px;transform:rotate(-3deg);transform-origin:left center}
+.hand-note .hn-arr{width:46px;height:28px;fill:none;stroke:var(--blue);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .8s ease .3s}
+.hand-note.on .hn-arr{stroke-dashoffset:0}
+.ltabs .wrap{position:relative}
+.ltabs .wrap{align-items:center}
+.hn-tab{order:9;margin:0 0 0 14px;font-size:21px;pointer-events:none;flex-direction:row-reverse;align-items:center}
+.hn-tab .hn-arr{width:38px;height:22px;transform:scaleX(-1) rotate(-8deg)}
+/* ③ 폴라로이드 + 테이프 */
+.duo .ph.polaroid{border-radius:4px;overflow:visible;background:#fff;padding:12px 12px 46px;box-shadow:0 1px 2px rgba(25,31,40,.08),0 22px 40px -22px rgba(25,31,40,.45);transform:rotate(-2.2deg);aspect-ratio:auto}
+.duo .ph.polaroid img{aspect-ratio:4/5;border-radius:2px}
+.polaroid .tape{position:absolute;left:50%;top:-14px;width:110px;height:30px;transform:translateX(-50%) rotate(-3deg);background:rgba(214,218,224,.82);box-shadow:0 1px 2px rgba(25,31,40,.08);clip-path:polygon(3% 0,97% 6%,100% 94%,2% 100%,0 50%)}
+.polaroid .pol-cap{position:absolute;left:16px;bottom:10px;font-family:var(--font-brush),var(--f);font-size:22px;color:var(--ink-2)}
+/* ④ 큰 숫자 동그라미 + 점선 */
+.hand-nums{align-items:center}
+.hand-nums .dots{flex:0 0 40px;margin-right:6px;height:0;border-top:2px dashed var(--blue-line)}
+.hand-o{position:relative;display:inline-block}
+.hand-o{padding:0 .1em;margin:0 .45em 0 .25em}
+.hand-o svg{position:absolute;left:50%;top:50%;width:2.5em;height:2.1em;transform:translate(-50%,-50%) rotate(-6deg);fill:none;stroke:var(--blue);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;transition:stroke-dashoffset 1s cubic-bezier(.65,0,.35,1) .2s;overflow:visible}
+.hand-o.on svg{stroke-dashoffset:0}
+/* ⑤ 기울어진 스티커 */
+.sticker{position:absolute;right:16px;top:16px;font-size:12px;font-weight:800;color:#fff;background:var(--blue);padding:5px 10px;border-radius:8px;transform:rotate(4deg);box-shadow:3px 3px 0 var(--ink)}
+.acard{position:relative}
+@media (max-width:900px){ .hn-tab{display:none} }
+@media (prefers-reduced-motion:reduce){ .hand-u{transition:none;background-size:100% .32em} .hand-note .hn-arr,.hand-o svg{transition:none;stroke-dashoffset:0} }
