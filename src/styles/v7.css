@@ -697,3 +697,60 @@ footer img{height:24px;opacity:.85}
 .store-btn svg{width:22px;height:22px;flex:none}
 .store-btn span{display:flex;flex-direction:column;font-size:16px;font-weight:700;line-height:1.1}
 .store-btn small{font-size:10px;font-weight:500;opacity:.8;letter-spacing:.02em}
+
+
+/* ===== 콘텐츠 펼침 메뉴 (2026-11-06 개편 1차) — AWC 메뉴 방식(차례 등장·번호 줄) + 김꾼 결(파랑·붓글씨 써지기) ===== */
+.nav{align-items:center}
+.nav-dd{appearance:none;border:0;background:none;font:inherit;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:7px 12px;margin:-7px -12px;border-radius:99px;transition:background .2s,color .2s}
+.nav-dd:hover,.nav-dd[aria-expanded="true"]{background:rgba(25,31,40,.06);color:var(--ink)}
+.nav-dd .chev{font-size:10px;transition:transform .25s var(--ease)}
+.nav-dd[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.mm{position:fixed;left:0;right:0;top:calc(56px + env(safe-area-inset-top,0px));z-index:19;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(25,31,40,.05),0 18px 40px -18px rgba(25,31,40,.22)}
+.mm[hidden]{display:none}
+.mm.in{animation:mmIn .26s cubic-bezier(.22,1,.36,1) both}
+.mm .wrap{padding-top:22px;padding-bottom:26px}
+.mm-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:14px}
+.mm-title{margin:0;font-size:13px;font-weight:700;color:var(--ink-3)}
+.mm-path{color:var(--blue)}
+.mm-caret{display:inline-block;width:2px;height:14px;margin-left:4px;vertical-align:-2px;background:var(--blue);animation:blink 1s steps(1) 4}
+.mm-all{font-size:14px;font-weight:700;color:var(--ink);padding:8px 14px;border-radius:99px;transition:background .2s}
+.mm-all:hover{background:rgba(25,31,40,.06)}
+.mm-all i,.mm-go i{font-style:normal;transition:transform .2s;display:inline-block}
+.mm-all:hover i,.mm-i:hover .mm-go i{transform:translateX(3px);color:var(--blue)}
+.mm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.mm-i{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px;border-radius:18px;transition:background .2s}
+.mm-i:hover{background:var(--bg)}
+.mm.in .mm-i{animation:rise .5s var(--ease) var(--d) both}
+.mm-no{font-size:13px;font-weight:800;letter-spacing:.02em;color:var(--blue);font-variant-numeric:tabular-nums}
+.mm-nm{position:relative;display:inline-block;align-self:flex-start;margin-top:2px}
+.mm-brush{display:block;font-family:var(--font-brush),var(--f);font-weight:400;font-size:52px;line-height:1.05;color:var(--ink);letter-spacing:-.01em}
+.mm.in .mm-brush{clip-path:inset(0 100% 0 0);animation:write .7s cubic-bezier(.65,0,.35,1) calc(var(--d) + 120ms) forwards}
+.mm-pen{position:absolute;top:40%;left:0;width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(17,94,249,.15);opacity:0}
+.mm.in .mm-pen{animation:mmPen .7s cubic-bezier(.65,0,.35,1) calc(var(--d) + 120ms) both}
+.mm-ds{font-size:14px;color:var(--ink-3)}
+.mm-go{margin-top:6px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.top.mm-open{background:var(--surface);border-bottom-color:var(--line);backdrop-filter:none;-webkit-backdrop-filter:none}
+.mm-dim{position:fixed;inset:0;z-index:18;background:rgba(25,31,40,.18)}
+.mm-dim[hidden]{display:none}
+@keyframes mmIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes mmPen{0%{left:0;top:30%;opacity:1}25%{top:70%}50%{top:20%}75%{top:65%}92%{opacity:1}100%{left:100%;top:40%;opacity:0}}
+@keyframes mmUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.tabbar button{appearance:none;border:0;background:none;font:inherit;cursor:pointer}
+@media (max-width:900px){
+  .tabbar button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--ink-3);padding-block:4px}
+  .tabbar button[aria-expanded="true"],.tabbar button.on{color:var(--blue)}
+  .mm{top:auto;bottom:calc(58px + env(safe-area-inset-bottom,0px));z-index:29;border-radius:24px 24px 0 0;border-bottom:0;max-height:calc(100dvh - 140px);overflow:auto}
+  .mm.in{animation:mmUp .3s cubic-bezier(.22,1,.36,1) both}
+  .mm .wrap{padding-top:18px;padding-bottom:12px}
+  .mm-grid{grid-template-columns:1fr;gap:2px}
+  .mm-i{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"no nm go" "no ds ds";column-gap:12px;row-gap:2px;align-items:center;padding:12px 10px}
+  .mm-no{grid-area:no;align-self:start;padding-top:10px}
+  .mm-nm{grid-area:nm}
+  .mm-ds{grid-area:ds;font-size:13px}
+  .mm-go{grid-area:go;margin:0}
+  .mm-brush{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mm.in,.mm.in .mm-i,.mm.in .mm-brush,.mm.in .mm-pen,.mm-caret{animation:none}
+  .mm.in .mm-brush{clip-path:none}
+}

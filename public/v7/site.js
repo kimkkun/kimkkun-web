@@ -275,3 +275,23 @@
 
 // AWC 카드: 화면에 들어오면 전기 효과 시작
 (function(){var c=document.querySelector('.awc-card');if(!c)return;if(!('IntersectionObserver' in window)){c.classList.add('in');return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.classList.add('in');o.disconnect();}})},{threshold:.3});o.observe(c);})();
+
+
+/* 콘텐츠 펼침 메뉴 (2026-11-06 개편 1차): 위 메뉴·아래 탭의 [data-mm] 단추가 같은 판을 연다 */
+(() => {
+  const btns = [...document.querySelectorAll('[data-mm]')];
+  if (!btns.length) return;
+  const panel = document.getElementById(btns[0].dataset.mm);
+  const dim = document.querySelector('.mm-dim');
+  if (!panel) return;
+  const set = (open) => {
+    btns.forEach(b => b.setAttribute('aria-expanded', open ? 'true' : 'false'));
+    document.querySelector('.top')?.classList.toggle('mm-open', open);
+    if (open){ panel.hidden = false; dim.hidden = false; panel.classList.remove('in'); void panel.offsetWidth; panel.classList.add('in'); }
+    else { panel.hidden = true; dim.hidden = true; panel.classList.remove('in'); }
+  };
+  btns.forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); set(panel.hidden); }));
+  dim.addEventListener('click', () => set(false));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden){ set(false); btns[0].focus(); } });
+  if (location.pathname.startsWith('/content')) document.querySelectorAll('.tabbar [data-mm]').forEach(b => b.classList.add('on'));
+})();

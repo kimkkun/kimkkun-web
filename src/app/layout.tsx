@@ -3,7 +3,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import "../styles/v7.css";
-import { pretendard } from "./fonts";
+import { brush, pretendard } from "./fonts";
 import { HEADER, TABBAR } from "@/components/v7/markup";
 
 const DESC = "AI는 누구나 쓴다. 그러나, 이기는 자영업자는 다르게 씁니다. 자영업자를 위한 AI 이야기 — 글·AI 질문 전부 무료.";
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={pretendard.variable}>
+    <html lang="ko" className={`${pretendard.variable} ${brush.variable}`}>
       <body>
         <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: HEADER }} />
         {children}
@@ -42,7 +42,7 @@ export default function RootLayout({
           </div>
         </footer>
         <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: TABBAR }} />
-        <Script src="/v7/site.js?v=20261102c" strategy="afterInteractive" />
+        <Script src="/v7/site.js?v=20261106m" strategy="afterInteractive" />
         <Analytics />
       </body>
     </html>
